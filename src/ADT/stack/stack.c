@@ -1,9 +1,3 @@
-// NIM       : 18222082
-// Nama      : Ahmad Habibie Marjan
-// Tanggal   : 23年10月24日
-// Topik     : Prapraktikum 7
-// Deskripsi : Program implementasi stack.h
-
 #include "stack.h"
 
 
