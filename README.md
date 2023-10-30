@@ -9,4 +9,3 @@ Aplikasi WayangWave adalah aplikasi yang dibuat kumpulan makhluk kasat mata untu
 - 18222082 Ahmad Habibie Marjan
 
 **Cara Kompilasi**
-- 
