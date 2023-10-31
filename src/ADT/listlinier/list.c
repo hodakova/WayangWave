@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "list.h"
-#include "boolean.h"
 
 /* Indeks yang digunakan seberapa banyak memori itu terisi */
 /* Jika L adalah List, cara deklarasi dan akses: */
