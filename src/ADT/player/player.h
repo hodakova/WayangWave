@@ -21,6 +21,9 @@ typedef struct {
     int M;
 } Penyanyi;
 
-typedef 
+typedef struct {
+    Penyanyi Penyanyi[nMax];
+    int N;
+} WayangWave
 
 #endif
