@@ -1,5 +1,5 @@
-#ifndef player
-#define player
+#ifndef __PLAYER__
+#define __PLAYER__
 
 #include "../mesinkata/mesinkata.h"
 #include "../list/list.h"
