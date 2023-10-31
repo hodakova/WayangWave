@@ -9,6 +9,7 @@
 
 #define NMax 50
 #define BLANK ' '
+#define EOL '\n' // End of Line
 
 typedef struct
 {
