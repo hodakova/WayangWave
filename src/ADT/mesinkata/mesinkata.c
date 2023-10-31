@@ -10,8 +10,8 @@ void IgnoreBlanks() {
     }
 }
 
-void STARTWORD() {
-    START();
+void STARTWORD(char* fileaddress) {
+    START(fileaddress);
     IgnoreBlanks();
     if(currentChar==MARK) EndWord=true;
     else {
@@ -22,7 +22,10 @@ void STARTWORD() {
 
 void ADVWORD() {
     IgnoreBlanks();
-    if(currentChar == MARK) EndWord = true;
+    if(currentChar == EOL)
+        ADV();
+    if(currentChar == MARK)
+        EndWord = true;
     else {
         EndWord = false;
         CopyWord();
@@ -32,7 +35,7 @@ void ADVWORD() {
 
 void CopyWord() {
     int i = 0;
-    while((currentChar!=BLANK) && (currentChar!=MARK)) {
+    while(currentChar!=BLANK && currentChar!=MARK && currentChar!=EOL) {
         if(i<NMax) {
             currentWord.TabWord[i] = currentChar;
             i++;     

@@ -26,7 +26,7 @@ void IgnoreBlanks();
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 
-void STARTWORD();
+void STARTWORD(char* fileaddress);
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = MARK;
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
@@ -48,5 +48,13 @@ void CopyWord();
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
 boolean isEndWord();
+
+boolean isWordEqual(Word K1, Word K2);
+
+int Word2int(Word Kata);
+
+Word int2Word(int Angka);
+
+Word str2Word(char* String);
 
 #endif
