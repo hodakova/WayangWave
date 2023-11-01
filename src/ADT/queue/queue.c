@@ -1,9 +1,3 @@
-// NIM       : 18222082
-// Nama      : Ahmad Habibie Marjan
-// Tanggal   : 23年10月19日 & 23年10月20日
-// Topik     : Prapraktikum 6 & Praktikum 6
-// Deskripsi : Program implementasi queue.h
-
 #include "queue.h"
 #include <stdio.h>
 

@@ -22,8 +22,6 @@ void STARTWORD(char* fileaddress) {
 
 void ADVWORD() {
     IgnoreBlanks();
-    if(currentChar == EOL)
-        ADV();
     if(currentChar == MARK)
         EndWord = true;
     else {
@@ -31,6 +29,12 @@ void ADVWORD() {
         CopyWord();
         IgnoreBlanks();
     }
+}
+
+void ADVBARIS() {
+    do {
+        ADV();
+    } while(currentChar != EOL);
 }
 
 void CopyWord() {
@@ -48,3 +52,18 @@ void CopyWord() {
 boolean isEndWord() {
     return EndWord;
 }
+
+boolean isWordEqual(Word K1, Word K2);
+
+int Word2int(Word Kata) {
+    int r = 0, i = Kata.Length, pengali = 1;
+    while(i--) {
+        r += (Kata.TabWord[i] - '0') * pengali;
+        pengali *= 10;
+    }
+    return r;
+}
+
+Word int2Word(int Angka);
+
+Word str2Word(char* String);
