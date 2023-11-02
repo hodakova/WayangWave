@@ -1,13 +1,10 @@
-#include "ADT/mesinkata/mesinkata.h"
-#include "ADT/mesinkata/mesinkata.c"
-#include "ADT/mesinkar/mesinkarakterv2.h"
-#include "ADT/mesinkar/mesinkarakterv2.c"
+#include <stdio.h>
 
 int main() {
-    Word test;
-    test.Length = 3;
-    test.TabWord[0] = '2';
-    test.TabWord[1] = '1';
-    test.TabWord[2] = '2';
-    printf("%d\n", Word2int(test));
+    FILE* pita = fopen("../save/config.txt", "r");
+    char line[100];
+    char cur[2];
+    while(fgets(cur, sizeof(cur), pita)) {
+        printf("%s", cur, cur);
+    }
 }

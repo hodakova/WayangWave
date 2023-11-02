@@ -31,12 +31,6 @@ void ADVWORD() {
     }
 }
 
-void ADVBARIS() {
-    do {
-        ADV();
-    } while(currentChar != EOL);
-}
-
 void CopyWord() {
     int i = 0;
     while(currentChar!=BLANK && currentChar!=MARK && currentChar!=EOL) {
@@ -54,6 +48,11 @@ boolean isEndWord() {
 }
 
 boolean isWordEqual(Word K1, Word K2);
+
+void printWord(Word Kata) {
+    for(int i = 0; i < Kata.Length; i ++)
+        printf("%c", Kata.TabWord[i]);
+}
 
 int Word2int(Word Kata) {
     int r = 0, i = Kata.Length, pengali = 1;

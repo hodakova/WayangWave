@@ -1,12 +1,14 @@
 #include "boolean.h"
-#include "ADT/mesinkar/mesinkarakterv2.c"
-#include "ADT/mesinkata/mesinkata.c"
+#include "ADT/list/list.c"
+#include "ADT/list/arraydin.c"
+#include "ADT/wayangwave/config.c"
 #include "ADT/wayangwave/commands/start.c"
 #include <stdio.h>
 
 
 int main() {
     StartWW();
-    printf("run");
+    printf("oke");
+
     return 0;
 }

@@ -10,15 +10,15 @@
 
 /* Kamus Umum */
 #define MaxEl 100
-#define Mark -9999  /* Nilai tak terdefinisi */
+#define Mark -1  /* Nilai tak terdefinisi */
 #define InvalidIdx -1  /* Indeks tak terdefinisi */
 
 /* Definisi elemen dan koleksi objek */
 #define IdxType int
-#define ElType Word
+#define ListElType Word
 
 typedef struct {
-	ElType A[MaxEl];  /* Memori tempat penyimpanan elemen (container) */
+	ListElType A[MaxEl];  /* Memori tempat penyimpanan elemen (container) */
 } List;
 
 #define List(i) L.A(i)
