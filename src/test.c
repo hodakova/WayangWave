@@ -1,10 +1,26 @@
+#include "ADT/mesinkar/mesinkarakterv2.c"
+#include "ADT/mesinkata/mesinkata.c"
+#include "ADT/mesinbaris/mesinbaris.c"
+#include "ADT/list/list.c"
+#include "ADT/wayangwave/config.c"
+#include "ADT/wayangwave/commands/start.c"
 #include <stdio.h>
 
+
 int main() {
-    FILE* pita = fopen("../save/config.txt", "r");
-    char line[100];
-    char cur[2];
-    while(fgets(cur, sizeof(cur), pita)) {
-        printf("%s", cur, cur);
+    STARTWORD("../save/config.txt");
+    /*TEST BARIS*/
+    for(int i = 0; i < 30; i ++) {
+        currentWordTillEOL();
+        printWord(currentWord);
+        printf("\n");
+        ADVBARIS();
     }
+    /*TEST WORD
+    for(int i = 0; i < 100; i ++) {
+        printWord(currentWord);
+        printf(" ");
+        ADVWORD();
+    }*/
+    return 0;
 }

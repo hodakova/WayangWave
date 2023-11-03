@@ -7,13 +7,14 @@
 #include "../../boolean.h"
 #include "../mesinkar/mesinkarakterv2.h"
 
-#define NMax 50
+#define WordNMax 100
 #define BLANK ' '
 #define EOL '\n' // End of Line
+#define CR '\r'
 
 typedef struct
 {
-   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   char TabWord[WordNMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
    int Length;
 } Word;
 

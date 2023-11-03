@@ -1,27 +1,23 @@
 #include "mesinbaris.h"
 
 void ADVBARIS() {
-    while(currentChar != EOL) {
+    while(currentChar != EOL)
         ADV();
-    }
-    ADV();
+    IgnoreEOL();
+    ADVWORD();
 }
 
 void currentWordTillEOL() {
-    char prev;
     int i = currentWord.Length;
-    ADV();
-    while(currentChar != EOL && currentChar != '#') {
-        prev = currentChar;
-        ADV();
-
-        if(currentChar != '#') {
-            currentWord.TabWord[i] = prev;
-            i ++;
-        }
-    }
-    if(currentChar != '#') {
+    if(i > 0) {    
+        currentWord.TabWord[i] = ' ';
         i ++;
-        currentWord.TabWord[i] = currentChar;
+        ADV();
     }
+    while(currentChar != EOL && currentChar != CR) {
+        currentWord.TabWord[i] = currentChar;
+        ADV();
+        i ++;
+    }
+    currentWord.Length = i;
 }

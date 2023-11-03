@@ -1,12 +1,15 @@
-#ifndef __CONFIG__
-#define __CONFIG__
+#ifndef __CONFIG_H__
+#define __CONFIG_H__
 
 #include "../mesinkata/mesinkata.h"
 #include "../list/list.h"
 
+#define MaxEl 100
+
 typedef struct album {
     Word Nama;
     List Lagu;
+    int L;
 } Album;
 
 typedef struct penyanyi {

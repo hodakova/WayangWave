@@ -4,6 +4,8 @@
 #include "../../boolean.h"
 #include "../mesinkata/mesinkata.h"
 
+#define COMMENT '#'
+
 void ADVBARIS();
 
 #endif

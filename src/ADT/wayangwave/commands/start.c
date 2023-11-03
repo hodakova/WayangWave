@@ -1,38 +1,37 @@
 #include "start.h"
-#include "../../mesinkar/mesinkarakterv2.h"
-#include "../../mesinkata/mesinkata.h"
-#include "../../mesinbaris/mesinbaris.h"
-#include "../config.h"
 
 void StartWW() {
-    int i, j, k, l;
+    int i, j, k;
     STARTWORD("../save/config.txt");
 
-    Config.N = Word2int(currentWord);
+    Config.N = Word2int(currentWord); printWord(currentWord); printf("\n");
     ADVBARIS(); // ^^ Jumlah Penyanyi ^^
 
     for(i = 0; i < Config.N; i ++) {
-        Config.Penyanyi[i].M = Word2int(currentWord);
+        Config.Penyanyi[i].M = Word2int(currentWord); printWord(currentWord); printf("\n");
         ADVWORD(); // ^^ Jumlah Album ^^
 
         currentWordTillEOL();
-        Config.Penyanyi[i].Nama = currentWord;
-        ADVBARIS(); // ^^ Nama Penyanyi ^^
+        Config.Penyanyi[i].Nama = currentWord; printWord(currentWord); printf("\n");
+        ADVWORD(); // ^^ Nama Penyanyi ^^
 
+        printWord(currentWord);
+/*
         for(j = 0; j < Config.Penyanyi[i].M; j ++) {
-            l = Word2int(currentWord);
+            Config.Penyanyi[i].Album[j].L = Word2int(currentWord); printWord(currentWord); printf("\n");
             ADVWORD(); // ^^ Jumlah Lagu ^^
 
             currentWordTillEOL();
-            Config.Penyanyi[i].Album[j].Nama = currentWord;
+            Config.Penyanyi[i].Album[j].Nama = currentWord; printWord(currentWord); printf("\n");
             ADVBARIS(); // ^^ Nama Album ^^
             
-            for(k = 0; k < l; k ++) {
-                currentWordTillEOL();
-                InsertLast(&(Config.Penyanyi[i].Album[j].Lagu), currentWord);
+            for(k = 0; k < Config.Penyanyi[i].Album[j].L; k ++) {
+                currentWordTillEOL(); printWord(currentWord); printf("\n");
+                ListInsertLast(&(Config.Penyanyi[i].Album[j].Lagu), currentWord);
                 ADVBARIS(); // ^^ Nama Lagu ^^
+                break;
             }
-        }
+            break;
+        }*/
     }
-
 }

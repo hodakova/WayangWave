@@ -10,9 +10,23 @@ void IgnoreBlanks() {
     }
 }
 
+void IgnoreCR() {
+    while((currentChar==CR) && (currentChar!=MARK)) {
+        ADV();
+    }
+}
+
+void IgnoreEOL() {
+    if((currentChar==EOL) && (currentChar!=MARK)) {
+        ADV();
+    }
+}
+
 void STARTWORD(char* fileaddress) {
     START(fileaddress);
     IgnoreBlanks();
+    IgnoreCR();
+    IgnoreEOL();
     if(currentChar==MARK) EndWord=true;
     else {
         EndWord = false;
@@ -22,32 +36,45 @@ void STARTWORD(char* fileaddress) {
 
 void ADVWORD() {
     IgnoreBlanks();
+    IgnoreCR();
     if(currentChar == MARK)
         EndWord = true;
     else {
         EndWord = false;
         CopyWord();
-        IgnoreBlanks();
     }
 }
 
 void CopyWord() {
     int i = 0;
-    while(currentChar!=BLANK && currentChar!=MARK && currentChar!=EOL) {
-        if(i<NMax) {
+    while(currentChar!=BLANK && currentChar!=MARK && currentChar!=EOL && currentChar!=CR) {
+        if(i < WordNMax) {
             currentWord.TabWord[i] = currentChar;
-            i++;     
+            i++;
         }
         ADV();
     }
     currentWord.Length = i;
+    IgnoreEOL();
 }
 
 boolean isEndWord() {
     return EndWord;
 }
 
-boolean isWordEqual(Word K1, Word K2);
+boolean isWordEqual(Word K1, Word K2) {
+    if(K1.Length == K2.Length) {
+        for(int i = 0; i < K1.Length; i ++) {
+            if(K1.TabWord[i] != K2.TabWord[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 
 void printWord(Word Kata) {
     for(int i = 0; i < Kata.Length; i ++)
