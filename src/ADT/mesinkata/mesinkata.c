@@ -26,7 +26,6 @@ void STARTWORD(char* fileaddress) {
     START(fileaddress);
     IgnoreBlanks();
     IgnoreCR();
-    IgnoreEOL();
     if(currentChar==MARK) EndWord=true;
     else {
         EndWord = false;
@@ -55,7 +54,6 @@ void CopyWord() {
         ADV();
     }
     currentWord.Length = i;
-    IgnoreEOL();
 }
 
 boolean isEndWord() {
