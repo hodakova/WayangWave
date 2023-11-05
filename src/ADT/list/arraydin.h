@@ -1,17 +1,14 @@
 #ifndef __ARRAY_DINAMIK__
 #define __ARRAY_DINAMIK__
 
-// Boolean
-#define boolean unsigned char
-#define true 1
-#define false 0
+#include "../../boolean.h"
 
-#define InitialSize 10
+#define ArrayDinInitialSize 10
 
-typedef int IdxType;
-typedef int ElType;
+typedef int ArrayDinIdxType;
+typedef int ArrayDinElType;
 typedef struct {
-    ElType *A;
+    ArrayDinElType *A;
     int Capacity;
     int Neff;
 } ArrayDin;
@@ -34,61 +31,61 @@ void DeallocateArrayDin(ArrayDin *array);
  * Fungsi untuk mengetahui apakah suatu array kosong.
  * Prekondisi: array terdefinisi
  */
-boolean IsEmpty(ArrayDin array);
+boolean IsArrayDinEmpty(ArrayDin array);
 
 /**
  * Fungsi untuk mendapatkan banyaknya elemen efektif array, 0 jika tabel kosong.
  * Prekondisi: array terdefinisi
  */
-int Length(ArrayDin array);
+int ArrayDinLength(ArrayDin array);
 
 /**
  * Mengembalikan elemen array L yang ke-I (indeks lojik).
  * Prekondisi: array tidak kosong, i di antara 0..Length(array).
  */
-ElType Get(ArrayDin array, IdxType i);
+ArrayDinElType ArrayDinGet(ArrayDin array, ArrayDinIdxType i);
 
 /**
  * Fungsi untuk mendapatkan kapasitas yang tersedia.
  * Prekondisi: array terdefinisi
  */
-int GetCapacity(ArrayDin array);
+int ArrayDinGetCapacity(ArrayDin array);
 
 /**
  * Fungsi untuk menambahkan elemen baru di index ke-i
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
-void InsertAt(ArrayDin *array, ElType el, IdxType i);
+void ArrayDinInsertAt(ArrayDin *array, ArrayDinElType el, ArrayDinIdxType i);
 
 /**
  * Fungsi untuk menambahkan elemen baru di akhir array.
  * Prekondisi: array terdefinisi
  */
-void InsertLast(ArrayDin *array, ElType el);
+void ArrayDinInsertLast(ArrayDin *array, ArrayDinElType el);
 
 /**
  * Fungsi untuk menambahkan elemen baru di awal array.
  * Prekondisi: array terdefinisi
  */
-void InsertFirst(ArrayDin *array, ElType el);
+void ArrayDinInsertFirst(ArrayDin *array, ArrayDinElType el);
 
 /**
  * Fungsi untuk menghapus elemen di index ke-i ArrayDin
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
-void DeleteAt(ArrayDin *array, IdxType i);
+void ArrayDinDeleteAt(ArrayDin *array, ArrayDinIdxType i);
 
 /**
  * Fungsi untuk menghapus elemen terakhir ArrayDin
  * Prekondisi: array tidak kosong
  */
-void DeleteLast(ArrayDin *array);
+void ArrayDinDeleteLast(ArrayDin *array);
 
 /**
  * Fungsi untuk menghapus elemen pertama ArrayDin
  * Prekondisi: array tidak kosong
  */
-void DeleteFirst(ArrayDin *array);
+void ArrayDinDeleteFirst(ArrayDin *array);
 
 /**
  * Fungsi untuk melakukan print suatu ArrayDin.
@@ -96,13 +93,13 @@ void DeleteFirst(ArrayDin *array);
  * dan diakhiri newline.
  * Prekondisi: array terdefinisi
  */
-void PrintArrayDin(ArrayDin array);
+void ArrayDinPrintArrayDin(ArrayDin array);
 
 /**
  * Fungsi untuk melakukan reverse suatu ArrayDin.
  * Prekondisi: array terdefinisi
  */
-void ReverseArrayDin(ArrayDin *array);
+void ArrayDinReverseArrayDin(ArrayDin *array);
 
 /**
  * Fungsi untuk melakukan copy suatu ArrayDin.
@@ -116,6 +113,6 @@ ArrayDin CopyArrayDin(ArrayDin array);
  * Jika tidak ditemukan, akan mengembalikan -1.
  * Prekondisi: array terdefinisi
  */
-IdxType SearchArrayDin(ArrayDin array, ElType el);
+ArrayDinIdxType SearchArrayDin(ArrayDin array, ArrayDinElType el);
 
 #endif

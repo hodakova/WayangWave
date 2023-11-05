@@ -1,51 +1,51 @@
 #include "map.h"
 
-/* Definisi Map M kosong : M.Count = Nil */
+/* Definisi Map M kosong : M.Count = MapNil */
 /* M.Count = jumlah element Map */
 /* M.Elements = tempat penyimpanan element Map */
 
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty(Map *M) {
-    M->Count = Nil;
+void CreateMap(Map *M) {
+    M->Count = MapNil;
 }
 /* I.S. Sembarang */
-/* F.S. Membuat sebuah Map M kosong berkapasitas MaxEl */
-/* Ciri Map kosong : count bernilai Nil */
+/* F.S. Membuat sebuah Map M kosong berkapasitas MapMaxEl */
+/* Ciri Map kosong : count bernilai MapNil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsEmpty(Map M) {
-    return (M.Count==Nil);
+boolean IsMapEmpty(Map M) {
+    return (M.Count==MapNil);
 }
 /* Mengirim true jika Map M kosong*/
-/* Ciri Map kosong : count bernilai Nil */
+/* Ciri Map kosong : count bernilai MapNil */
 
-boolean IsFull(Map M) {
-        return (M.Count==MaxEl);
+boolean IsMapFull(Map M) {
+        return (M.Count==MapMaxEl);
 }
 /* Mengirim true jika Map M penuh */
-/* Ciri Map penuh : count bernilai MaxEl */
+/* Ciri Map penuh : count bernilai MapMaxEl */
 
 /* ********** Operator Dasar Map ********* */
 
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
-void Insert(Map *M, keytype k, valuetype v) {
+void MapInsert(Map *M, MapKeyType k, MapValueType v) {
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
     int i=0;
 
-    if (IsEmpty(*M)) {
+    if (IsMapEmpty(*M)) {
         M->Count = 1;
         M->Elements[0].Key = k;
         M->Elements[0].Value = v;
     }
     else {
-        if (!IsMember(*M, k)) {
+        if (!IsMapMember(*M, k)) {
             M->Elements[M->Count].Value = v;
             M->Elements[M->Count].Key = k;
             M->Count++;
@@ -54,7 +54,7 @@ void Insert(Map *M, keytype k, valuetype v) {
 }
 
 
-void Delete(Map *M, keytype k) {
+void MapDelete(Map *M, MapKeyType k) {
 /* Menghapus Elmt dari Map M. */
 /* I.S. M tidak kosong
         element dengan key k mungkin anggota / bukan anggota dari M */
@@ -63,7 +63,7 @@ void Delete(Map *M, keytype k) {
     boolean found;
     found = false;
     
-    if (IsMember(*M, k)) {
+    if (IsMapMember(*M, k)) {
         while (i<M->Count && !found) {
             if (M->Elements[i].Key == k) {
                     found = true;
@@ -82,7 +82,7 @@ void Delete(Map *M, keytype k) {
 }
 
 
-boolean IsMember(Map M, keytype k) {
+boolean IsMapMember(Map M, MapKeyType k) {
 /* Mengembalikan true jika k adalah member dari M */
     int i=0;
     boolean found;

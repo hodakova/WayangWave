@@ -24,6 +24,7 @@ void StartWW() {
             Config.Penyanyi[i].Album[j].Nama = currentWord;// printWord(currentWord); printf("\n");
             ADVBARIS();// ^^ Nama Album ^^
             
+            MakeList(&(Config.Penyanyi[i].Album[j].Lagu));
             for(k = 0; k < Config.Penyanyi[i].Album[j].L; k ++) {
                 currentWordTillEOL();// printWord(currentWord); printf("\n");
                 ListInsertLast(&(Config.Penyanyi[i].Album[j].Lagu), currentWord);
@@ -31,4 +32,13 @@ void StartWW() {
             }
         }
     }
+
+    idUser = 0;
+    dtUsers.U = idUser;
+    dtUsers.User[idUser].Username = str2Word("user1");
+    dtUsers.User[idUser].Password = str2Word("password1");
+    dtUsers.User[idUser].Playlist.P = 0;
+    CreateQueue(&(dtUsers.User[idUser].Queue));
+    CreateStack(&(dtUsers.User[idUser].History));
+
 }

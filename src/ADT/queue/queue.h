@@ -6,13 +6,13 @@
 
 #include "boolean.h"
 
-#define IDX_UNDEF -1
-#define CAPACITY 100
+#define QueueIdxUndef -1
+#define QueueCapacity 100
 
 /* Definisi elemen dan address */
-typedef int ElType;
+typedef int QueueElType;
 typedef struct {
-	ElType buffer[CAPACITY]; 
+	QueueElType buffer[QueueCapacity]; 
 	int idxHead;
 	int idxTail;
 } Queue;
@@ -20,10 +20,10 @@ typedef struct {
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika q adalah Queue, maka akses elemen : */
-#define IDX_HEAD(q) (q).idxHead
-#define IDX_TAIL(q) (q).idxTail
-#define     HEAD(q) (q).buffer[(q).idxHead]
-#define     TAIL(q) (q).buffer[(q).idxTail]
+#define QueueIdxHead(q) (q).idxHead
+#define QueueIdxTail(q) (q).idxTail
+#define    QueueHead(q) (q).buffer[(q).idxHead]
+#define    QueueTail(q) (q).buffer[(q).idxTail]
 
 /* *** Kreator *** */
 void CreateQueue(Queue *q);
@@ -34,13 +34,13 @@ void CreateQueue(Queue *q);
 /* Proses : Melakukan alokasi, membuat sebuah q kosong */
 
 /* ********* Prototype ********* */
-boolean isEmpty(Queue q);
+boolean isQueueEmpty(Queue q);
 /* Mengirim true jika q kosong: lihat definisi di atas */
-boolean isFull(Queue q);
+boolean isQueueFull(Queue q);
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
 
-int length(Queue q);
+int QueueLength(Queue q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
@@ -50,14 +50,14 @@ void enqueue(Queue *q, ElType val); */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void enqueue(Queue *q, ElType val);
+void enqueue(Queue *q, QueueElType val);
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur".
         Jika q penuh semu, maka perlu dilakukan aksi penggeseran "maju" elemen-elemen q
         menjadi rata kiri untuk membuat ruang kosong bagi TAIL baru  */
 
-void dequeue(Queue *q, ElType *val);
+void dequeue(Queue *q, QueueElType *val);
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";

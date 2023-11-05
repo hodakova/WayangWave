@@ -7,18 +7,20 @@
 #include "../list/arraydin.h"
 
 typedef Queue RecordQueue;
+
 typedef Stack RecordHistory;
 
 typedef struct playlist {
     Word Nama;
     ArrayDin Record;
 } Playlist;
+
 typedef struct recordplaylist {
-    Playlist* Playlist[MaxEl];
+    Playlist Playlist[MaxEl];
     int P;
 } RecordPlaylist;
 
-/*
+
 typedef struct user {
     Word Username;
     Word Password;
@@ -26,10 +28,12 @@ typedef struct user {
     RecordQueue Queue;
     RecordPlaylist Playlist;
 } User;
+
 typedef struct users {
-    User* User[MaxEl];
+    User User[MaxEl];
     int U;
 } Users;
-*/
+
+typedef int id;
 
 #endif

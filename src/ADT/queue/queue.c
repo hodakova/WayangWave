@@ -5,103 +5,84 @@
 void CreateQueue(Queue *q)
 /* I.S. sembarang */
 /* F.S. Sebuah q kosong terbentuk dengan kondisi sbb: */
-/* - Index head bernilai IDX_UNDEF */
-/* - Index tail bernilai IDX_UNDEF */
+/* - Index head bernilai QueueIdxUndef */
+/* - Index tail bernilai QueueIdxUndef */
 /* Proses : Melakukan alokasi, membuat sebuah q kosong */
 {
-    IDX_HEAD(*q)=IDX_UNDEF;
-    IDX_TAIL(*q)=IDX_UNDEF;
+    QueueIdxHead(*q) = QueueIdxUndef;
+    QueueIdxTail(*q) = QueueIdxUndef;
 }
 
 
 /* ********* Prototype ********* */
-boolean isEmpty(Queue q)
+boolean isQueueEmpty(Queue q)
 /* Mengirim true jika q kosong: lihat definisi di atas */
 {
-    return IDX_HEAD(q)==IDX_UNDEF && IDX_TAIL(q)==IDX_UNDEF;
+    return QueueIdxHead(q) == QueueIdxUndef && QueueIdxTail(q) == QueueIdxUndef;
 }
 
-boolean isFull(Queue q)
+boolean isQueueFull(Queue q)
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
-/* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
+/* yaitu QueueIdxTail akan selalu di belakang QueueIdxHead dalam buffer melingkar*/
 {
     boolean res;
-    if(IDX_TAIL(q)>=IDX_HEAD(q))
-        res = IDX_TAIL(q)-IDX_HEAD(q)==CAPACITY-1;
+    if(QueueIdxTail(q) >= QueueIdxHead(q))
+        res = QueueIdxTail(q) - QueueIdxHead(q) == QueueCapacity - 1;
     else
-        res = IDX_HEAD(q)-IDX_TAIL(q)==1;
+        res = QueueIdxHead(q) - QueueIdxTail(q) == 1;
     return res;
 }
 
-int length(Queue q)
+int QueueLength(Queue q)
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 {
     int res;
-    if(isEmpty(q))
+    if(isQueueEmpty(q))
         res = 0;
-    else if(IDX_TAIL(q)>=IDX_HEAD(q))
-        res = IDX_TAIL(q)-IDX_HEAD(q)+1;
+    else if(QueueIdxTail(q) >= QueueIdxHead(q))
+        res = QueueIdxTail(q) - QueueIdxHead(q) + 1;
     else
-        res = IDX_TAIL(q)-IDX_HEAD(q)+1+CAPACITY;
+        res = QueueIdxTail(q) - QueueIdxHead(q) + 1 + QueueCapacity;
     return res;
 }
 
-/* *** Primitif Add/Delete *** */
-/* PRAPRAKTIKUM
-void enqueue(Queue *q, ElType val) */
+void enqueue(Queue *q, QueueElType val)
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
-/* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */ /*
-{
-    if(isEmpty(*q)) {
-        IDX_HEAD(*q)=0;
-        IDX_TAIL(*q)=0;
-    }
-    else {
-        IDX_TAIL(*q)++;
-        IDX_TAIL(*q)%=CAPACITY;
-    }
-    TAIL(*q)=val;
-}
-*/
-// PRAKTIKUM
-void enqueue(Queue *q, ElType val)
-/* Proses: Menambahkan val pada q dengan aturan FIFO */
-/* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
-/* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur".
+/* F.S. val menjadi QueueTail yang baru, QueueIdxTail "mundur".
         Jika q penuh semu, maka perlu dilakukan aksi penggeseran "maju" elemen-elemen q
-        menjadi rata kiri untuk membuat ruang kosong bagi TAIL baru  */
+        menjadi rata kiri untuk membuat ruang kosong bagi QueueTail baru  */
 {
-    if(isEmpty(*q)) {
-        IDX_HEAD(*q)=0;
-        IDX_TAIL(*q)=0;
+    if(isQueueEmpty(*q)) {
+        QueueIdxHead(*q) = 0;
+        QueueIdxTail(*q) = 0;
     }
     else {
-        if(IDX_TAIL(*q) + 1 == CAPACITY) {
-            for(int i = 0; i < length(*q); i ++)
-                (*q).buffer[i] = (*q).buffer[i+IDX_HEAD(*q)];
-            IDX_TAIL(*q) -= IDX_HEAD(*q);
-            IDX_HEAD(*q) = 0;
+        if(QueueIdxTail(*q) + 1 == QueueCapacity) {
+            for(int i = 0; i < QueueLength(*q); i ++)
+                (*q).buffer[i] = (*q).buffer[i + QueueIdxHead(*q)];
+            QueueIdxTail(*q) -= QueueIdxHead(*q);
+            QueueIdxHead(*q) = 0;
         }
-        IDX_TAIL(*q)++;
+        QueueIdxTail(*q) ++;
     }
-    TAIL(*q)=val;
+    QueueTail(*q) = val;
 }
 
-void dequeue(Queue *q, ElType *val)
+void dequeue(Queue *q, QueueElType *val)
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
-/* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
+/* F.S. val = nilai elemen HEAD pd I.S., QueueIdxHead "mundur";
         q mungkin kosong */
 {
-    *val=HEAD(*q);
-    if(IDX_HEAD(*q)==IDX_TAIL(*q)) {
-        IDX_HEAD(*q)=IDX_UNDEF;
-        IDX_TAIL(*q)=IDX_UNDEF;
+    *val = HEAD(*q);
+    if(QueueIdxHead(*q) == QueueIdxTail(*q)) {
+        QueueIdxHead(*q) = QueueIdxUndef;
+        QueueIdxTail(*q) = QueueIdxUndef;
     }
     else {
-        IDX_HEAD(*q)++;
-        IDX_HEAD(*q)%=CAPACITY;
+        QueueIdxHead(*q) ++;
+        QueueIdxHead(*q) %= QueueCapacity;
     }
 }
 
@@ -116,11 +97,11 @@ void displayQueue(Queue q)
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
 {
-    int i,l=length(q);
+    int i, l = QueueLength(q);
     printf("[");
-    for(int i=0;i<l;i++) {
-        printf("%d",q.buffer[(i+IDX_HEAD(q))%CAPACITY]);
-        if(i<l-1)
+    for(i = 0; i < l; i++) {
+        printf("%d", q.buffer[(i + QueueIdxHead(q)) % QueueCapacity]);
+        if(i < l - 1)
             printf(",");
     }
     printf("]\n");

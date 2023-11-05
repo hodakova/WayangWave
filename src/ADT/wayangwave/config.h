@@ -23,6 +23,4 @@ typedef struct config {
     int N;
 } ListPenyanyi;
 
-extern ListPenyanyi Config;
-
 #endif

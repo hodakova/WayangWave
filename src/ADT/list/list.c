@@ -27,14 +27,14 @@ boolean IsListEmpty(List L) {
 }
 
 /* *** Menghasilkan sebuah elemen *** */
-ListElType ListGet(List L, IdxType i) {
+ListElType ListGet(List L, ListIdxType i) {
 /* Prekondisi : list tidak kosong, i antara ListFirstIdx(T)..ListLastIdx(T) */
 /* Mengirimkan elemen list yang ke-i */
     return L.A[i];
 }
 
 /* *** Selektor SET : Mengubah nilai list dan elemen list *** */
-void ListSet(List *L, IdxType i, ListElType v) {
+void ListSet(List *L, ListIdxType i, ListElType v) {
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
     (*L).A[i] = v;
@@ -52,27 +52,27 @@ int ListLength(List L) {
 }
 
 /* *** Selektor INDEKS *** */
-IdxType ListFirstIdx(List L) {
+ListIdxType ListFirstIdx(List L) {
 /* Prekondisi : list L tidak kosong */
 /* Mengirimkan indeks elemen pertama */
     return 0;
 }
 
-IdxType ListLastIdx(List L){
+ListIdxType ListLastIdx(List L){
 /* Prekondisi : list L tidak kosong */
 /* Mengirimkan indeks elemen terakhir */
     return ListLength(L) - 1;
 }
 
 /* ********** Test Indeks yang valid ********** */
-boolean IsIdxListValid (List L, IdxType i){
+boolean IsIdxListValid (List L, ListIdxType i){
 /* Prekondisi : i sembarang */
 /* Mengirimkan true jika i adalah indeks yang valid utk ukuran list */
 /* yaitu antara indeks yang terdefinisi untuk container*/
     return i >= ListFirstIdx(L) && i < ListMaxEl;
 }
 
-boolean IsIdxListEff (List L, IdxType i){
+boolean IsIdxListEff (List L, ListIdxType i){
 /* Prekondisi : i sembarang*/
 /* Mengirimkan true jika i adalah indeks yang terdefinisi utk list */
 /* yaitu antara ListFirstIdx(L)..ListLastIdx(L) */
@@ -97,7 +97,7 @@ void ListInsertFirst(List *L, ListElType X) {
     ListInsertAt(L, X, 0);  
 }
 
-void ListInsertAt(List *L, ListElType X, IdxType i) {
+void ListInsertAt(List *L, ListElType X, ListIdxType i) {
 /* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
 /* F.S. v disisipkan dalam L pada indeks ke-i (bukan menimpa elemen di i). */
     for(int j = ListLastIdx(*L); j >= i; j--)
@@ -117,7 +117,7 @@ void ListDeleteFirst(List *L) {
     ListDeleteAt(L, 0); 
 }
 
-void ListDeleteAt(List *L, IdxType i) {
+void ListDeleteAt(List *L, ListIdxType i) {
 /* I.S. L terdefinisi, tidak kosong, i merupakan indeks lojik yang valid di L. */
 /* F.S. Elemen L pada indeks ke-i dihapus dari L. */
     for(int j = i; j < ListLastIdx(*L); j ++)

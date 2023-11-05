@@ -9,65 +9,65 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 
 // #define false 0
 // #define true 1
-#define Nil 0
-#define MaxEl 10
+#define MapNil 0
+#define MapMaxEl 10
 
 // typedef int bool;
-typedef int keytype;
-typedef int valuetype;
-typedef int address;
+typedef int MapKeyType;
+typedef int MapValueType;
+typedef int MapAddress;
 
 typedef struct
 {
-	keytype Key;
-	valuetype Value;
-} infotype;
+	MapKeyType Key;
+	MapValueType Value;
+} MapInfotype;
 
 typedef struct
 {
-	infotype Elements[MaxEl];
-	address Count;
+	MapInfotype Elements[MapMaxEl];
+	MapAddress Count;
 } Map;
 
-/* Definisi Map M kosong : M.Count = Nil */
+/* Definisi Map M kosong : M.Count = MapNil */
 /* M.Count = jumlah element Map */
 /* M.Elements = tempat penyimpanan element Map */
 
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty(Map *M);
+void CreateMap(Map *M);
 /* I.S. Sembarang */
-/* F.S. Membuat sebuah Map M kosong berkapasitas MaxEl */
-/* Ciri Map kosong : count bernilai Nil */
+/* F.S. Membuat sebuah Map M kosong berkapasitas MapMaxEl */
+/* Ciri Map kosong : count bernilai MapNil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsEmpty(Map M);
+boolean IsMapEmpty(Map M);
 /* Mengirim true jika Map M kosong*/
-/* Ciri Map kosong : count bernilai Nil */
+/* Ciri Map kosong : count bernilai MapNil */
 
-boolean IsFull(Map M);
+boolean IsMapFull(Map M);
 /* Mengirim true jika Map M penuh */
-/* Ciri Map penuh : count bernilai MaxEl */
+/* Ciri Map penuh : count bernilai MapMaxEl */
 
 /* ********** Operator Dasar Map ********* */
-valuetype Value(Map M, keytype k);
-/* Mengembalikan nilai value dengan key k dari M */
+MapValueType MapValue(Map M, MapKeyType k);
+/* Mengembalikan nilai MapValueTdengan key k dari MapA */
 
-void Insert(Map *M, keytype k, valuetype v);
-/* Menambahkan Elmt sebagai elemen Map M. */
-/* I.S. M mungkin kosong, M tidak penuh
+void MapInsert(Map *M, MapKeyType k, MapValueType v);
+/* Menambahkan Elmt MapVabagTi elemen Map M. */
+/* I.S. M mungkin koMapAong, M tidak penuh
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 
-void Delete(Map *M, keytype k);
-/* Menghapus Elmt dari Map M. */
-/* I.S. M tidak kosong
+void MapDelete(Map *M, MapKeyType k);
+/* Menghapus Elmt daMapVa MaT M. */
+/* I.S. M tidak kMapAsong
         element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-boolean IsMember(Map M, keytype k);
-/* Mengembalikan true jika k adalah member dari M */
+boolean IsMapMember(Map M, MapKeyType k);
+/* Mengembalikan true jiMapVa k Tdalah member dari MapA */
 
 void printMap(Map M);
 

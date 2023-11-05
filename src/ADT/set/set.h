@@ -7,53 +7,53 @@
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 */
 
-#define Nil 0
-#define MaxEl 100
+#define SetNil 0
+#define SetMaxEl 100
 
-typedef int infotype;
-typedef int address;
+typedef int SetInfoType;
+typedef int SetAddress;
 
 typedef struct
 {
-    infotype Elements[MaxEl];
-    address Count;
+    SetInfoType Elements[SetMaxEl];
+    SetAddress Count;
 } Set;
 
-/* Definisi Set S kosong : S.Count = Nil */
+/* Definisi Set S kosong : S.Count = SetNil */
 /* S.Count = jumlah element Set */
 /* S.Elements = tempat penyimpanan element Set */
 
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty(Set *S);
+void CreateSet(Set *S);
 /* I.S. Sembarang */
-/* F.S. Membuat sebuah Set S kosong berkapasitas MaxEl */
-/* Ciri Set kosong : count bernilai Nil */
+/* F.S. Membuat sebuah Set S kosong berkapasitas SetMaxEl */
+/* Ciri Set kosong : count bernilai SetNil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsEmpty(Set S);
+boolean IsSetEmpty(Set S);
 /* Mengirim true jika Set S kosong*/
-/* Ciri Set kosong : count bernilai Nil */
+/* Ciri Set kosong : count bernilai SetNil */
 
-boolean IsFull(Set S);
+boolean IsSetFull(Set S);
 /* Mengirim true jika Set S penuh */
-/* Ciri Set penuh : count bernilai MaxEl */
+/* Ciri Set penuh : count bernilai SetMaxEl */
 
 /* ********** Operator Dasar Set ********* */
-void Insert(Set *S, infotype Elmt);
+void SetInsert(Set *S, SetInfoType Elmt);
 /* Menambahkan Elmt sebagai elemen Set S. */
 /* I.S. S mungkin kosong, S tidak penuh
         S mungkin sudah beranggotakan Elmt */
 /* F.S. Elmt menjadi anggota dari S. Jika Elmt sudah merupakan anggota, operasi tidak dilakukan */
 
-void Delete(Set *S, infotype Elmt);
+void SetDelete(Set *S, SetInfoType Elmt);
 /* Menghapus Elmt dari Set S. */
 /* I.S. S tidak kosong
         Elmt mungkin anggota / bukan anggota dari S */
 /* F.S. Elmt bukan anggota dari S */
 
-boolean IsMember(Set S, infotype Elmt);
+boolean IsSetMember(Set S, SetInfoType Elmt);
 /* Mengembalikan true jika Elmt adalah member dari S */
 
 Set SetUnion(Set s1, Set s2);
