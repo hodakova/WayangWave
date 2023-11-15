@@ -22,16 +22,28 @@ void IgnoreEOL() {
     }
 }
 
-void STARTWORD(char* fileaddress) {
-    START(fileaddress);
+void STARTWORDFILE(char* fileaddress) {
+    STARTFILE(fileaddress);
     IgnoreBlanks();
     IgnoreCR();
-    if(currentChar==MARK) EndWord=true;
+    if(EOP) EndWord=true;
     else {
         EndWord = false;
         ADVWORD();
     }
 }
+
+void STARTWORD() {
+    START();
+    IgnoreBlanks();
+    IgnoreCR();
+    if(EOP) EndWord=true;
+    else {
+        EndWord = false;
+        ADVWORD();
+    }
+}
+
 
 void ADVWORD() {
     IgnoreBlanks();
@@ -90,4 +102,13 @@ int Word2int(Word Kata) {
 
 Word int2Word(int Angka);
 
-Word str2Word(char* String);
+Word str2Word(char* String){
+    Word kata;
+    int i = 0;
+    while(String[i] != '\0'){
+        kata.TabWord[i] = String[i];
+        i++;
+    }
+    kata.Length = i;
+    return kata;
+}

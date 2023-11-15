@@ -1,2 +1,2 @@
 
-    printWord(Config.Penyanyi[1].Nama);
+    // printWord(Config.Penyanyi[1].Nama);

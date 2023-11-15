@@ -93,13 +93,13 @@ void ArrayDinDeleteFirst(ArrayDin *array);
  * dan diakhiri newline.
  * Prekondisi: array terdefinisi
  */
-void ArrayDinPrintArrayDin(ArrayDin array);
+void PrintArrayDin(ArrayDin array);
 
 /**
  * Fungsi untuk melakukan reverse suatu ArrayDin.
  * Prekondisi: array terdefinisi
  */
-void ArrayDinReverseArrayDin(ArrayDin *array);
+void ReverseArrayDin(ArrayDin *array);
 
 /**
  * Fungsi untuk melakukan copy suatu ArrayDin.

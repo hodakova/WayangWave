@@ -58,6 +58,7 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
     "mesinkata.h": "c",
-    "start.h": "c"
+    "start.h": "c",
+    "stdio.h": "c"
   }
 }
