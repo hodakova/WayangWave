@@ -19,6 +19,13 @@ void START(char *fileaddress)
                  Jika currentChar = MARK maka EOP akan menyala (true) */
 
        /* Algoritma */
+       pita = stdin;
+       ADV();
+}
+
+void STARTFILE(char* fileaddress)
+{
+
        pita = fopen(fileaddress, "r");
        ADV();
 }
@@ -34,9 +41,7 @@ void ADV()
 
        /* Algoritma */
        retval = fscanf(pita, "%c", &currentChar);
-       EOP = (currentChar == MARK);
+       EOP = feof(pita);
        if (EOP)
-       {
               fclose(pita);
-       }
 }
