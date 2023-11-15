@@ -28,9 +28,20 @@ boolean IsMapFull(Map M) {
 /* Ciri Map penuh : count bernilai MapMaxEl */
 
 /* ********** Operator Dasar Map ********* */
-
+MapValueType MapValue(Map M, MapKeyType k)
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
+{
+    int i = 0;
+    MapValueType v = MapUndefined;
+    while(i < M.Count && v == MapUndefined) {
+        if(M.Elements[i].Key == k)
+            v = M.Elements[i].Value;
+        else
+            i ++;
+    }
+    return v;
+}
 
 void MapInsert(Map *M, MapKeyType k, MapValueType v) {
 /* Menambahkan Elmt sebagai elemen Map M. */

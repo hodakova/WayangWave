@@ -32,7 +32,7 @@ void Push(Stack *S, StackInfoType X)
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. TOP bertambah 1, X menjadi TOP yang baru, */
 {
-    if(IsEmpty(*S))
+    if(IsStackEmpty(*S))
         StackTop(*S) = 0;
     else
         StackTop(*S) ++;

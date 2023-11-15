@@ -75,7 +75,7 @@ void dequeue(Queue *q, QueueElType *val)
 /* F.S. val = nilai elemen HEAD pd I.S., QueueIdxHead "mundur";
         q mungkin kosong */
 {
-    *val = HEAD(*q);
+    *val = QueueHead(*q);
     if(QueueIdxHead(*q) == QueueIdxTail(*q)) {
         QueueIdxHead(*q) = QueueIdxUndef;
         QueueIdxTail(*q) = QueueIdxUndef;
