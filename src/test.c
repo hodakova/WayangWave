@@ -2,13 +2,13 @@
 #include "ADT/mesinkata/mesinkata.c"
 #include "ADT/mesinbaris/mesinbaris.c"
 #include "ADT/list/list.c"
-#include "ADT/wayangwave/config.c"
-#include "ADT/wayangwave/commands/start.c"
+// #include "ADT/wayangwave/config.c"
+// #include "ADT/wayangwave/commands/start.c"
 #include <stdio.h>
 
 
 int main() {
-    STARTWORD("../save/config.txt");
+    STARTWORDFILE("../save/config.txt");
     /*TEST BARIS*/
     for(int i = 0; i < 30; i ++) {
         currentWordTillEOL();

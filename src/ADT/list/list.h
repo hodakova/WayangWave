@@ -15,7 +15,7 @@
 
 /* Definisi elemen dan koleksi objek */
 #define ListIdxType int
-#define ListElType Word
+#define ListElType Word 
 
 typedef struct {
 	ListElType A[ListMaxEl];  /* Memori tempat penyimpanan elemen (container) */

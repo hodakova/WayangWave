@@ -7,13 +7,15 @@
 #include "ADT/queue/queue.c"
 #include "ADT/set/set.c"
 #include "ADT/map/map.c"
-#include "ADT/wayangwave/config.c"
-#include "ADT/wayangwave/record.c"
+// #include "ADT/wayangwave/config.c"
+// #include "ADT/wayangwave/record.c"
 #include "ADT/wayangwave/commands/start.c"
 #include <stdio.h>
 
 Word currentOp;
 List Penyanyi;
+Map Album;
+
 
 
 

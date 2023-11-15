@@ -33,10 +33,12 @@ MapValueType MapValue(Map M, MapKeyType k)
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 {
     int i = 0;
-    MapValueType v = MapUndefined;
-    while(i < M.Count && v == MapUndefined) {
-        if(M.Elements[i].Key == k)
+    MapValueType v;
+    boolean found = false;
+    while(i < M.Count && !found) {
+        if(M.Elements[i].Key == k){ 
             v = M.Elements[i].Value;
+            found = true;}
         else
             i ++;
     }
