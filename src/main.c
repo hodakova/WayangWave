@@ -8,12 +8,19 @@
 #include "ADT/set/set.c"
 #include "ADT/map/map.c"
 #include "ADT/wayangwave/console.c"
+#include "ADT/listlinier/listlinier.h"
+#include "ADT/currentlagu/currentlagu.h"
 #include <stdio.h>
 
-Word currentOp;
-List Penyanyi;
 
 int main() {
+Word currentOp;
+List Penyanyi;
+Queue QueueLagu;
+Stack History;
+ListLinier Playlist;
+currentLagu LaguNow;
+
     
     do{
         STARTWORD();
@@ -22,6 +29,12 @@ int main() {
             StartWW(&Penyanyi);
             printf("File konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
             }
+        else if(isWordEqual(currentOp, str2Word("LOAD"))){
+            STARTWORD();
+            char* dirfile;
+            dirfile = ConcateChar("../save/", Word2str(currentWord));
+            LoadWW();
+        }
         else
             printf("o: bukan start\n");
     }
