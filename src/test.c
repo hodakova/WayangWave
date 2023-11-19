@@ -26,6 +26,8 @@ int main() {
     }*/
     STARTWORD();
     Word Kata = currentWord;
-    printf("%s", Word2str(Kata));
+    STARTWORD();
+    Word Kata2 = currentWord;
+    printWord(ConcatWord(Kata, Kata2));
     return 0;
 }
