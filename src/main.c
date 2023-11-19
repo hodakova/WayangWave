@@ -23,6 +23,10 @@ int main() {
             StartWW(&Penyanyi);
             printWord(Penyanyi.A[0].NamaPenyanyi);
             printf("\n");
+            
+            StartWW(&Penyanyi);
+            printWord(Penyanyi.A[1].NamaPenyanyi);
+            printf("\n");
             }
         else
             printf("o: bukan start\n");
