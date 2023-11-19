@@ -224,4 +224,12 @@ void ListDefaultWW(List Penyanyi)
     }
 }
 
+void ListPlaylistWW(List Penyanyi)
+{
+    printf("\n");
+    printf("Daftar playlist yang kamu miliki:\n");
+    if 
+
+}
+
 
