@@ -51,3 +51,15 @@ void Pop(Stack* S, StackInfoType* X)
     else
         StackTop(*S) --;
 }
+
+Stack ReverseStack(Stack S){
+    Stack tmp;
+    CreateStack(&tmp);
+    currentLagu temp;
+
+    while (!IsStackEmpty(S)){
+        Pop(&S, &temp);
+        Push(&tmp, temp);
+    }
+    return tmp;
+}
