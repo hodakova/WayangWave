@@ -147,3 +147,81 @@ void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLag
     }
 }
 
+void ListDefaultWW(List Penyanyi)
+{
+    printf("\n");
+    printf("Daftar Penyanyi:\n");
+    int x = ListLength(Penyanyi);
+    for (int i = 0; i < x; i++)
+    {
+        printf("   %d. ", i+1);
+        printWord((Penyanyi).A[i].NamaPenyanyi);
+        printf("\n");
+    }
+    printf("\n");
+    printf("Ingin melihat album yang ada? (Y/N): ");
+    STARTWORD();
+    printf("\n");
+    if(isWordEqual(currentWord, str2Word("Y")))
+    {
+        printf("Pilih penyanyi untuk melihat album mereka:");
+        STARTWORD();
+        currentWordTillSC();
+        int j = 0;
+        boolean found = false;
+        while(j < x && !found)
+        {
+            if (isWordEqual(currentWord, (Penyanyi).A[j].NamaPenyanyi))
+            {
+                found = true;
+            }
+            j++;
+        }
+        if (found)
+        {
+            int jumlah_album = (Penyanyi).A[j].Album.Count;
+            for (int k = 0; k<jumlah_album;k++)
+            {
+                printf("   %d. ", k+1);
+                printWord((Penyanyi).A[j].Album.Elements[j].Value.NamaAlbum);
+                printf("\n");
+            }
+            printf("\n");
+            printf("Ingin melihat lagu yang ada? (Y/N): ");
+            STARTWORD();
+            printf("\n");
+            if (isWordEqual(currentWord, str2Word("Y")))
+            {
+                printf("Pilih album untuk melihat lagu yang ada di album :");
+                STARTWORD();
+                currentWordTillSC();
+                found = false;
+                int a = 0;
+                while (a < jumlah_album && !found)
+                {
+                    if (isWordEqual(currentWord, (Penyanyi).A[j].Album.Elements[a].Value.NamaAlbum))
+                    {
+                        found = true;
+                    }
+                    j++;
+                }
+                if (found)
+                {
+                    int jumlah_lagu = (Penyanyi).A[j].Album.Elements[a].Value.Lagu.Count;
+                    print("\n");
+                    printf("Daftar Lagu di ");
+                    printWord(currentWord);
+                    print(":\n");
+                    for (int b = 0; b<jumlah_album;b++)
+                    {
+                        printf("   %d. ", b+1);
+                        printWord((Penyanyi).A[j].Album.Elements[a].Value.Lagu.Elements[b]);
+                        printf("\n");
+                    }
+                } 
+            }
+        }
+    }
+}
+
+
