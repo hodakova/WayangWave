@@ -19,14 +19,8 @@ int main() {
         STARTWORD();
         currentOp = currentWord;
         if(isWordEqual(currentOp, str2Word("START"))) {
-            printf("Mulai start\n");
             StartWW(&Penyanyi);
-            printWord(Penyanyi.A[0].NamaPenyanyi);
-            printf("\n");
-            
-            StartWW(&Penyanyi);
-            printWord(Penyanyi.A[1].NamaPenyanyi);
-            printf("\n");
+            printf("File konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
             }
         else
             printf("o: bukan start\n");
