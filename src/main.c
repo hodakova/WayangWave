@@ -7,29 +7,27 @@
 #include "ADT/queue/queue.c"
 #include "ADT/set/set.c"
 #include "ADT/map/map.c"
-// #include "ADT/wayangwave/config.c"
-// #include "ADT/wayangwave/record.c"
-#include "ADT/wayangwave/commands/start.c"
+#include "ADT/wayangwave/console.c"
 #include <stdio.h>
 
 Word currentOp;
 List Penyanyi;
-Map Album;
-
-
-
 
 int main() {
     
     do{
         STARTWORD();
         currentOp = currentWord;
-        if(isWordEqual(currentOp, str2Word("start")))
-            printf("o: start\n");
+        if(isWordEqual(currentOp, str2Word("START"))) {
+            printf("Mulai start\n");
+            StartWW(&Penyanyi);
+            printWord(Penyanyi.A[0].NamaPenyanyi);
+            printf("\n");
+            }
         else
             printf("o: bukan start\n");
     }
-    while (!isWordEqual(currentOp, str2Word("exit")));
+    while(!isWordEqual(currentOp, str2Word("exit")));
 
     return 0;
 }

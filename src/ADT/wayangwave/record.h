@@ -1,3 +1,5 @@
+/*
+
 #ifndef __RECORD__
 #define __RECORD__
 
@@ -37,3 +39,5 @@ typedef struct users {
 typedef int id;
 
 #endif
+
+*/

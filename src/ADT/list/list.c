@@ -15,7 +15,7 @@ List MakeList() {
 /* F.S. Terbentuk list L kosong dengan kapasitas ListMaxEl */
     List L;
     for (int i = 0; i < ListMaxEl; i ++)
-        L.A[i].Length = ListMark;
+        L.A[i].NamaPenyanyi.Length = ListMark;
     return L;
 }
 
@@ -23,7 +23,7 @@ List MakeList() {
 /* *** Test list kosong *** */
 boolean IsListEmpty(List L) {
 /* Mengirimkan true jika list L kosong, mengirimkan false jika tidak */
-    return L.A[0].Length == ListMark;
+    return L.A[0].NamaPenyanyi.Length == ListMark;
 }
 
 /* *** Menghasilkan sebuah elemen *** */
@@ -46,7 +46,7 @@ int ListLength(List L) {
 /* Mengirimkan banyaknya elemen efektif list */
 /* Mengirimkan nol jika list kosong */
     int i = 0;
-    while (L.A[i].Length != ListMark)
+    while (L.A[i].NamaPenyanyi.Length != ListMark)
         i++;
     return i;
 }
@@ -80,12 +80,12 @@ boolean IsIdxListEff (List L, ListIdxType i){
 }
 
 /* ********** Operasi-operasi ********** */
-boolean ListSearch(List L, ListElType X) {
+boolean ListSearch(List L, Word X) {
 /* Prekondisi : X sembarang */
 /* Mengirimkan true jika terdapat elemen X di dalam list */
 /* yaitu antara ListFirstIdx(L)..ListLastIdx(L) */
     for(int i = ListFirstIdx(L); i <= ListLastIdx(L); i ++) {
-        if(isWordEqual(L.A[i], X))
+        if(isWordEqual(L.A[i].NamaPenyanyi, X))
             return true;
     }
     return false;
@@ -122,7 +122,7 @@ void ListDeleteAt(List *L, ListIdxType i) {
 /* F.S. Elemen L pada indeks ke-i dihapus dari L. */
     for(int j = i; j < ListLastIdx(*L); j ++)
         (*L).A[j] = (*L).A[j+1];
-    (*L).A[ListLastIdx(*L)].Length = ListMark;
+    (*L).A[ListLastIdx(*L)].NamaPenyanyi.Length = ListMark;
 }
 
 void ListDeleteLast(List *L) {

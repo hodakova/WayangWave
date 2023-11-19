@@ -42,6 +42,7 @@ void ADV()
        /* Algoritma */
        retval = fscanf(pita, "%c", &currentChar);
        EOP = feof(pita);
-       if (EOP)
+       if (EOP){
               fclose(pita);
+              printf("menutup\n");}
 }

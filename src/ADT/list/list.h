@@ -7,6 +7,7 @@
 
 #include "../../boolean.h"
 #include "../mesinkata/mesinkata.h"
+#include "../map/map.h"
 
 /* Kamus Umum */
 #define ListMaxEl 100
@@ -15,7 +16,10 @@
 
 /* Definisi elemen dan koleksi objek */
 #define ListIdxType int
-#define ListElType Word 
+typedef struct {
+	Word NamaPenyanyi;
+	Map Album;
+} ListElType;
 
 typedef struct {
 	ListElType A[ListMaxEl];  /* Memori tempat penyimpanan elemen (container) */
@@ -78,7 +82,7 @@ boolean IsIdxListEff (List L, ListIdxType i);
 /* yaitu antara FirstIdx(L)..LastIdx(L) */
 
 /* ********** Operasi-operasi ********** */
-boolean ListSearch(List L, ListElType X);
+boolean ListSearch(List L, Word X);
 /* Prekondisi : X sembarang */
 /* Mengirimkan true jika terdapat elemen X di dalam list */
 /* yaitu antara FirstIdx(L)..LastIdx(L) */
