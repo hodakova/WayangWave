@@ -70,4 +70,6 @@ Word str2Word(char* String);
 
 char* Word2str(Word Kata);
 
+Word ConcatWord(Word K1, Word K2);
+
 #endif
