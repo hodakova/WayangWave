@@ -12,16 +12,17 @@
 #include "ADT/currentlagu/currentlagu.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-
-
 int main() {
-Word currentOp;
-List Penyanyi;
-Queue QueueLagu;
-Stack History;
-ArrayDin Playlist;
-currentLagu LaguNow;
+    printf("Mulai Program\n");
+    Word currentOp;
+    List Penyanyi;
+    Queue QueueLagu;
+    CreateQueue(&QueueLagu);
+    Stack History;
+    CreateStack(&History);
+    ArrayDin Playlist;
+    Playlist = MakeArrayDin();
+    currentLagu LaguNow;
 
     
     do{
@@ -37,11 +38,11 @@ currentLagu LaguNow;
             dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
 
             if (isFileExist(dirfile)){ 
-                printf("File di load");
+                printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.");
                 LoadWW(dirfile, &Penyanyi, &LaguNow, &QueueLagu, &History, &Playlist);
             }
             else
-                printf("File tidak ada");
+                printf("Save file tidak ditemukan. WayangWave gagal dijalankan.");
 
         }
         else

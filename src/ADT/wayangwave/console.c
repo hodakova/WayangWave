@@ -115,14 +115,35 @@ void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLag
         ADVBARIS();
     }
 
-    *History = reverseStack(*History);
+    *History = ReverseStack(*History);
 
     // Playlist
-    int C;
+    int C,D;
     C = Word2int(currentWord);
     ADVBARIS();
     for (int i = 0; i < C; i++) {
-        
+        D = Word2int(currentWord);
+        ADVWORD();
+        ArrayDinElType arraytmp;
+        currentWordTillEOL();
+        arraytmp.NamaPlaylist = currentWord;
+        ADVBARIS();
+        CreateListLinier(&((*Playlist).A[i].DaftarLagu));
+        for (int j = 0; j < D; j++){
+            currentLagu tmp;
+            currentWordTillSC();
+            tmp.Penyanyi = currentWord;
+            ADVWORD();
+            currentWordTillSC();
+            tmp.Album = currentWord;
+            ADVWORD();
+            currentWordTillEOL();
+            tmp.Lagu = currentWord;
+            
+            ListLinierInsVLast(&arraytmp.DaftarLagu, tmp);
+            ADVBARIS();
+        }
+        ArrayDinInsertLast(Playlist, arraytmp);
     }
 }
 

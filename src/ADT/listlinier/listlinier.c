@@ -70,9 +70,9 @@ void ListLinierInsVFirst (ListLinier *L, ListLinierInfoType X)
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
 {
-    addressListLinier P = Alokasi(X);
+    addressListLinier P = ListLinierAlokasi(X);
     if(P != ListLinierNil)
-        InsertFirst(L, P);
+        ListLinierInsertFirst(L, P);
 }
 void ListLinierInsVLast (ListLinier *L, ListLinierInfoType X)
 /* I.S. L mungkin kosong */
@@ -80,9 +80,9 @@ void ListLinierInsVLast (ListLinier *L, ListLinierInfoType X)
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
 /* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 {
-    addressListLinier P = Alokasi(X);
+    addressListLinier P = ListLinierAlokasi(X);
     if(P != ListLinierNil)
-        InsertLast(L, P);
+        ListLinierInsertLast(L, P);
 }
 
 /*** PENGHAPUSAN ELEMEN ***/
@@ -92,9 +92,9 @@ void ListLinierDelVFirst (ListLinier *L, ListLinierInfoType *X)
 /*      dan alamat elemen pertama di-dealokasi */
 {
     addressListLinier P;
-    DelFirst(L, &P);
+    ListLinierDelFirst(L, &P);
     *X = ListLinierInfo(P);
-    Dealokasi(P);
+    ListLinierDealokasi(&P);
 }
 void ListLinierDelVLast (ListLinier *L, ListLinierInfoType *X)
 /* I.S. list tidak kosong */
@@ -102,9 +102,9 @@ void ListLinierDelVLast (ListLinier *L, ListLinierInfoType *X)
 /*      dan alamat elemen terakhir di-dealokasi */
 {
     addressListLinier P;
-    DelLast(L, &P);
+    ListLinierDelLast(L, &P);
     *X = ListLinierInfo(P);
-    Dealokasi(P);
+    ListLinierDealokasi(&P);
 }
 
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
@@ -128,13 +128,13 @@ void ListLinierInsertLast (ListLinier *L, addressListLinier P)
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 {
-    if(IsEmpty(*L))
-        InsertFirst(L, P);
+    if(IsListLinierEmpty(*L))
+        ListLinierInsertFirst(L, P);
     else {
         addressListLinier last = ListLinierFirst(*L);
         while(ListLinierNext(last) != ListLinierNil)
             last = ListLinierNext(last);
-        InsertAfter(L, P, last);
+        ListLinierInsertAfter(L, P, last);
     }
 }
 
@@ -156,16 +156,16 @@ void ListLinierDelP (ListLinier *L, ListLinierInfoType X)
 /* Jika tidak ada elemen list dengan info(P)=X, maka list tetap */
 /* ListLinier mungkin menjadi kosong karena penghapusan */
 {
-    addressListLinier P = Search(*L, X), Prec = ListLinierFirst(*L);
+    addressListLinier P = ListLinierSearch(*L, X), Prec = ListLinierFirst(*L);
     if(P != ListLinierNil) {
         if(Prec == P)
-            DelFirst(L, &P);
+            ListLinierDelFirst(L, &P);
         else {
             while(ListLinierNext(Prec) != P)
                 Prec = ListLinierNext(Prec);
-            DelAfter(L, &P, Prec);
+            ListLinierDelAfter(L, &P, Prec);
         } 
-        Dealokasi(&P);
+        ListLinierDealokasi(&P);
     }
 }
 void ListLinierDelLast (ListLinier *L, addressListLinier *P)
@@ -241,7 +241,7 @@ void ListLinierInversList (ListLinier *L)
     while(Prec != ListLinierNil) {
         loc = Prec;
         Prec = ListLinierNext(Prec);
-        InsertFirst(L, loc);
+        ListLinierInsertFirst(L, loc);
         ListLinierNext(P) = Prec;
     }
 }
@@ -253,8 +253,8 @@ void ListLinierKonkat1 (ListLinier *L1, ListLinier *L2, ListLinier *L3)
 /* dan L1 serta L2 menjadi list kosong.*/
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
 {
-    CreateEmpty(L3);
-    if(IsEmpty(*L1))
+    CreateListLinier(L3);
+    if(IsListLinierEmpty(*L1))
         ListLinierFirst(*L3) = ListLinierFirst(*L2);
     else {
         addressListLinier lastL1 = ListLinierFirst(*L1);
@@ -263,6 +263,6 @@ void ListLinierKonkat1 (ListLinier *L1, ListLinier *L2, ListLinier *L3)
             lastL1 = ListLinierNext(lastL1);
         ListLinierNext(lastL1) = ListLinierFirst(*L2);
     }
-    CreateEmpty(L1);
-    CreateEmpty(L2);
+    CreateListLinier(L1);
+    CreateListLinier(L2);
 }
