@@ -8,7 +8,7 @@
 #include "ADT/set/set.c"
 #include "ADT/map/map.c"
 #include "ADT/wayangwave/console.c"
-#include "ADT/listlinier/listlinier.c"
+#include "ADT/listlinier/listlinier.h"
 #include "ADT/currentlagu/currentlagu.h"
 #include <stdio.h>
 #include <stdlib.h>
