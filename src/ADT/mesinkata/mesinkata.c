@@ -155,12 +155,11 @@ Word ConcatWord(Word K1, Word K2)
     Word K3 = K1;
 	int i, j = 0;
 	int l = K1.Length + K2.Length;
-
 	for (i = K1.Length; i < l; i++) {
 		K3.TabWord[i] = K2.TabWord[j];
 		K3.Length++;
 		j++;
 	}
-
 	return K3;
 }
+
