@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "list.h"
 
 /* Indeks yang digunakan seberapa banyak memori itu terisi */

@@ -115,8 +115,6 @@ void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLag
         ADVBARIS();
     }
 
-    *History = ReverseStack(*History);
-
     // Playlist
     int C,D;
     C = Word2int(currentWord);
@@ -147,7 +145,7 @@ void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLag
     }
 }
 
-void ListDefaultWW(List Penyanyi)
+void ListWW_Default(List Penyanyi)
 {
     printf("\n");
     printf("Daftar Penyanyi:\n");
@@ -208,10 +206,10 @@ void ListDefaultWW(List Penyanyi)
                 if (found)
                 {
                     int jumlah_lagu = (Penyanyi).A[j].Album.Elements[a].Value.Lagu.Count;
-                    print("\n");
+                    printf("\n");
                     printf("Daftar Lagu di ");
                     printWord(currentWord);
-                    print(":\n");
+                    printf(":\n");
                     for (int b = 0; b<jumlah_album;b++)
                     {
                         printf("   %d. ", b+1);
@@ -224,4 +222,18 @@ void ListDefaultWW(List Penyanyi)
     }
 }
 
+void ListWW_Playlist(ArrayDin Playlist) {}
 
+void HelpWW_before() {}
+
+void HelpWW_after() {}
+
+void QuitWW() {}
+
+void Command_unknown() {
+    printf("\nCommand tidak diketahui!\n");
+}
+
+void Command_forbidden() {
+    printf("\nCommand tidak bisa dieksekusi!\n");
+}
