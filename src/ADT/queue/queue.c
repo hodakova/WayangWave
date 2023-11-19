@@ -85,24 +85,3 @@ void dequeue(Queue *q, QueueElType *val)
         QueueIdxHead(*q) %= QueueCapacity;
     }
 }
-
-
-/* *** Display Queue *** */
-void displayQueue(Queue q)
-/* Proses : Menuliskan isi Queue dengan traversal, Queue ditulis di antara kurung 
-   siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
-   karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */
-/* I.S. q boleh kosong */
-/* F.S. Jika q tidak kosong: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-/* Jika Queue kosong : menulis [] */
-{
-    int i, l = QueueLength(q);
-    printf("[");
-    for(i = 0; i < l; i++) {
-        printf("%d", q.buffer[(i + QueueIdxHead(q)) % QueueCapacity]);
-        if(i < l - 1)
-            printf(",");
-    }
-    printf("]\n");
-}
