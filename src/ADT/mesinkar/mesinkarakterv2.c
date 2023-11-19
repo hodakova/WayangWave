@@ -2,6 +2,7 @@
 /* Implementasi Mesin Karakter */
 
 #include "mesinkarakterv2.h"
+#include <stdlib.h>
 
 char currentChar;
 boolean EOP;
@@ -44,4 +45,19 @@ void ADV()
        if (EOP){
               fclose(pita);
               printf("menutup\n");}
+}
+
+boolean isFileExist(char* dirfile){
+    FILE *file;
+
+    file = fopen(dirfile, "r");
+
+    if (file == NULL) {
+       fclose(file);
+       return false;
+    } 
+    else {
+       fclose(file);
+       return true;
+       }
 }

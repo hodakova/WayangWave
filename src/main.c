@@ -33,7 +33,8 @@ currentLagu LaguNow;
             STARTWORD();
             char* dirfile;
             dirfile = ConcateChar("../save/", Word2str(currentWord));
-            LoadWW();
+
+            LoadWW(dirfile, &Penyanyi, &LaguNow, &QueueLagu, &History, &Playlist);
         }
         else
             printf("o: bukan start\n");
