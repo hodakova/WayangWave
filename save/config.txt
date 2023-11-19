@@ -3,13 +3,13 @@
 4 BORN PINK # Jumlah lagu dan judul dari album 1 penyanyi 1
 Pink Venom # Lagu 1 album 1 penyanyi 1
 Shut Down # Lagu 2 …
-Typa Girl # Lagu 3 …
+Typa Girl
 Ready For Love # Lagu 4 …
-3 THE ALBUM # <Masuk ke album 2 dan seterusnya dari penyanyi 1>
+3 THE ALBUM
 How You Like That
 Ice Cream (with Selena Gomez)
 Bet You Wanna (Feat. Cardi B)
-3 Arctic Monkeys # <Masuk ke penyanyi 2 dan seterusnya>
+3 Arctic Monkeys
 5 Favourite Worst Nightmare
 Brianstorm
 Teddy Picker

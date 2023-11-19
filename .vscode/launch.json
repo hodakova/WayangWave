@@ -8,13 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-<<<<<<< HEAD
       "cwd": "d:/Documents/WayangWave/src/ADT/mesinkata",
       "program": "d:/Documents/WayangWave/src/ADT/mesinkata/build/Debug/outDebug",
-=======
-      "cwd": "c:/Users/ASUS/Documents/GitHub/WayangWave/src/ADT/stack",
-      "program": "c:/Users/ASUS/Documents/GitHub/WayangWave/src/ADT/stack/build/Debug/outDebug",
->>>>>>> 4bb9e5c63d80dbd3269701764f382ca23a81b276
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

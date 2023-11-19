@@ -13,4 +13,11 @@ void StartWW(List *Penyanyi);
 
 void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLagu, Stack *History, ArrayDin *Playlist);
 
+void ListDefault();
+
+void ListPlaylist();
+
+void SongNext();
+
+void SongPrevious();
 #endif
