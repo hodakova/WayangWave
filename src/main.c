@@ -11,6 +11,8 @@
 #include "ADT/listlinier/listlinier.h"
 #include "ADT/currentlagu/currentlagu.h"
 #include <stdio.h>
+#include <stdlib.h>
+
 
 
 int main() {
@@ -32,9 +34,15 @@ currentLagu LaguNow;
         else if(isWordEqual(currentOp, str2Word("LOAD"))){
             STARTWORD();
             char* dirfile;
-            dirfile = ConcateChar("../save/", Word2str(currentWord));
+            dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
 
-            LoadWW(dirfile, &Penyanyi, &LaguNow, &QueueLagu, &History, &Playlist);
+            if (isFileExist(dirfile)){ 
+                printf("File di load");
+                LoadWW(dirfile, &Penyanyi, &LaguNow, &QueueLagu, &History, &Playlist);
+            }
+            else
+                printf("File tidak ada");
+
         }
         else
             printf("o: bukan start\n");
