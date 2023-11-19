@@ -225,7 +225,12 @@ void ListWW_Default(List Penyanyi)
 void ListWW_Playlist(ArrayDin Playlist) {
     printf("\n");
     printf("Daftar playlist yang kamu miliki:\n");
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
+void SongNext()
 
 void HelpWW_before() {}
 
