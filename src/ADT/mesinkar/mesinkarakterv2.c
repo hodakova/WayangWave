@@ -2,7 +2,7 @@
 /* Implementasi Mesin Karakter */
 
 #include "mesinkarakterv2.h"
-#include <stdio.h>
+#include <stdlib.h>
 
 char currentChar;
 boolean EOP;
@@ -23,6 +23,13 @@ void START()
        ADV();
 }
 
+void STARTFILE(char* fileaddress)
+{
+
+       pita = fopen(fileaddress, "r");
+       ADV();
+}
+
 void ADV()
 {
        /* Pita dimajukan satu karakter.
@@ -34,9 +41,22 @@ void ADV()
 
        /* Algoritma */
        retval = fscanf(pita, "%c", &currentChar);
-       EOP = (currentChar == MARK);
-       if (EOP)
-       {
+       EOP = feof(pita);
+       if (EOP){
               fclose(pita);
+              printf("menutup\n");}
+}
+
+
+boolean isFileExist(char* dirfile){
+    FILE *file;
+    file = fopen(dirfile, "r");
+    if (file == NULL) {
+       fclose(file);
+       return false;
+    } 
+    else {
+       fclose(file);
+       return true;
        }
 }

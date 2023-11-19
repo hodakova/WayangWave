@@ -7,12 +7,15 @@
 #include "../../boolean.h"
 #include "../mesinkar/mesinkarakterv2.h"
 
-#define NMax 50
+#define WordNMax 100
 #define BLANK ' '
+#define EOL '\n' // End of Line
+#define CR '\r' // Carriage
+#define SC ';' // Semicolon
 
 typedef struct
 {
-   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   char TabWord[WordNMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
    int Length;
 } Word;
 
@@ -25,11 +28,18 @@ void IgnoreBlanks();
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 
-void STARTWORD();
+void IgnoreCR();
+
+void IgnoreSC();
+
+void IgnoreEOL();
+
+void STARTWORDFILE(char* fileaddress);
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = MARK;
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
           currentChar karakter pertama sesudah karakter terakhir kata */
+void STARTWORD();
 
 void ADVWORD();
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
@@ -47,5 +57,19 @@ void CopyWord();
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
 boolean isEndWord();
+
+boolean isWordEqual(Word K1, Word K2);
+
+void printWord(Word Kata);
+
+int Word2int(Word Kata);
+
+Word int2Word(int Angka);
+
+Word str2Word(char* String);
+
+char* Word2str(Word Kata);
+
+Word ConcatWord(Word K1, Word K2);
 
 #endif

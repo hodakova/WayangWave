@@ -1,0 +1,27 @@
+2 # Jumlah penyanyi
+2 BLACKPINK # Jumlah album dan nama dari penyanyi 1
+4 BORN PINK # Jumlah lagu dan judul dari album 1 penyanyi 1
+Pink Venom # Lagu 1 album 1 penyanyi 1
+Shut Down # Lagu 2 …
+Typa Girl # Lagu 3 …
+Ready For Love # Lagu 4 …
+3 THE ALBUM # <Masuk ke album 2 dan seterusnya dari penyanyi 1>
+How You Like That
+Ice Cream (with Selena Gomez)
+Bet You Wanna (Feat. Cardi B)
+3 Arctic Monkeys # <Masuk ke penyanyi 2 dan seterusnya>
+5 Favourite Worst Nightmare
+Brianstorm
+Teddy Picker
+Fluorescent Adolescent
+Old Yellow Bricks
+505
+4 Humbug
+My Propeller
+Crying Lightning
+Secret Door
+Pretty Visitors
+3 AM
+Do I Wanna Know?
+R U Mine?
+Arabella
