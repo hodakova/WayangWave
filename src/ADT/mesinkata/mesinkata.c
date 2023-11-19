@@ -149,3 +149,25 @@ char* Word2str(Word Kata) {
     str[l] = '\0';
     return str;
 }
+
+/* Fungsi untuk menggabungkan dua buah variabel bertipe char.
+ * Dalam program ini, kedua variabel tersebut adalah path dan filename
+ * Prekondisi : pemrosesan telah berjalan */
+char *ConcateChar(char *path, char *filename)
+{
+	/*KAMUS LOKAL*/
+	int i;
+	int j = 0;
+	/*ALGORITMA*/
+	Word dir = StringtoWord(path);
+	Word file = StringtoWord(filename);
+	int len = dir.Length + file.Length;
+	for (i = dir.Length; i < len; i++)
+	{
+		dir.TabWord[i] = file.TabWord[j];
+		dir.Length++;
+		j++;
+	}
+	char *dir_file = WordToString(dir);
+	return dir_file;
+}
