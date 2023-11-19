@@ -8,26 +8,39 @@
 
 
 int main() {
-    /*
-    STARTWORDFILE("../save/config.txt");*/
-    /*TEST BARIS*//*
-    for(int i = 0; i < 30; i ++) {
-        currentWordTillEOL();
-        printWord(currentWord);
-        printf("\n");
-        ADVBARIS();
-    }
-    */
-    /*TEST WORD
-    for(int i = 0; i < 100; i ++) {
-        printWord(currentWord);
-        printf(" ");
-        ADVWORD();
-    }*/
-    STARTWORD();
-    Word Kata = currentWord;
-    STARTWORD();
-    Word Kata2 = currentWord;
-    printWord(ConcatWord(Kata, Kata2));
+    STARTWORDFILE("../save/testsc.txt");
+
+    currentWordTillSC();
+    printWord(currentWord);
+    printf("\n");
+    ADVWORD();
+
+    currentWordTillSC();
+    printWord(currentWord);
+    printf("\n");
+    ADVWORD();
+
+    currentWordTillEOL();
+    printWord(currentWord);
+    printf("\n");
+    ADVBARIS();
+    
+    ADVBARIS();
+
+    currentWordTillSC();
+    printWord(currentWord);
+    printf("\n");
+    ADVWORD();
+
+    currentWordTillSC();
+    printWord(currentWord);
+    printf("\n");
+    ADVWORD();
+
+    currentWordTillEOL();
+    printWord(currentWord);
+    printf("\n");
+    ADVBARIS();
+
     return 0;
 }
