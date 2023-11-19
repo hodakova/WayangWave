@@ -10,7 +10,8 @@
 #define WordNMax 100
 #define BLANK ' '
 #define EOL '\n' // End of Line
-#define CR '\r'
+#define CR '\r' // Carriage
+#define SC ';' // Semicolon
 
 typedef struct
 {
@@ -27,6 +28,12 @@ void IgnoreBlanks();
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 
+void IgnoreCR();
+
+void IgnoreSC();
+
+void IgnoreEOL();
+
 void STARTWORDFILE(char* fileaddress);
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = MARK;
@@ -40,8 +47,6 @@ void ADVWORD();
           currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK
           Jika currentChar = MARK, EndWord = true.
    Proses : Akuisisi kata menggunakan procedure SalinWord */
-
-void ADVBARIS();
 
 void CopyWord();
 /* Mengakuisisi kata, menyimpan dalam currentWord
@@ -62,5 +67,7 @@ int Word2int(Word Kata);
 Word int2Word(int Angka);
 
 Word str2Word(char* String);
+
+char* Word2str(Word Kata);
 
 #endif

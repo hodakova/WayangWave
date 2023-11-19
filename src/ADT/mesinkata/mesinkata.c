@@ -16,6 +16,12 @@ void IgnoreCR() {
     }
 }
 
+void IgnoreSC() {
+    if((currentChar==SC) && (currentChar!=MARK)) {
+        ADV();
+    }
+}
+
 void IgnoreEOL() {
     if((currentChar==EOL) && (currentChar!=MARK)) {
         ADV();
@@ -100,7 +106,27 @@ int Word2int(Word Kata) {
     return r;
 }
 
-Word int2Word(int Angka);
+Word int2Word(int Angka) {
+    Word Kata;
+
+    char tmpc;
+    int tmp = Angka, l = 0, i;
+
+    while(tmp > 0) {
+        l ++;
+        tmp /= 10;
+        }
+
+    tmp = Angka;
+    for(i = l - 1; i >= 0; i --) {
+        Kata.TabWord[i] = '0' + tmp % 10;
+        tmp /= 10;
+    }
+    
+    Kata.Length = l;
+
+    return Kata;
+}
 
 Word str2Word(char* String){
     Word kata;
@@ -111,4 +137,15 @@ Word str2Word(char* String){
     }
     kata.Length = i;
     return kata;
+}
+
+char* Word2str(Word Kata) {
+    int i, l = Kata.Length;
+    char* str = malloc(Kata.Length * sizeof(char));
+
+    for(i = 0; i < l; i ++)
+        str[i] = Kata.TabWord[i];
+    
+    str[l] = '\0';
+    return str;
 }

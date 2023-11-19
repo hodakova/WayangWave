@@ -2,7 +2,6 @@
 /* Implementasi Mesin Karakter */
 
 #include "mesinkarakterv2.h"
-#include <stdio.h>
 
 char currentChar;
 boolean EOP;
