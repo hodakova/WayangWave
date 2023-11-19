@@ -1,9 +1,3 @@
-// NIM       : 18222082
-// Nama      : Ahmad Habibie Marjan
-// Tanggal   : 23年11月07日
-// Topik     : Prapraktikum 9
-// Deskripsi : Program implementasi listlinier.h
-
 #include "listlinier.h"
 #include <stdio.h>
 #include <stdlib.h>

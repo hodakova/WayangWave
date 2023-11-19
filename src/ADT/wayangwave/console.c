@@ -222,7 +222,10 @@ void ListWW_Default(List Penyanyi)
     }
 }
 
-void ListWW_Playlist(ArrayDin Playlist) {}
+void ListWW_Playlist(ArrayDin Playlist) {
+    printf("\n");
+    printf("Daftar playlist yang kamu miliki:\n");
+}
 
 void HelpWW_before() {}
 

@@ -57,6 +57,6 @@ void Pop(Stack * S, StackInfoType* X);
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 
-Stack reverseStack(Stack S);
+Stack ReverseStack(Stack S);
 
 #endif
