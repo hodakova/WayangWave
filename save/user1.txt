@@ -1,0 +1,49 @@
+2
+2 BLACKPINK
+4 BORN PINK
+Pink Venom
+Shut Down
+Typa Girl
+Ready For Love
+3 THE ALBUM
+How You Like That
+Ice Cream (with Selena Gomez)
+Bet You Wanna (Feat. Cardi B)
+3 Arctic Monkeys
+5 Favourite Worst Nightmare
+Brianstorm
+Teddy Picker
+Fluorescent Adolescent
+Old Yellow Bricks
+505
+4 Humbug
+My Propeller
+Crying Lightning
+Secret Door
+Pretty Visitors
+3 AM
+Do I Wanna Know?
+R U Mine?
+Arabella
+Arctic Monkeys;AM;R U Mine? # Lagu yang sedang dimainkan
+5 # Jumlah record lagu dalam queue
+BLACKPINK;BORN PINK;Typa Girl # Lagu 1 dalam queue
+BLACKPINK;THE ALBUM;How You Like That # Lagu 2 …
+Arctic Monkeys;AM;Do I Wanna Know? # Lagu 3 …
+BLACKPINK;BORN PINK;Shut Down # Lagu 4 …
+Arctic Monkeys;AM;Arabella # Lagu 5 …
+2 # Jumlah record riwayat pemutaran lagu
+Arctic Monkeys;Favourite Worst Nightmare;505 # Riwayat terbaru ke-1
+BLACKPINK;BORN PINK;Pink Venom # Riwayat terbaru ke-2
+3 # Jumlah playlist
+3 BLACKPINK My Top Three # Jumlah lagu dan nama playlist 1
+BLACKPINK;THE ALBUM;How You Like That # Lagu 1 di playlist 1
+BLACKPINK;BORN PINK;Typa Girl # Lagu 2 …
+BLACKPINK;BORN PINK;Pink Venom # Lagu 3 …
+5 Arctic Monkeys My Top 5 # <Masuk ke playlist 2 dan seterusnya>
+Arctic Monkeys;AM;R U Mine?
+Arctic Monkeys;AM;Do I Wanna Know?
+Arctic Monkeys;AM;Arabella
+Arctic Monkeys;Favourite Worst Nightmare;505
+Arctic Monkeys;Humbug;Pretty Visitors
+0 Mixed Playlist
