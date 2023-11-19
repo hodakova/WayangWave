@@ -2,11 +2,17 @@
 #define __ARRAY_DINAMIK__
 
 #include "../../boolean.h"
+#include "../listlinier/listlinier.h"
+#include "../mesinkata/mesinkata.h"
+
 
 #define ArrayDinInitialSize 10
 
 typedef int ArrayDinIdxType;
-typedef int ArrayDinElType;
+typedef struct{ 
+    Word NamaPlaylist;
+    ListLinier DaftarLagu;
+}ArrayDinElType;
 typedef struct {
     ArrayDinElType *A;
     int Capacity;

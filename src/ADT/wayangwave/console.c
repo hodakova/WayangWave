@@ -33,7 +33,7 @@ void StartWW(List *Penyanyi) {
     }
 }
 
-void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLagu, Stack *History, ListLinier *Playlist){
+void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLagu, Stack *History, ArrayDin *Playlist){
     int i, j, k, N, M, L;
     STARTWORDFILE(dirfile);
 
