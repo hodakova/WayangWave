@@ -7,11 +7,11 @@ void playlist_create(ArrayDin *playlist) {
     printf("\nSilahkan masukkan lagu-lagu artis terkini kesayangan Anda!\n");
 }
 
-void playlist_add_song(ArrayDin * playlist,) {
+void playlist_add_song(ArrayDin * playlist) {
 
 }
 
-void playlist_add_album(ArrayDin * playlist,) {
+void playlist_add_album(ArrayDin * playlist) {
 
 }
 

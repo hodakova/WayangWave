@@ -32,7 +32,8 @@ void STARTWORDFILE(char* fileaddress) {
     STARTFILE(fileaddress);
     IgnoreBlanks();
     IgnoreCR();
-    if(EOP) EndWord=true;
+    if(EOP)
+        EndWord=true;
     else {
         EndWord = false;
         ADVWORD();
@@ -43,7 +44,8 @@ void STARTWORD() {
     START();
     IgnoreBlanks();
     IgnoreCR();
-    if(EOP) EndWord=true;
+    if(EOP)
+        EndWord=true;
     else {
         EndWord = false;
         ADVWORD();
@@ -54,7 +56,6 @@ void STARTWORD() {
 void ADVWORD() {
     IgnoreBlanks();
     IgnoreCR();
-    IgnoreSC();
     if(currentChar == MARK)
         EndWord = true;
     else {
@@ -73,6 +74,7 @@ void CopyWord() {
         ADV();
     }
     currentWord.Length = i;
+    IgnoreSC();
 }
 
 void currentWordTillSC() {
@@ -105,9 +107,8 @@ boolean isWordEqual(Word K1, Word K2) {
         }
         return true;
     }
-    else {
+    else
         return false;
-    }
 }
 
 void printWord(Word Kata) {
@@ -149,7 +150,7 @@ Word int2Word(int Angka) {
 Word str2Word(char* String){
     Word kata;
     int i = 0;
-    while(String[i] != '\0'){
+    while(String[i] != '\0') {
         kata.TabWord[i] = String[i];
         i++;
     }
@@ -180,4 +181,3 @@ Word ConcatWord(Word K1, Word K2)
 	}
 	return K3;
 }
-

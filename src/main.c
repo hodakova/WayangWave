@@ -9,7 +9,7 @@
 #include "ADT/map/map.c"
 #include "ADT/listlinier/listlinier.c"
 #include "ADT/currentlagu/currentlagu.h"
-#include "ADT/wayangwave/console.c"
+#include "console.c"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -25,11 +25,11 @@ int main() {
     boolean masukSesi = false;
 
     while(!masukSesi) {
-        STARTWORD();
+        printf(">> "); STARTWORD();
 
         if(isWordEqual(currentWord, str2Word("START"))) {
             StartWW(&Penyanyi);
-            printf("File konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
+            printf("\nFile konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
             masukSesi = true;
         }
 
@@ -37,13 +37,13 @@ int main() {
             ADVWORD();
             char* dirfile;
             dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
-                if (isFileExist(dirfile)) { 
-                    printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
-                    LoadWW(dirfile, &Penyanyi, &LaguNow, &QueueLagu, &History, &Playlist);
-                    masukSesi = true;
-                }
-                else
-                    printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
+            if (isFileExist(dirfile)) { 
+                LoadWW(dirfile, &Penyanyi, &LaguNow, &QueueLagu, &History, &Playlist);
+                printf("\nSave file berhasil dibaca. WayangWave berhasil dijalankan.\n");
+                masukSesi = true;
+            }
+            else
+                printf("\nSave file tidak ditemukan. WayangWave gagal dijalankan.\n");
         }
 
         else if(isWordEqual(currentWord, str2Word("HELP")))
@@ -52,17 +52,18 @@ int main() {
         else
             Command_unknown();
     }
-    printWord(LaguNow.Lagu);
+    
+
     while(true) {
-        STARTWORD();
+        printf(">> "); STARTWORD();
 
         if(isWordEqual(currentWord, str2Word("LIST"))) {
             ADVWORD();
 
-            if(isWordEqual(currentWord, str2Word("DEFAULT;")))
+            if(isWordEqual(currentWord, str2Word("DEFAULT")))
                 ListWW_Default(Penyanyi);
 
-            else if(isWordEqual(currentWord, str2Word("PLAYLIST;")))
+            else if(isWordEqual(currentWord, str2Word("PLAYLIST")))
                 ListWW_Playlist(Playlist);
         }
 

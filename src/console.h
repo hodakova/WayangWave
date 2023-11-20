@@ -1,13 +1,17 @@
 #ifndef __CONSOLE_H__
 #define __CONSOLE_H__
 
-#include "../mesinbaris/mesinbaris.h"
-#include "../list/list.h"
-#include "../list/arraydin.h"
-#include "../currentlagu/currentlagu.h"
-#include "../stack/stack.h"
-#include "../queue/queue.h"
-#include "../listlinier/listlinier.h"
+#include "ADT/mesinbaris/mesinbaris.h"
+#include "ADT/list/list.h"
+#include "ADT/list/arraydin.h"
+#include "ADT/currentlagu/currentlagu.h"
+#include "ADT/stack/stack.h"
+#include "ADT/queue/queue.h"
+#include "ADT/listlinier/listlinier.h"
+
+void Command_unknown();
+
+void Command_forbidden();
 
 void StartWW(List *Penyanyi);
 
@@ -56,12 +60,5 @@ void QuitWW();
 void HelpWW_before();
 
 void HelpWW_after();
-
-void Command_Unknown();
-
-void Command_forbidden();
-
-void SongPrevious();
-
 
 #endif
