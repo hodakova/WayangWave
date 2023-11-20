@@ -553,6 +553,8 @@ void SaveWW(char* dirfile, List Penyanyi, currentLagu LaguNow, Queue QueueLagu, 
             }
         }
     }
+    // LaguNow
+    fprintf(file, "%s;%s;%s\n", Word2str(LaguNow.Penyanyi), Word2str(LaguNow.Album), Word2str(LaguNow.Lagu));
     // Queue
     fprintf(file, "%d\n", QueueLength(QueueLagu));
     for (int i = QueueIdxHead(QueueLagu); i <= QueueIdxTail(QueueLagu); i++){
