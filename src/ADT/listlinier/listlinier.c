@@ -206,7 +206,7 @@ void ListLinierPrintInfo (ListLinier L)
     while(P != ListLinierNil) {
         if(P != ListLinierFirst(L))
             printf(",");
-        printf("%d", ListLinierInfo(P));
+        printInfoLagu(ListLinierInfo(P));
         P = ListLinierNext(P);
     }
     printf("]\n");

@@ -30,6 +30,7 @@ int main() {
     boolean masukSesi = false;
 
     while(true) {
+        //ListLinierPrintInfo(Playlist.A[1].DaftarLagu);
         printf(">> "); STARTWORD();
 
         if(isWordEqual(currentWord, str2Word("START"))) {

@@ -269,22 +269,22 @@ void PlayWW_Playlist(ArrayDin Playlist, Queue *QueueLagu, Stack *History, curren
         printf("Kamu tidak memiliki playlist.\n");
     else {
         printf("Masukkan ID Playlist: "); STARTWORD(); currentWordTillSC();
-        int id = Word2int(currentWord), i;
+        int id = Word2int(currentWord);
 
         printf("\n");
-        if(id > 0 && id < ArrayDinLength(Playlist)) {
+        if(id > 0 && id <= ArrayDinLength(Playlist)) {
             CreateQueue(QueueLagu);
             CreateStack(History);
 
-            addressListLinier P = Playlist.A[id].DaftarLagu.ListLinierFirst;
+            addressListLinier P = Playlist.A[id-1].DaftarLagu.ListLinierFirst;
             *LaguNow = ListLinierInfo(P);
-            (*LaguNow).fromPlaylist = Playlist.A[id].NamaPlaylist;
+            (*LaguNow).fromPlaylist = Playlist.A[id-1].NamaPlaylist;
             P = ListLinierNext(P);
 
             currentLagu Ltmp;
             while(P != ListLinierNil) {
                 Ltmp = ListLinierInfo(P);
-                Ltmp.fromPlaylist = Playlist.A[id].NamaPlaylist;
+                Ltmp.fromPlaylist = Playlist.A[id-1].NamaPlaylist;
                 enqueue(QueueLagu, Ltmp);
                 Push(History, Ltmp);
                 P = ListLinierNext(P);
