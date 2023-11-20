@@ -245,6 +245,12 @@ void ListWW_Default(List Penyanyi) {
 void ListWW_Playlist(ArrayDin Playlist) {
     printf("\n");
     printf("Daftar playlist yang kamu miliki:\n");
+    if (!IsArrayDinEmpty){
+        int x = ArrayDinLength(Playlist);
+    for (int i = 0; i < x; i++) {
+        printf("   %d. ", i+1); printWord((Playlist)); printf("\n");
+    }
+    }
 
 }
 
