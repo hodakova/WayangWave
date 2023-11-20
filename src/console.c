@@ -242,14 +242,21 @@ void ListWW_Default(List Penyanyi) {
     }
 }
 
-void ListWW_Playlist(ArrayDin Playlist) {
+void ListWW_Playlist(ArrayDin Playlist) 
+{
     printf("\n");
     printf("Daftar playlist yang kamu miliki:\n");
-    if (!IsArrayDinEmpty){
+    if (!IsArrayDinEmpty)
+    {
         int x = ArrayDinLength(Playlist);
-    for (int i = 0; i < x; i++) {
-        printf("   %d. ", i+1); printWord((Playlist)); printf("\n");
+        for (int i = 0; i < x; i++) 
+        {
+        printf("   %d. ", i+1); printWord((Playlist).A[i].NamaPlaylist); printf("\n");
+        }
     }
+    else
+    {
+        printf("Kamu tidak memiliki playlist.");
     }
 
 }
