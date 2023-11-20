@@ -249,6 +249,10 @@ void ListWW_Playlist(ArrayDin Playlist) {
 
 }
 
+void PlayWW_Song(List Penyanyi, Queue *QueueLagu, Stack *History, currentLagu *LaguNow) {}
+
+void PlayWW_Playlist(ArrayDin Playlist, Queue *QueueLagu, Stack *History, currentLagu *LaguNow) {}
+
 void QueueWW_Song() {}
 
 void QueueWW_Playlist() {}
