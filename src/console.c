@@ -147,7 +147,7 @@ void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLag
             currentWordTillEOL();
             tmp.Lagu = currentWord;
             
-            ListLinierInsVLast(&arraytmp.DaftarLagu, tmp);
+            // ListLinierInsVLast(&arraytmp.DaftarLagu, tmp); // ini rusak
             ADVBARIS();
         }
         ArrayDinInsertLast(Playlist, arraytmp);
@@ -540,7 +540,21 @@ void StatusWW(currentLagu LaguNow, Queue QueueLagu) {
     }
 }
 
-void SaveWW(char *dirfile, List Penyanyi, currentLagu LaguNow, Queue QueueLagu, Stack History, ArrayDin Playlist) {}
+void SaveWW(char* dirfile, List Penyanyi, currentLagu LaguNow, Queue QueueLagu, Stack History, ArrayDin Playlist) {
+    FILE *file;
+    file = fopen(dirfile, "w");
+    fprintf(file,"%d\n", ListLength(Penyanyi));
+    for (int i = 0; i < ListLength(Penyanyi); i++){
+        fprintf(file, "%d %s\n", Penyanyi.A[i].Album.Count, Word2str(Penyanyi.A[i].NamaPenyanyi));
+        for (int j = 0; j < Penyanyi.A[i].Album.Count; j++){
+            fprintf(file, "%d %s\n", Penyanyi.A[i].Album.Elements[j].Value.Lagu.Count, Word2str(Penyanyi.A[i].Album.Elements[j].Value.NamaAlbum));
+            for (int k = 0; k < Penyanyi.A[i].Album.Elements[j].Value.Lagu.Count; k++){
+                fprintf(file, "%s\n", Word2str(Penyanyi.A[i].Album.Elements[j].Value.Lagu.Elements[k]));
+            }
+        }
+    }
+    fclose(file);
+}
 
 void QuitWW() {}
 
