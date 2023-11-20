@@ -2,45 +2,18 @@
 #include "ADT/mesinkata/mesinkata.c"
 #include "ADT/mesinbaris/mesinbaris.c"
 #include "ADT/list/list.c"
-// #include "ADT/wayangwave/config.c"
-// #include "ADT/wayangwave/commands/start.c"
+#include "ADT/list/arraydin.c"
+#include "ADT/stack/stack.c"
+#include "ADT/queue/queue.c"
+#include "ADT/set/set.c"
+#include "ADT/map/map.c"
+#include "ADT/listlinier/listlinier.c"
+#include "ADT/currentlagu/currentlagu.h"
 #include <stdio.h>
-
+#include <stdlib.h>
 
 int main() {
-    STARTWORDFILE("../save/testsc.txt");
-
-    currentWordTillSC();
-    printWord(currentWord);
-    printf("\n");
-    ADVWORD();
-
-    currentWordTillSC();
-    printWord(currentWord);
-    printf("\n");
-    ADVWORD();
-
-    currentWordTillEOL();
-    printWord(currentWord);
-    printf("\n");
-    ADVBARIS();
-    
-    ADVBARIS();
-
-    currentWordTillSC();
-    printWord(currentWord);
-    printf("\n");
-    ADVWORD();
-
-    currentWordTillSC();
-    printWord(currentWord);
-    printf("\n");
-    ADVWORD();
-
-    currentWordTillEOL();
-    printWord(currentWord);
-    printf("\n");
-    ADVBARIS();
-
+    List Penyanyi = MakeList();
+    printf("oke");
     return 0;
 }

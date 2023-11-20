@@ -6,6 +6,7 @@
 #define ADTList1
 
 #include "../../boolean.h"
+#include <stdio.h>
 #include "../mesinkata/mesinkata.h"
 #include "../map/map.h"
 

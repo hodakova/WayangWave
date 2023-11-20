@@ -7,48 +7,70 @@
 #include "ADT/queue/queue.c"
 #include "ADT/set/set.c"
 #include "ADT/map/map.c"
-#include "ADT/wayangwave/console.c"
 #include "ADT/listlinier/listlinier.c"
 #include "ADT/currentlagu/currentlagu.h"
+#include "ADT/wayangwave/console.c"
 #include <stdio.h>
 #include <stdlib.h>
+
 int main() {
     printf("Mulai Program\n");
-    Word currentOp;
-    List Penyanyi;
-    Queue QueueLagu;
-    CreateQueue(&QueueLagu);
-    Stack History;
-    CreateStack(&History);
-    ArrayDin Playlist;
-    Playlist = MakeArrayDin();
-    currentLagu LaguNow;
 
+    List Penyanyi;
+    Queue QueueLagu; CreateQueue(&QueueLagu);
+    Stack History; CreateStack(&History);
+    ArrayDin Playlist = MakeArrayDin();
+    currentLagu LaguNow;
     
-    do{
+    boolean masukSesi = false;
+
+    while(!masukSesi) {
         STARTWORD();
-        currentOp = currentWord;
-        if(isWordEqual(currentOp, str2Word("START"))) {
+
+        if(isWordEqual(currentWord, str2Word("START"))) {
             StartWW(&Penyanyi);
             printf("File konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
-            }
-        else if(isWordEqual(currentOp, str2Word("LOAD"))){
-            STARTWORD();
+            masukSesi = true;
+        }
+
+        else if(isWordEqual(currentWord, str2Word("LOAD"))) {
+            ADVWORD();
             char* dirfile;
             dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
 
-            if (isFileExist(dirfile)){ 
+            if (isFileExist(dirfile)) { 
                 printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.");
                 LoadWW(dirfile, &Penyanyi, &LaguNow, &QueueLagu, &History, &Playlist);
+                masukSesi = true;
             }
+
             else
                 printf("Save file tidak ditemukan. WayangWave gagal dijalankan.");
-
         }
+
+        else if(isWordEqual(currentWord, str2Word("HELP")))
+            HelpWW_before();
+
         else
-            printf("o: bukan start\n");
+            Command_unknown();
     }
-    while(!isWordEqual(currentOp, str2Word("exit")));
+
+    while(true) {
+        STARTWORD();
+
+        if(isWordEqual(currentWord, str2Word("LIST"))) {
+            ADVWORD();
+
+            if(isWordEqual(currentWord, str2Word("DEFAULT;")))
+                ListWW_Default(Penyanyi);
+
+            else if(isWordEqual(currentWord, str2Word("PLAYLIST;")))
+                ListWW_Playlist(Playlist);
+        }
+
+        else
+            Command_unknown();
+    }
 
     return 0;
 }
