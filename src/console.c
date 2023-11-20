@@ -255,7 +255,7 @@ void PlayWW_Playlist(ArrayDin Playlist, Queue *QueueLagu, Stack *History, curren
 void QueueWW_Song(List Penyanyi, Queue *QueueLagu) {
     int i, j, k, n, m, l;
     boolean found;
-    Word NamaPenyanyi, NamaAlbum;
+    currentLagu Lagu;
 
     printf("\n");
     printf("Daftar Penyanyi :\n");
@@ -273,7 +273,7 @@ void QueueWW_Song(List Penyanyi, Queue *QueueLagu) {
         while(i < n && !found) {
             if(isWordEqual(Penyanyi.A[i].NamaPenyanyi, currentWord)) {
                 found = true;
-                NamaPenyanyi = currentWord;
+                Lagu.Penyanyi = currentWord;
             }
             else
                 i ++;
@@ -284,7 +284,7 @@ void QueueWW_Song(List Penyanyi, Queue *QueueLagu) {
     }
 
     printf("\n");
-    printf("Daftar Album oleh "); printWord(currentWord); printf(" :\n");
+    printf("Daftar Album oleh "); printWord(Lagu.Penyanyi); printf(" :\n");
     m = Penyanyi.A[i].Album.Count;
     for(j = 0; j < m; j ++) {
         printf("   %d. ", j + 1); printWord(Penyanyi.A[i].Album.Elements[j].Value.NamaAlbum); printf("\n");
@@ -300,7 +300,7 @@ void QueueWW_Song(List Penyanyi, Queue *QueueLagu) {
         while(j < m && !found) {
             if(isWordEqual(Penyanyi.A[i].Album.Elements[j].Value.NamaAlbum, currentWord)) {
                 found = true;
-                NamaAlbum = currentWord;
+                Lagu.Album = currentWord;
             }
             else
                 j ++;
@@ -311,7 +311,7 @@ void QueueWW_Song(List Penyanyi, Queue *QueueLagu) {
     }
 
     printf("\n");
-    printf("Daftar Lagu Album "); printWord(NamaAlbum); printf(" oleh "); printWord(NamaPenyanyi); printf(" :\n");
+    printf("Daftar Lagu Album "); printWord(Lagu.Album); printf(" oleh "); printWord(Lagu.Penyanyi); printf(" :\n");
     l = Penyanyi.A[i].Album.Elements[j].Value.Lagu.Count;
     for(k = 0; k < l; k ++) {
         printf("   %d. ", k + 1); printWord(Penyanyi.A[i].Album.Elements[j].Value.Lagu.Elements[k]); printf("\n");        
@@ -328,6 +328,11 @@ void QueueWW_Song(List Penyanyi, Queue *QueueLagu) {
         if(!found)
             Command_unknown();
     }
+
+    Lagu.Lagu = Penyanyi.A[i].Album.Elements[j].Value.Lagu.Elements[k];
+    enqueue(QueueLagu, Lagu);
+    
+    printf("Berhasil menambahkan lagu \""); printWord(Lagu.Lagu); printf("\" oleh \""); printWord(Lagu.Penyanyi); printf("\" ke queue.\n");
 }
 
 void QueueWW_Playlist(ArrayDin Playlist, Queue *QueueLagu) {}
