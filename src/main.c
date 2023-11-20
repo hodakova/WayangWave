@@ -10,11 +10,14 @@
 #include "ADT/listlinier/listlinier.c"
 #include "ADT/currentlagu/currentlagu.h"
 #include "console.c"
+#include "art.c"
 #include <stdio.h>
 #include <stdlib.h>
 
 int main() {
-    printf("Mulai Program\n");
+    art_WayangWave5();
+    printf("Selamat datang di aplikasi WayangWave, sebuah aplikasi yang bisa mensimulasikan service pemutaran musik.\n");
+    printf("Ketik START untuk memulai WayangWave, atau ketik LOAD apabila sudah memiliki savefile.\n");
 
     List Penyanyi;
     Queue QueueLagu; CreateQueue(&QueueLagu);
@@ -247,7 +250,7 @@ int main() {
                 dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
                 if (isFileExist(dirfile)) { 
                     if (isWordEqual(currentWord, str2Word("config.txt"))){ 
-                        prinf("\nSave file tidak bisa berada di config, Save file gagal disimpan.\n");
+                        printf("\nSave file tidak bisa berada di config, Save file gagal disimpan.\n");
                     }
                     else {
                         // Save
