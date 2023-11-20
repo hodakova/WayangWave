@@ -246,7 +246,7 @@ void ListWW_Playlist(ArrayDin Playlist)
 {
     printf("\n");
     printf("Daftar playlist yang kamu miliki:\n");
-    if (!IsArrayDinEmpty)
+    if (!IsArrayDinEmpty(Playlist))
     {
         int x = ArrayDinLength(Playlist);
         for (int i = 0; i < x; i++) 
@@ -256,7 +256,7 @@ void ListWW_Playlist(ArrayDin Playlist)
     }
     else
     {
-        printf("Kamu tidak memiliki playlist.");
+        printf("Kamu tidak memiliki playlist.\n");
     }
 
 }
@@ -348,13 +348,99 @@ void QueueWW_Song(List Penyanyi, Queue *QueueLagu) {
     printf("Berhasil menambahkan lagu \""); printWord(Lagu.Lagu); printf("\" oleh \""); printWord(Lagu.Penyanyi); printf("\" ke queue.\n");
 }
 
-void QueueWW_Playlist(ArrayDin Playlist, Queue *QueueLagu) {}
+void QueueWW_Playlist(ArrayDin Playlist, Queue *QueueLagu) {
+    int id, r, i;
+    addressListLinier P;
 
-void QueueWW_Swap(Queue *QueueLagu, int x, int y) {}
+    printf("\n");
+    if(IsArrayDinEmpty(Playlist))
+        printf("Kamu tidak memiliki playlist.");
+    else {
+        printf("Masukkan ID Playlist: "); STARTWORD(); currentWordTillSC();
+        id = Word2int(currentWord) - 1;
 
-void QueueWW_Remove(Queue *QueueLagu, int id) {}
+        printf("\n");
+        if(id >= 0 && id < ArrayDinLength(Playlist)) {
+            P = Playlist.A[id].DaftarLagu.ListLinierFirst;
+            while(P != ListLinierNil) {
+                enqueue(QueueLagu, ListLinierInfo(P));
+                P = ListLinierNext(P);
+            }
+            
+            printf("Berhasil menambahkan playlist \""); printWord(Playlist.A[id].NamaPlaylist); printf(" ke queue.\n");
+        }
 
-void QueueWW_Clear(Queue *QueueLagu) {}
+        else {
+            printf("Tidak ada playlist dengan id = %d\n", id);
+            printf("Tips: Gunakan LIST PLAYLIST!\n");
+        }
+    }
+}
+
+void QueueWW_Swap(Queue *QueueLagu, int x, int y) {
+    boolean isXvalid = false, isYvalid = false;
+    int l = QueueLength(*QueueLagu), iHead = QueueIdxHead(*QueueLagu);
+
+    if(x > 0 && x <= l)
+        isXvalid = true;
+    if(y > 0 && y <= l)
+        isYvalid = true;
+
+
+    printf("\n");
+    if(isXvalid && isYvalid) {
+        currentLagu tmp = (*QueueLagu).buffer[x-1];
+        (*QueueLagu).buffer[y-1+iHead] = (*QueueLagu).buffer[x-1];
+        (*QueueLagu).buffer[x-1+iHead] = tmp;
+
+        printf("Lagu \n"); printWord(tmp.Lagu); printf("\" berhasil ditukar dengan \""); printWord((*QueueLagu).buffer[x-1+iHead].Lagu); printf("\"\n");
+    }
+    else {
+        printf("Lagu dengan urutan ");
+        if(!isXvalid)
+            printf("ke %d", x);
+        if(!isXvalid && !isYvalid)
+            printf(" & ");
+        if(!isYvalid)
+            printf("ke %d", y);
+        printf(" tidak terdapat dalam queue!\n");
+    }
+}
+
+void QueueWW_Remove(Queue *QueueLagu, int id) {
+    printf("\n");
+    if(id > 0 && id <= QueueLength(*QueueLagu)) {
+        Queue Qtmp; CreateQueue(&Qtmp);
+        currentLagu Ltmp, Lrmv;
+        int i = 1;
+
+        while(!isQueueEmpty(*QueueLagu)) {
+            dequeue(QueueLagu, &Ltmp);
+            enqueue(&Qtmp, Ltmp);
+        }
+
+        while(!isQueueEmpty(Qtmp)) {
+            dequeue(&Qtmp, &Ltmp);
+            if(i != id)
+                enqueue(QueueLagu, Ltmp);
+            else
+                Lrmv = Ltmp;
+            i ++;
+        }
+
+        printf("Lagu \""); printWord(Lrmv.Lagu); printf("\" oleh \""); printWord(Lrmv.Penyanyi); printf("\" telah dihapus dari queue.\n");
+    }
+
+    else
+        printf("Lagu dengan urutan ke %d tidak ada.\n", id);
+}
+
+void QueueWW_Clear(Queue *QueueLagu) {
+    CreateQueue(QueueLagu);
+
+    printf("\n");
+    printf("Queue berhasil dikosongkan.\n");
+}
 
 void SongWW_Next(Stack *History, currentLagu *LaguNow, Queue *QueueLagu) {}
 
