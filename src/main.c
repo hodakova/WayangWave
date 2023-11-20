@@ -21,52 +21,57 @@ int main() {
     Stack History; CreateStack(&History);
     ArrayDin Playlist = MakeArrayDin();
     currentLagu LaguNow;
-    
+
+    int x, y, id, n;
+    char* dirfile;
     boolean masukSesi = false;
-
-    while(!masukSesi) {
-        printf(">> "); STARTWORD();
-
-        if(isWordEqual(currentWord, str2Word("START"))) {
-            StartWW(&Penyanyi);
-            printf("\nFile konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
-            masukSesi = true;
-        }
-
-        else if(isWordEqual(currentWord, str2Word("LOAD"))) {
-            ADVWORD();
-            char* dirfile;
-            dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
-            if (isFileExist(dirfile)) { 
-                LoadWW(dirfile, &Penyanyi, &LaguNow, &QueueLagu, &History, &Playlist);
-                printf("\nSave file berhasil dibaca. WayangWave berhasil dijalankan.\n");
-                masukSesi = true;
-            }
-            else
-                printf("\nSave file tidak ditemukan. WayangWave gagal dijalankan.\n");
-        }
-
-        else if(isWordEqual(currentWord, str2Word("HELP")))
-            HelpWW_before();
-
-        else {
-            currentWordTillSC();
-            Command_unknown();
-        }
-    }
-    
 
     while(true) {
         printf(">> "); STARTWORD();
 
-        if(isWordEqual(currentWord, str2Word("LIST"))) {
+        if(isWordEqual(currentWord, str2Word("START"))) {
+            if(!masukSesi) {
+                StartWW(&Penyanyi);
+                printf("\nFile konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
+                masukSesi = true;
+            }
+            else
+                Command_forbidden();
+        }
+
+        else if(isWordEqual(currentWord, str2Word("LOAD"))) {
             ADVWORD();
 
-            if(isWordEqual(currentWord, str2Word("DEFAULT")))
-                ListWW_Default(Penyanyi);
+            if(!masukSesi) {
+                dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
+                if (isFileExist(dirfile)) { 
+                    LoadWW(dirfile, &Penyanyi, &LaguNow, &QueueLagu, &History, &Playlist);
+                    printf("\nSave file berhasil dibaca. WayangWave berhasil dijalankan.\n");
+                    masukSesi = true;
+                }
+                else
+                    printf("\nSave file tidak ditemukan. WayangWave gagal dijalankan.\n");
+            }
+            else
+                Command_forbidden();
+        }
 
-            else if(isWordEqual(currentWord, str2Word("PLAYLIST")))
-                ListWW_Playlist(Playlist);
+        else if(isWordEqual(currentWord, str2Word("LIST"))) {
+            ADVWORD();
+
+            if(isWordEqual(currentWord, str2Word("DEFAULT"))) {
+                if(masukSesi)
+                    ListWW_Default(Penyanyi);
+                else
+                    Command_forbidden();
+            }
+
+            else if(isWordEqual(currentWord, str2Word("PLAYLIST"))) {
+                if(masukSesi)
+                    ListWW_Playlist(Playlist);
+                else
+                    Command_forbidden();
+            }
             
             else
                 Command_unknown();
@@ -75,48 +80,193 @@ int main() {
         else if(isWordEqual(currentWord, str2Word("PLAY"))) {
             ADVWORD();
 
-            if(isWordEqual(currentWord, str2Word("SONG")))
-                PlayWW_Song(Penyanyi, &QueueLagu, &History, &LaguNow);
+            if(isWordEqual(currentWord, str2Word("SONG"))) {
+                if(masukSesi)
+                    PlayWW_Song(Penyanyi, &QueueLagu, &History, &LaguNow);
+                else
+                    Command_forbidden();
+            }
             
-            else if(isWordEqual(currentWord, str2Word("PLAYLIST")))
-                PlayWW_Playlist(Playlist, &QueueLagu, &History, &LaguNow);
+            else if(isWordEqual(currentWord, str2Word("PLAYLIST"))) {
+                if(masukSesi)
+                    PlayWW_Playlist(Playlist, &QueueLagu, &History, &LaguNow);
+                else
+                    Command_forbidden();
+            }
 
+            else
+                Command_unknown();
         }
 
         else if(isWordEqual(currentWord, str2Word("QUEUE"))) {
             ADVWORD();
 
-            if(isWordEqual(currentWord, str2Word("SONG")))
-                QueueWW_Song(Penyanyi, &QueueLagu);
+            if(isWordEqual(currentWord, str2Word("SONG"))) {
+                if(masukSesi)
+                    QueueWW_Song(Penyanyi, &QueueLagu);
+                else
+                    Command_forbidden();
+            }
 
-            else if(isWordEqual(currentWord, str2Word("PLAYLIST")))
-                QueueWW_Playlist(Playlist, &QueueLagu);
+            else if(isWordEqual(currentWord, str2Word("PLAYLIST"))) {
+                if(masukSesi)
+                    QueueWW_Playlist(Playlist, &QueueLagu);
+                else
+                    Command_forbidden();
+            }
+
+            else if(isWordEqual(currentWord, str2Word("SWAP"))) {
+                ADVWORD();
+                x = Word2int(currentWord);
+                ADVWORD();
+                y = Word2int(currentWord);
+                if(masukSesi)
+                    QueueWW_Swap(&QueueLagu, x, y);
+                else
+                    Command_forbidden();
+            }
+
+            else if(isWordEqual(currentWord, str2Word("REMOVE"))) {
+                ADVWORD();
+                id = Word2int(currentWord);
+                if(masukSesi)
+                    QueueWW_Remove(&QueueLagu, id);
+                else
+                    Command_forbidden();
+            }
+
+            else if(isWordEqual(currentWord, str2Word("CLEAR"))) {
+                if(masukSesi)
+                    QueueWW_Clear(&QueueLagu);
+                else
+                    Command_forbidden();
+            }
+                
+            else
+                Command_unknown();   
         }
 
-        else if(isWordEqual(currentWord, str2Word("SONG"))) {}
+        else if(isWordEqual(currentWord, str2Word("SONG"))) {
+            ADVWORD();
 
-        else if(isWordEqual(currentWord, str2Word("PLAYLIST"))) {}
+            if(isWordEqual(currentWord, str2Word("NEXT"))) {
+                if(masukSesi)
+                    SongWW_Next(&History, &LaguNow, &QueueLagu);
+                else
+                    Command_forbidden();
+            }
+
+            else if(isWordEqual(currentWord, str2Word("PREVIOUS"))) {
+                if(masukSesi)
+                    SongWW_Next(&History, &LaguNow, &QueueLagu);
+                else
+                    Command_forbidden();
+            }
+            
+            else
+                Command_unknown();
+        }
+
+        else if(isWordEqual(currentWord, str2Word("PLAYLIST"))) {
+            ADVWORD();
+
+            if(isWordEqual(currentWord, str2Word("CREATE"))) {
+                if(masukSesi)
+                    PlaylistWW_Create(&Playlist);
+                else
+                    Command_forbidden();
+            }
+
+            else if(isWordEqual(currentWord, str2Word("ADD"))) {
+                ADVWORD();
+
+                if(isWordEqual(currentWord, str2Word("SONG"))) {
+                    if(masukSesi)
+                        PlaylistWW_Add_Song(Penyanyi, &Playlist);
+                    else
+                        Command_forbidden();
+                }
+                
+                else if(isWordEqual(currentWord, str2Word("ALBUM"))) {
+                    if(masukSesi)
+                        PlaylistWW_Add_Album(Penyanyi, &Playlist);
+                    else
+                        Command_forbidden();
+                }
+
+                else
+                    Command_unknown();
+            }
+
+            else if(isWordEqual(currentWord, str2Word("SWAP"))) {
+                ADVWORD();
+                id = Word2int(currentWord);
+                ADVWORD();
+                x = Word2int(currentWord);
+                ADVWORD();
+                y = Word2int(currentWord);
+                if(masukSesi)
+                    PlaylistWW_Swap(&Playlist, id, x, y);
+                else
+                    Command_forbidden();
+            }
+
+            else if(isWordEqual(currentWord, str2Word("REMOVE"))) {
+                ADVWORD();
+                id = Word2int(currentWord);
+                ADVWORD();
+                n = Word2int(currentWord);
+                if(masukSesi)
+                    PlaylistWW_Remove(&Playlist, id, n);
+                else
+                    Command_forbidden();
+            }
+
+            else if(isWordEqual(currentWord, str2Word("DELETE"))) {
+                if(masukSesi)
+                    PlaylistWW_Delete(&Playlist);
+                else
+                    Command_forbidden();
+            }
+
+            else
+                Command_unknown();
+        }
 
         else if(isWordEqual(currentWord, str2Word("STATUS"))) {
-            StatusWW();
+            if(masukSesi)
+                StatusWW(LaguNow, QueueLagu);
+            else
+                Command_unknown();
         }
 
         else if(isWordEqual(currentWord, str2Word("SAVE"))) {
             ADVWORD();
+
+            if(masukSesi) {
+                dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
+                SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
+            }
+            else
+                Command_forbidden();
         }
 
         else if(isWordEqual(currentWord, str2Word("QUIT"))) {
-            QuitWW();
+            if(masukSesi)
+                QuitWW();
+            else
+                Command_forbidden();
         }
 
         else if(isWordEqual(currentWord, str2Word("HELP"))) {
-            HelpWW_after();
+            if(masukSesi)
+                HelpWW_after();
+            else
+                HelpWW_before();
         }
 
-        else {
-            currentWordTillSC();
+        else
             Command_unknown();
-        }
     }
 
     return 0;
