@@ -6,7 +6,7 @@ void playlist_create(ArrayDin *Playlist) {
    printf("\nMasukkan nama playlist yang ingin dibuat : ");
     STARTWORD();
     currentWordTillSC();
-    CreateEmpty(&(Playlist)->DaftarLagu[(Playlist)->Neff]);
+    CreateEmpty(&(Playlist)->A[(Playlist)->Neff]);
     (Playlist)->Neff += 1;
     printf("\nOutput: Playlist %s berhasil dibuat!", (Playlist)->NamaPlaylist[(Playlist)->Neff].TabWord);
     printf("\nSilahkan masukkan lagu-lagu artis terkini kesayangan Anda!\n");
