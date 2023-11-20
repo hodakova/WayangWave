@@ -6,14 +6,14 @@
 
 #define ArrayDinInitialSize 10
 
-typedef struct 
-{
+typedef struct {
     Word NamaPlaylist;
     ListLinier DaftarLagu;
 } ArrayDinElType;
 typedef int ArrayDinIdxType;
 typedef struct {
-    ArrayDinElType *A;
+    Word NamaPlaylist;
+    ListLinier DaftarLagu;
     int Capacity;
     int Neff;
 } ArrayDin;
