@@ -245,8 +245,28 @@ int main() {
 
             if(masukSesi) {
                 dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
-                SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
-            }
+                if (isFileExist(dirfile)) { 
+                    if (isWordEqual(currentWord, str2Word("config.txt"))){ 
+                        prinf("\nSave file tidak bisa berada di config, Save file gagal disimpan.\n");
+                    }
+                    else {
+                        // Save
+                        printf("\nSave file berhasil disimpan.\n");
+                    }
+                }
+                else
+                    printf("\nFile tidak ditemukan, apakah ingin membuat file baru dengan nama %s?\n", Word2str(currentWord));
+                    printf("(y/n)||(Y/N)\n");
+                    STARTWORD();
+                    if ((isWordEqual(str2Word("y"), currentWord)) || (isWordEqual(str2Word("Y"), currentWord))){
+                        // Makefile
+                        // Save
+                        printf("\nSave file berhasil disimpan.\n");
+                    }
+                    else{
+                        printf("\nSave file gagal disimpan.\n");
+                    }
+                }
             else
                 Command_forbidden();
         }
