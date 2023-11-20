@@ -24,7 +24,6 @@ int main() {
     Stack History; CreateStack(&History);
     ArrayDin Playlist = MakeArrayDin();
     currentLagu LaguNow;
-    Word PlaylistNow;
 
     int x, y, id, n;
     char* dirfile;
@@ -32,6 +31,7 @@ int main() {
 
 
     while(true) {
+        //ListLinierPrintInfo(Playlist.A[1].DaftarLagu);
         printf(">> "); STARTWORD();
 
         if(isWordEqual(currentWord, str2Word("START"))) {
@@ -104,7 +104,7 @@ int main() {
         }
 
         else if(isWordEqual(currentWord, str2Word("QUEUE"))) {
-            //printQueue(QueueLagu);
+            // printQueue(QueueLagu);
             ADVWORD();
 
             if(isWordEqual(currentWord, str2Word("SONG"))) {
@@ -151,7 +151,7 @@ int main() {
             else
                 Command_unknown();
 
-            //printQueue(QueueLagu);  
+            // printQueue(QueueLagu);  
         }
 
         else if(isWordEqual(currentWord, str2Word("SONG"))) {
