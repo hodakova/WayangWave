@@ -30,6 +30,7 @@ int main() {
     char* dirfile;
     boolean masukSesi = false;
 
+
     while(true) {
         printf(">> "); STARTWORD();
 
@@ -257,11 +258,12 @@ int main() {
                         printf("\nSave file tidak bisa berada di config, Save file gagal disimpan.\n");
                     }
                     else {
-                        // Save
+                        SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
                         printf("\nSave file berhasil disimpan.\n");
                     }
                 }
-                else
+                
+                else{ 
                     printf("\nFile tidak ditemukan, apakah ingin membuat file baru dengan nama %s?\n", Word2str(currentWord));
                     printf("(y/n)||(Y/N)\n");
                     STARTWORD();
@@ -273,6 +275,7 @@ int main() {
                     else{
                         printf("\nSave file gagal disimpan.\n");
                     }
+                }
                 }
             else
                 Command_forbidden();
