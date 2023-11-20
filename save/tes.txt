@@ -25,3 +25,12 @@ Pretty Visitors
 Do I Wanna Know?
 R U Mine?
 Arabella
+5
+BLACKPINK;BORN PINK;Typa Girl
+BLACKPINK;THE ALBUM;How You Like That
+Arctic Monkeys;AM;Do I Wanna Know?
+BLACKPINK;BORN PINK;Shut Down
+Arctic Monkeys;AM;Arabella
+2
+Arctic Monkeys;Favourite Worst Nightmare;505
+BLACKPINK;BORN PINK;Pink Venom

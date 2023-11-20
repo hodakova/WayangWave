@@ -553,6 +553,16 @@ void SaveWW(char* dirfile, List Penyanyi, currentLagu LaguNow, Queue QueueLagu, 
             }
         }
     }
+    // Queue
+    fprintf(file, "%d\n", QueueLength(QueueLagu));
+    for (int i = QueueIdxHead(QueueLagu); i <= QueueIdxTail(QueueLagu); i++){
+        fprintf(file, "%s;%s;%s\n",Word2str(QueueLagu.buffer[i].Penyanyi),Word2str(QueueLagu.buffer[i].Album),Word2str(QueueLagu.buffer[i].Lagu));
+    }
+    // History
+    fprintf(file, "%d\n", (History.TOP+1));
+    for (int i = 0; i <= History.TOP; i++){
+        fprintf(file, "%s;%s;%s\n",Word2str(History.T[i].Penyanyi),Word2str(History.T[i].Album),Word2str(History.T[i].Lagu));
+    }
     fclose(file);
 }
 
