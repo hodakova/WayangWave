@@ -565,6 +565,14 @@ void SaveWW(char* dirfile, List Penyanyi, currentLagu LaguNow, Queue QueueLagu, 
     for (int i = 0; i <= History.TOP; i++){
         fprintf(file, "%s;%s;%s\n",Word2str(History.T[i].Penyanyi),Word2str(History.T[i].Album),Word2str(History.T[i].Lagu));
     }
+    // Playlist
+    // fprintf(file, "%d\n", Playlist.Neff);
+    // for (int i = 0; i < Playlist.Neff; i++){
+    //     fprintf(file, "%d %s\n", ListLinierNbElmt(Playlist.A[i].DaftarLagu), Word2str(Playlist.A[i].NamaPlaylist));
+    //     for (int j = 0 ;j < ListLinierNbElmt(Playlist.A[i].DaftarLagu); j++){
+    //         fprintf(file, "%s;%s;%s\n", Word2str(Playlist.A[i].DaftarLagu.ListLinierFirst[j].ListLinierInfo.Penyanyi),Word2str(Playlist.A[i].DaftarLagu.ListLinierFirst[j].ListLinierInfo.Album),Word2str(Playlist.A[i].DaftarLagu.ListLinierFirst[j].ListLinierInfo.Lagu));
+    //     }
+    // }
     fclose(file);
 }
 
