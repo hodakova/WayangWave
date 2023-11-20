@@ -25,35 +25,35 @@ void PlayWW_Song(List Penyanyi, Queue *QueueLagu, Stack *History, currentLagu *L
 
 void PlayWW_Playlist(ArrayDin Playlist, Queue *QueueLagu, Stack *History, currentLagu *LaguNow);
 
-void QueueWW_Song();
+void QueueWW_Song(List Penyanyi, Queue *QueueLagu);
 
-void QueueWW_Playlist();
+void QueueWW_Playlist(ArrayDin Playlist, Queue *QueueLagu);
 
-void QueueWW_Swap();
+void QueueWW_Swap(Queue *QueueLagu, int x, int y);
 
-void QueueWW_Remove();
+void QueueWW_Remove(Queue *QueueLagu, int id);
 
-void QueueWW_Clear();
+void QueueWW_Clear(Queue *QueueLagu);
 
-void SongWW_Next();
+void SongWW_Next(Stack *History, currentLagu *LaguNow, Queue *QueueLagu);
 
-void SongWW_Previous();
+void SongWW_Previous(Stack *History, currentLagu *LaguNow, Queue *QueueLagu);
 
-void PlaylistWW_Create();
+void PlaylistWW_Create(ArrayDin *Playlist);
 
-void PlaylistWW_Add_Song();
+void PlaylistWW_Add_Song(List Penyanyi, ArrayDin *Playlist);
 
-void PlaylistWW_Add_Album();
+void PlaylistWW_Add_Album(List Penyanyi, ArrayDin *Playlist);
 
-void PlaylistWW_Swap();
+void PlaylistWW_Swap(ArrayDin *Playlist, int id, int x, int y);
 
-void PlaylistWW_Remove();
+void PlaylistWW_Remove(ArrayDin *Playlist, int id, int n);
 
-void PlaylistWW_Delete();
+void PlaylistWW_Delete(ArrayDin *Playlist);
 
 void StatusWW();
 
-void SaveWW();
+void SaveWW(char *dirfile);
 
 void QuitWW();
 

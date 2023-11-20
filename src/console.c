@@ -163,9 +163,9 @@ void ListWW_Default(List Penyanyi) {
         printf("   %d. ", i+1); printWord((Penyanyi).A[i].NamaPenyanyi); printf("\n");
     }
 
+    printf("\n");
     boolean lanjut = false;
     while(!lanjut) {
-        printf("\n");
         printf("Ingin melihat album yang ada? (Y/N) : "); STARTWORD(); currentWordTillSC();
 
         if(isWordEqual(currentWord, str2Word("Y"))) {
@@ -195,10 +195,9 @@ void ListWW_Default(List Penyanyi) {
                 printf("   %d. ", k+1); printWord((Penyanyi).A[j].Album.Elements[k].Value.NamaAlbum); printf("\n");
             }
 
+            printf("\n");
             boolean lanjut2 = false;
             while(!lanjut2) {
-
-                printf("\n");
                 printf("Ingin melihat lagu yang ada? (Y/N) : "); STARTWORD(); currentWordTillSC();
 
                 if (isWordEqual(currentWord, str2Word("Y"))) {
@@ -253,35 +252,111 @@ void PlayWW_Song(List Penyanyi, Queue *QueueLagu, Stack *History, currentLagu *L
 
 void PlayWW_Playlist(ArrayDin Playlist, Queue *QueueLagu, Stack *History, currentLagu *LaguNow) {}
 
-void QueueWW_Song() {}
+void QueueWW_Song(List Penyanyi, Queue *QueueLagu) {
+    int i, j, k, n, m, l;
+    boolean found;
+    Word NamaPenyanyi, NamaAlbum;
 
-void QueueWW_Playlist() {}
+    printf("\n");
+    printf("Daftar Penyanyi :\n");
+    n = ListLength(Penyanyi);
+    for(i = 0; i < n; i ++) {
+        printf("   %d. ", i + 1); printWord(Penyanyi.A[i].NamaPenyanyi); printf("\n");
+    }
+    
+    printf("\n");
+    found = false;
+    while(!found) {
+        printf("Masukkan Nama Penyanyi : "); STARTWORD(); currentWordTillSC();
 
-void QueueWW_Swap() {}
+        i = 0;
+        while(i < n && !found) {
+            if(isWordEqual(Penyanyi.A[i].NamaPenyanyi, currentWord)) {
+                found = true;
+                NamaPenyanyi = currentWord;
+            }
+            else
+                i ++;
+        }
 
-void QueueWW_Remove() {}
+        if(!found)
+            Command_unknown();
+    }
 
-void QueueWW_Clear() {}
+    printf("\n");
+    printf("Daftar Album oleh "); printWord(currentWord); printf(" :\n");
+    m = Penyanyi.A[i].Album.Count;
+    for(j = 0; j < m; j ++) {
+        printf("   %d. ", j + 1); printWord(Penyanyi.A[i].Album.Elements[j].Value.NamaAlbum); printf("\n");
+    }
 
-void SongWW_Next() {}
 
-void SongWW_Previous() {}
+    printf("\n");
+    found = false;
+    while(!found) {
+        printf("Masukkan Nama Album yang dipilih : "); STARTWORD(); currentWordTillSC();
 
-void PlaylistWW_Create() {}
+        j = 0;
+        while(j < m && !found) {
+            if(isWordEqual(Penyanyi.A[i].Album.Elements[j].Value.NamaAlbum, currentWord)) {
+                found = true;
+                NamaAlbum = currentWord;
+            }
+            else
+                j ++;
+        }
 
-void PlaylistWW_Add_Song() {}
+        if(!found)
+            Command_unknown();
+    }
 
-void PlaylistWW_Add_Album() {}
+    printf("\n");
+    printf("Daftar Lagu Album "); printWord(NamaAlbum); printf(" oleh "); printWord(NamaPenyanyi); printf(" :\n");
+    l = Penyanyi.A[i].Album.Elements[j].Value.Lagu.Count;
+    for(k = 0; k < l; k ++) {
+        printf("   %d. ", k + 1); printWord(Penyanyi.A[i].Album.Elements[j].Value.Lagu.Elements[k]); printf("\n");        
+    }
 
-void PlaylistWW_Swap() {}
+    printf("\n");
+    found = false;
+    while(!found) {
+        printf("Masukkan ID Lagu yang dipilih: "); STARTWORD(); currentWordTillSC();
+        k = Word2int(currentWord) - 1;
+        if(k >= 0 && k < l)
+            found = true;
 
-void PlaylistWW_Remove() {}
+        if(!found)
+            Command_unknown();
+    }
+}
 
-void PlaylistWW_Delete() {}
+void QueueWW_Playlist(ArrayDin Playlist, Queue *QueueLagu) {}
+
+void QueueWW_Swap(Queue *QueueLagu, int x, int y) {}
+
+void QueueWW_Remove(Queue *QueueLagu, int id) {}
+
+void QueueWW_Clear(Queue *QueueLagu) {}
+
+void SongWW_Next(Stack *History, currentLagu *LaguNow, Queue *QueueLagu) {}
+
+void SongWW_Previous(Stack *History, currentLagu *LaguNow, Queue *QueueLagu) {}
+
+void PlaylistWW_Create(ArrayDin *Playlist) {}
+
+void PlaylistWW_Add_Song(List Penyanyi, ArrayDin *Playlist) {}
+
+void PlaylistWW_Add_Album(List Penyanyi, ArrayDin *Playlist) {}
+
+void PlaylistWW_Swap(ArrayDin *Playlist, int id, int x, int y) {}
+
+void PlaylistWW_Remove(ArrayDin *Playlist, int id, int n) {}
+
+void PlaylistWW_Delete(ArrayDin *Playlist) {}
 
 void StatusWW() {}
 
-void SaveWW() {}
+void SaveWW(char *dirfile) {}
 
 void QuitWW() {}
 

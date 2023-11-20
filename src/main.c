@@ -49,8 +49,10 @@ int main() {
         else if(isWordEqual(currentWord, str2Word("HELP")))
             HelpWW_before();
 
-        else
+        else {
+            currentWordTillSC();
             Command_unknown();
+        }
     }
     
 
@@ -65,10 +67,56 @@ int main() {
 
             else if(isWordEqual(currentWord, str2Word("PLAYLIST")))
                 ListWW_Playlist(Playlist);
+            
+            else
+                Command_unknown();
+        }
+        
+        else if(isWordEqual(currentWord, str2Word("PLAY"))) {
+            ADVWORD();
+
+            if(isWordEqual(currentWord, str2Word("SONG")))
+                PlayWW_Song(Penyanyi, &QueueLagu, &History, &LaguNow);
+            
+            else if(isWordEqual(currentWord, str2Word("PLAYLIST")))
+                PlayWW_Playlist(Playlist, &QueueLagu, &History, &LaguNow);
+
         }
 
-        else
+        else if(isWordEqual(currentWord, str2Word("QUEUE"))) {
+            ADVWORD();
+
+            if(isWordEqual(currentWord, str2Word("SONG")))
+                QueueWW_Song(Penyanyi, &QueueLagu);
+
+            else if(isWordEqual(currentWord, str2Word("PLAYLIST")))
+                QueueWW_Playlist(Playlist, &QueueLagu);
+        }
+
+        else if(isWordEqual(currentWord, str2Word("SONG"))) {}
+
+        else if(isWordEqual(currentWord, str2Word("PLAYLIST"))) {}
+
+        else if(isWordEqual(currentWord, str2Word("STATUS"))) {
+            StatusWW();
+        }
+
+        else if(isWordEqual(currentWord, str2Word("SAVE"))) {
+            ADVWORD();
+        }
+
+        else if(isWordEqual(currentWord, str2Word("QUIT"))) {
+            QuitWW();
+        }
+
+        else if(isWordEqual(currentWord, str2Word("HELP"))) {
+            HelpWW_after();
+        }
+
+        else {
+            currentWordTillSC();
             Command_unknown();
+        }
     }
 
     return 0;
