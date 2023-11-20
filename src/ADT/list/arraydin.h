@@ -6,11 +6,11 @@
 
 #define ArrayDinInitialSize 10
 
-typedef struct {
-    Word NamaPlaylist;
-    ListLinier DaftarLagu;
-} ArrayDinElType;
+typedef struct Word NamaPlaylist;
+//     ListLinier DaftarLagu;
+// } ArrayDinElType;
 typedef int ArrayDinIdxType;
+
 typedef struct {
     Word NamaPlaylist;
     ListLinier DaftarLagu;
