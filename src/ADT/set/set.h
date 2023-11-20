@@ -8,7 +8,7 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 */
 
 #define SetNil 0
-#define SetMaxEl 100
+#define SetMaxEl 10
 
 typedef Word SetInfoType;
 typedef int SetAddress;

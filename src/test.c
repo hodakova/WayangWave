@@ -12,8 +12,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
-    List Penyanyi = MakeList();
+int main() { 
+    List Penyanyi;
     printf("oke");
     return 0;
 }

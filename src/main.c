@@ -37,15 +37,13 @@ int main() {
             ADVWORD();
             char* dirfile;
             dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
-
-            if (isFileExist(dirfile)) { 
-                printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.");
-                LoadWW(dirfile, &Penyanyi, &LaguNow, &QueueLagu, &History, &Playlist);
-                masukSesi = true;
-            }
-
-            else
-                printf("Save file tidak ditemukan. WayangWave gagal dijalankan.");
+                if (isFileExist(dirfile)) { 
+                    printf("Save file berhasil dibaca. WayangWave berhasil dijalankan.\n");
+                    LoadWW(dirfile, &Penyanyi, &LaguNow, &QueueLagu, &History, &Playlist);
+                    masukSesi = true;
+                }
+                else
+                    printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n");
         }
 
         else if(isWordEqual(currentWord, str2Word("HELP")))
@@ -54,7 +52,7 @@ int main() {
         else
             Command_unknown();
     }
-
+    printWord(LaguNow.Lagu);
     while(true) {
         STARTWORD();
 

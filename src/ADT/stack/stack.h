@@ -9,7 +9,7 @@
 #include "../currentlagu/currentlagu.h"
 
 #define StackNil -1
-#define StackMaxEl 100
+#define StackMaxEl 15
 /* Nil adalah stack dengan elemen kosong . */
 
 typedef currentLagu StackInfoType;

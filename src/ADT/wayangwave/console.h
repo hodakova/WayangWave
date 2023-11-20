@@ -61,10 +61,7 @@ void Command_Unknown();
 
 void Command_forbidden();
 
-<<<<<<< Updated upstream
-=======
 void SongPrevious();
 
 
->>>>>>> Stashed changes
 #endif

@@ -37,7 +37,7 @@ void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLag
     int i, j, k, N, M, L;
     STARTWORDFILE(dirfile);
 
-    N = Word2int(currentWord);//printWord(currentWord); printf("\n");
+    N = Word2int(currentWord); //printWord(currentWord); printf("\n");
     ADVBARIS();// ^^ Jumlah Penyanyi ^^
 
     for (i = 0; i < N; i++){
@@ -64,31 +64,33 @@ void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLag
             }
         }
     }
+    // Current Song
+
     currentWordTillSC();
-    (*LaguNow).Penyanyi = currentWord;
+    (*LaguNow).Penyanyi = currentWord; //printWord(LaguNow->Penyanyi); printf("\n");
     ADVWORD();
     currentWordTillSC();
-    (*LaguNow).Album = currentWord;
+    (*LaguNow).Album = currentWord;// printWord(currentWord); printf("\n");
     ADVWORD();
     currentWordTillEOL();
-    (*LaguNow).Lagu = currentWord;
+    (*LaguNow).Lagu = currentWord;// printWord(currentWord); printf("\n");
     ADVBARIS();
 
     // Queue
 
     int A;
-    A = Word2int(currentWord);
-    ADVBARIS;
+    A = Word2int(currentWord);//printWord(currentWord); printf("\n");
+    ADVBARIS();
     for (int i = 0; i < A; i++){
         currentLagu tmp;
         currentWordTillSC();
-        tmp.Penyanyi = currentWord;
+        tmp.Penyanyi = currentWord; //printWord(currentWord); printf(";");
         ADVWORD();
         currentWordTillSC();
-        tmp.Album = currentWord;
+        tmp.Album = currentWord; //printWord(currentWord); printf(";");
         ADVWORD();
         currentWordTillEOL();
-        tmp.Lagu = currentWord;
+        tmp.Lagu = currentWord; //printWord(currentWord); printf("\n");
 
         enqueue(QueueLagu, tmp);
 
@@ -96,9 +98,8 @@ void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLag
     }
 
     // History
-
     int B;
-    B = Word2int(currentWord);
+    B = Word2int(currentWord); 
     ADVBARIS();
     for (int i = 0; i < B; i++) {
         currentLagu tmp;
@@ -225,12 +226,14 @@ void ListWW_Default(List Penyanyi)
 void ListWW_Playlist(ArrayDin Playlist) {
     printf("\n");
     printf("Daftar playlist yang kamu miliki:\n");
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 }
-void SongNext()
+
+void SaveWW(){
+    
+}
+
+void SongNext() {}
 
 void HelpWW_before() {}
 
@@ -245,3 +248,4 @@ void Command_unknown() {
 void Command_forbidden() {
     printf("\nCommand tidak bisa dieksekusi!\n");
 }
+

@@ -11,7 +11,7 @@
 #include "../map/map.h"
 
 /* Kamus Umum */
-#define ListMaxEl 100
+#define ListMaxEl 10
 #define ListMark 0  /* Nilai tak terdefinisi */
 #define ListInvalidIdx -1  /* Indeks tak terdefinisi */
 

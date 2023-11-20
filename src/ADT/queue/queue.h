@@ -8,7 +8,7 @@
 #include "../currentlagu/currentlagu.h"
 
 #define QueueIdxUndef -1
-#define QueueCapacity 100
+#define QueueCapacity 15
 
 /* Definisi elemen dan address */
 typedef currentLagu QueueElType;
