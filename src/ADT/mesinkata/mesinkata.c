@@ -65,6 +65,7 @@ void ADVWORD() {
 }
 
 void CopyWord() {
+    IgnoreSC();
     int i = 0;
     while(currentChar!=BLANK && currentChar!=MARK && currentChar!=EOL && currentChar!=CR && currentChar != SC) {
         if(i < WordNMax) {
@@ -74,7 +75,6 @@ void CopyWord() {
         ADV();
     }
     currentWord.Length = i;
-    IgnoreSC();
 }
 
 void currentWordTillSC() {

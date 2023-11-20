@@ -45,26 +45,26 @@ void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLag
     int i, j, k, N, M, L;
     STARTWORDFILE(dirfile);
 
-    N = Word2int(currentWord); //printWord(currentWord); printf("\n");
+    N = Word2int(currentWord);//printWord(currentWord); printf("\n");
     ADVBARIS();// ^^ Jumlah Penyanyi ^^
 
     for (i = 0; i < N; i++){
         M = Word2int(currentWord);//printWord(currentWord); printf("\n");
-        ADVWORD();// ^^ Jumlah Penyanyi ^^
+        (*Penyanyi).A[i].Album.Count = M;
+        ADVWORD();// ^^ Jumlah Album ^^
 
         currentWordTillEOL();
         (*Penyanyi).A[i].NamaPenyanyi = currentWord;
         ADVBARIS();
 
-        for (j = 0; j < M; j++){
+        for (j = 0; j < M; j++) {
             L = Word2int(currentWord);
-            ADVWORD();
+            ADVWORD();// ^^ Jumlah Lagu
 
             currentWordTillEOL();
             (*Penyanyi).A[i].Album.Elements[j].Key = i;
             (*Penyanyi).A[i].Album.Elements[j].Value.NamaAlbum = currentWord;
             ADVBARIS();
-
             for(k = 0; k < L; k ++) {
                 currentWordTillEOL();
                 SetInsert(&((*Penyanyi).A[i].Album.Elements[j].Value.Lagu), currentWord);
@@ -87,7 +87,7 @@ void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLag
     // Queue
 
     int A;
-    A = Word2int(currentWord);//printWord(currentWord); printf("\n");
+    A = Word2int(currentWord); //printWord(currentWord); printf("\n");
     ADVBARIS();
     for (int i = 0; i < A; i++){
         currentLagu tmp;
@@ -350,11 +350,12 @@ void QueueWW_Song(List Penyanyi, Queue *QueueLagu) {
 
 void QueueWW_Playlist(ArrayDin Playlist, Queue *QueueLagu) {
     int id, r, i;
+    currentLagu Ltmp;
     addressListLinier P;
 
     printf("\n");
     if(IsArrayDinEmpty(Playlist))
-        printf("Kamu tidak memiliki playlist.");
+        printf("Kamu tidak memiliki playlist.\n");
     else {
         printf("Masukkan ID Playlist: "); STARTWORD(); currentWordTillSC();
         id = Word2int(currentWord) - 1;
@@ -363,7 +364,9 @@ void QueueWW_Playlist(ArrayDin Playlist, Queue *QueueLagu) {
         if(id >= 0 && id < ArrayDinLength(Playlist)) {
             P = Playlist.A[id].DaftarLagu.ListLinierFirst;
             while(P != ListLinierNil) {
-                enqueue(QueueLagu, ListLinierInfo(P));
+                Ltmp = ListLinierInfo(P);
+                Ltmp.fromPlaylist = Playlist.A[id].NamaPlaylist; // penanda dari PlayList mana lagu yg sedang di-play
+                enqueue(QueueLagu, Ltmp);
                 P = ListLinierNext(P);
             }
             
@@ -389,11 +392,11 @@ void QueueWW_Swap(Queue *QueueLagu, int x, int y) {
 
     printf("\n");
     if(isXvalid && isYvalid) {
-        currentLagu tmp = (*QueueLagu).buffer[x-1];
-        (*QueueLagu).buffer[y-1+iHead] = (*QueueLagu).buffer[x-1];
+        currentLagu tmp = (*QueueLagu).buffer[y-1+iHead];
+        (*QueueLagu).buffer[y-1+iHead] = (*QueueLagu).buffer[x-1+iHead];
         (*QueueLagu).buffer[x-1+iHead] = tmp;
 
-        printf("Lagu \n"); printWord(tmp.Lagu); printf("\" berhasil ditukar dengan \""); printWord((*QueueLagu).buffer[x-1+iHead].Lagu); printf("\"\n");
+        printf("Lagu \""); printWord((*QueueLagu).buffer[y-1+iHead].Lagu); printf("\" berhasil ditukar dengan \""); printWord(tmp.Lagu); printf("\"\n");
     }
     else {
         printf("Lagu dengan urutan ");

@@ -85,3 +85,15 @@ void dequeue(Queue *q, QueueElType *val)
         QueueIdxHead(*q) %= QueueCapacity;
     }
 }
+
+void printQueue(Queue q) {
+    printf("[");
+    if(!isQueueEmpty(q)) {
+        for(int i = QueueIdxHead(q); i <= QueueIdxTail(q); i ++) {
+            printInfoLagu(q.buffer[i]);
+            if(i != QueueIdxTail(q))
+                printf(", ");
+            }
+    }
+    printf("]\n");
+}

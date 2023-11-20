@@ -8,7 +8,7 @@
 #include "ADT/set/set.c"
 #include "ADT/map/map.c"
 #include "ADT/listlinier/listlinier.c"
-#include "ADT/currentlagu/currentlagu.h"
+#include "ADT/currentlagu/currentlagu.c"
 #include "console.c"
 #include "art.c"
 #include <stdio.h>
@@ -24,6 +24,7 @@ int main() {
     Stack History; CreateStack(&History);
     ArrayDin Playlist = MakeArrayDin();
     currentLagu LaguNow;
+    Word PlaylistNow;
 
     int x, y, id, n;
     char* dirfile;
@@ -102,6 +103,7 @@ int main() {
         }
 
         else if(isWordEqual(currentWord, str2Word("QUEUE"))) {
+            //printQueue(QueueLagu);
             ADVWORD();
 
             if(isWordEqual(currentWord, str2Word("SONG"))) {
@@ -146,7 +148,9 @@ int main() {
             }
                 
             else
-                Command_unknown();   
+                Command_unknown();
+
+            //printQueue(QueueLagu);  
         }
 
         else if(isWordEqual(currentWord, str2Word("SONG"))) {

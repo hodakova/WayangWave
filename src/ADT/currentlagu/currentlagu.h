@@ -8,6 +8,9 @@ typedef struct
     Word Penyanyi;
     Word Album;
     Word Lagu;
+    Word fromPlaylist;
 } currentLagu;
+
+void printInfoLagu(currentLagu L);
 
 #endif

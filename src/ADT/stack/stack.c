@@ -63,3 +63,15 @@ Stack ReverseStack(Stack S){
     }
     return tmp;
 }
+
+void printStack(Stack S) {
+    printf("[");
+    if(!IsStackEmpty(S)) {
+        for(int i = 0; i <= S.TOP; i ++) {
+            printInfoLagu(S.T[i]);
+            if(i != S.TOP)
+                printf(", ");
+    	}
+    }
+    printf("]\n");
+}

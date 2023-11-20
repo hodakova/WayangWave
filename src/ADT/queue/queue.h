@@ -8,7 +8,7 @@
 #include "../currentlagu/currentlagu.h"
 
 #define QueueIdxUndef -1
-#define QueueCapacity 15
+#define QueueCapacity 100
 
 /* Definisi elemen dan address */
 typedef currentLagu QueueElType;
@@ -63,5 +63,7 @@ void dequeue(Queue *q, QueueElType *val);
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
         q mungkin kosong */
+
+void printQueue(Queue q);
 
 #endif

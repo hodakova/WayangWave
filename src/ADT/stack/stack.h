@@ -9,7 +9,7 @@
 #include "../currentlagu/currentlagu.h"
 
 #define StackNil -1
-#define StackMaxEl 15
+#define StackMaxEl 100
 /* Nil adalah stack dengan elemen kosong . */
 
 typedef currentLagu StackInfoType;
@@ -58,5 +58,7 @@ void Pop(Stack * S, StackInfoType* X);
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 
 Stack ReverseStack(Stack S);
+
+void printStack(Stack S);
 
 #endif
