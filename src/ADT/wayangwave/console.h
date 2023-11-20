@@ -8,6 +8,7 @@
 #include "../currentlagu/currentlagu.h"
 #include "../stack/stack.h"
 #include "../queue/queue.h"
+#include "../listlinier/listlinier.h"
 
 void StartWW(List *Penyanyi);
 
