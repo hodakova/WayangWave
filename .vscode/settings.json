@@ -57,7 +57,9 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
+    "*.py": "python",
     "currentlagu.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "set.h": "c"
   }
 }
