@@ -888,7 +888,25 @@ void PlaylistWW_Remove(ArrayDin *Playlist, int id, int n) {
         printf("Tidak ada playlist dengan ID %d.", id);
 }
 
-void PlaylistWW_Delete(ArrayDin *Playlist) {}
+void PlaylistWW_Delete(ArrayDin *Playlist) {
+    printf("\nDaftar Playlist Pengguna :\n");
+    int playlistCount = ArrayDinLength(*Playlist);
+    for (int i = 0; i < playlistCount; i++) {
+        printf("   %d. ", i+1); printWord(Playlist->A[i].NamaPlaylist); printf("\n");
+    }
+    printf("\nMasukkan ID Playlist yang dipilih: ");
+    STARTWORD(); currentWordTillSC();
+    int idP = Word2int(currentWord);
+    if (idP < playlistCount + 1) {
+        Word temp = Playlist->A[idP - 1].NamaPlaylist;
+        ArrayDinDeleteAt(Playlist, idP - 1);
+        PrintArrayDin(*Playlist);
+        printf("Playlist dengan ID %d dengan judul \"", idP); printWord(temp); printf("\" berhasil dihapus.\n");
+    }
+    else {
+        printf("\nTidak ada playlist dengan ID %d dalam daftar playlist pengguna. Silakan coba lagi.\n", idP);
+    } 
+}
 
 void StatusWW(currentLagu LaguNow, Queue QueueLagu) {
     printf("\n");
