@@ -264,9 +264,14 @@ int main() {
                 
                 else{ 
                     printf("\nFile tidak ditemukan, apakah ingin membuat file baru dengan nama %s?\n", Word2str(currentWord));
-                    printf("(y/n)\n");
+                    printf("(y/n) >> ");
                     STARTWORD();
-                    if ((isWordEqual(str2Word("y"), currentWord)) || (isWordEqual(str2Word("Y"), currentWord))){
+                    while (!(isWordEqual(currentWord, str2Word("y")) || (isWordEqual(currentWord, str2Word("n"))))){ 
+                        printf("\nSilahkan input (y) untuk membuat file baru dan (n) untuk membatalkan save.\n");
+                        printf("(y/n) >> ");
+                        STARTWORD();
+                    }
+                    if ((isWordEqual(str2Word("y"), currentWord))){
                         SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
                         printf("\nSave file berhasil disimpan.\n");
                     }
@@ -274,14 +279,14 @@ int main() {
                         printf("\nSave file gagal disimpan.\n");
                     }
                 }
-                }
+            }
             else
                 Command_forbidden();
         }
 
         else if(isWordEqual(currentWord, str2Word("QUIT"))) {
             if(masukSesi)
-                QuitWW();
+                QuitWW(Penyanyi,LaguNow,QueueLagu,History,Playlist);
             else
                 Command_forbidden();
         }

@@ -55,7 +55,7 @@ void StatusWW(currentLagu LaguNow, Queue QueueLagu);
 
 void SaveWW(char *dirfile, List Penyanyi, currentLagu LaguNow, Queue QueueLagu, Stack History, ArrayDin Playlist);
 
-void QuitWW();
+void QuitWW(List Penyanyi, currentLagu LaguNow, Queue QueueLagu, Stack History, ArrayDin Playlist);
 
 void HelpWW_before();
 
