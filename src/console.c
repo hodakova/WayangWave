@@ -797,7 +797,7 @@ void SaveWW(char* dirfile, List Penyanyi, currentLagu LaguNow, Queue QueueLagu, 
     fclose(file);
 }
 
-void QuitWW() {
+void QuitWW(List Penyanyi, currentLagu LaguNow, Queue QueueLagu, Stack History, ArrayDin Playlist) {
     printf("Apakah kamu ingin menyimpan data sesi sekarang? ");
     STARTWORD();
     printf("\n");
@@ -808,9 +808,18 @@ void QuitWW() {
     }
     if (isWordEqual(currentWord, str2Word("Y")))
     {
-        //char *savefile;
+        char* dirfile;
+        printf("Silahkan input nama save file\n");
+        printf(">> ");
+        STARTWORD();
+        while (isWordEqual(currentWord, str2Word("config.txt"))){
+            printf("Nama save file tidak bisa \"config.txt\".\n");
+            printf(">> ");
+            STARTWORD();
+        }
+        dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
 
-        //SaveWW();
+        SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
         printf("Thank you for using WayangWave");
         exit(0);
     }
