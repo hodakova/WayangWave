@@ -251,24 +251,25 @@ int main() {
             ADVWORD();
 
             if(masukSesi) {
+                while (isWordEqual(currentWord, str2Word("config.txt"))){
+                    printf("\nNama save file tidak bisa \"config.txt\".\n");
+                    printf("Input nama save file (ex : user2.txt)\n");
+                    printf(">> ");
+                    STARTWORD();
+                }
                 dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
                 if (isFileExist(dirfile)) { 
-                    if (isWordEqual(currentWord, str2Word("config.txt"))){ 
-                        printf("\nSave file tidak bisa berada di config, Save file gagal disimpan.\n");
-                    }
-                    else {
-                        SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
-                        printf("\nSave file berhasil disimpan disimpan dalam file %s.\n", dirfile);
-                    }
+                    SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
+                    printf("\nSave file berhasil disimpan.\n");
                 }
-                
                 else{ 
                     printf("\nFile tidak ditemukan, apakah ingin membuat file baru dengan nama %s?\n", Word2str(currentWord));
-                    printf("(y/n) >> ");
+                    printf(">> (y/n) ");
                     STARTWORD();
+                    dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
                     while (!(isWordEqual(currentWord, str2Word("y")) || (isWordEqual(currentWord, str2Word("n"))))){ 
                         printf("\nSilahkan input (y) untuk membuat file baru dan (n) untuk membatalkan save.\n");
-                        printf("(y/n) >> ");
+                        printf(">> (y/n) ");
                         STARTWORD();
                     }
                     if ((isWordEqual(str2Word("y"), currentWord))){
