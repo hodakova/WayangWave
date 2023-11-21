@@ -611,9 +611,31 @@ void SongWW_Next(Stack *History, currentLagu *LaguNow, Queue *QueueLagu) {
         printf("Queue kosong, Current Lagu kosong\n");
     }
 
+
 }
 void SongWW_Previous(Stack *History, currentLagu *LaguNow, Queue *QueueLagu) {
-    
+    if(!IsStackEmpty(*History))
+    {
+        Queue tempQueue;
+        QueueElType temp;
+        while(!isQueueEmpty(*QueueLagu)){
+            dequeue(QueueLagu, &temp);
+            enqueue(&tempQueue, temp);
+        }
+        enqueue(QueueLagu,*LaguNow);
+        while(!isQueueEmpty(tempQueue)){
+            dequeue(&tempQueue, &temp);
+            enqueue(QueueLagu, temp);
+        }
+        Pop(History,LaguNow);
+        printf("Memutar lagu sebelumnya\n");
+        printf("\""); printWord(LaguNow->Lagu); printf("\" oleh \""); printWord(LaguNow->Penyanyi);printf("\"\n");
+    }
+    else
+    {
+        printf("Riwayat kosong, memutar kembali lagu\n");
+        printf("\""); printWord(LaguNow->Lagu); printf("\" oleh \""); printWord(LaguNow->Penyanyi);printf("\"\n");
+    }
 }
 
 void PlaylistWW_Create(ArrayDin *Playlist) {}
