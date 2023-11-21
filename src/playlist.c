@@ -8,9 +8,9 @@ void playlist_create(ArrayDin *Playlist) {
     currentWordTillSC();
 
     CreateListLinier(&Playlist->A[Playlist->Neff].DaftarLagu);
-    Playlist->A[Playlist->Neff - 1].NamaPlaylist = CurrentWord; 
+    Playlist->A[Playlist->Neff - 1].NamaPlaylist = currentWord; 
     Playlist->Neff += 1;
-    printf("\nOutput: Playlist %s berhasil dibuat!", (Playlist)->A[(Playlist)->Neff].NamaPlaylist.TabWord);
+    printf("\nOutput: Playlist "); printWord((Playlist)->A[(Playlist)->Neff].NamaPlaylist); ;printf(" berhasil dibuat!\n");
     printf("\nSilahkan masukkan lagu-lagu artis terkini kesayangan Anda!\n");
 }
 
