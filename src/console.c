@@ -637,7 +637,19 @@ void SongWW_Previous(Stack *History, currentLagu *LaguNow, Queue *QueueLagu) {
     }
 }
 
-void PlaylistWW_Create(ArrayDin *Playlist) {}
+void PlaylistWW_Create(ArrayDin *Playlist) {
+    printf("\nMasukkan nama playlist yang ingin dibuat : ");
+    STARTWORD();
+    currentWordTillSC();
+
+    ArrayDinElType el;
+    el.NamaPlaylist = currentWord;
+    CreateListLinier(&el.DaftarLagu);
+
+    ArrayDinInsertLast(Playlist, el);
+    printf("\nOutput: Playlist "); printWord(el.NamaPlaylist); ;printf(" berhasil dibuat!\n");
+    printf("\nSilahkan masukkan lagu-lagu artis terkini kesayangan Anda!\n");
+}
 
 void PlaylistWW_Add_Song(List Penyanyi, ArrayDin *Playlist) {}
 
