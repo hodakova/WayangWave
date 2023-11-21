@@ -23,7 +23,7 @@ boolean IsStackEmpty(Stack S)
 boolean IsStackFull(Stack S)
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 {
-    return StackTop(S) == StackMaxEl -1;
+    return StackTop(S) == StackMaxEl - 1;
 }
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
@@ -34,6 +34,10 @@ void Push(Stack *S, StackInfoType X)
 {
     if(IsStackEmpty(*S))
         StackTop(*S) = 0;
+    else if(IsStackFull(*S)) {
+        for(int i = 0; i < StackMaxEl - 1; i ++)
+            (*S).T[i] = (*S).T[i+1];
+    }
     else
         StackTop(*S) ++;
     StackInfoTop(*S) = X;

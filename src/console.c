@@ -728,7 +728,8 @@ void PlaylistWW_Add_Album(List Penyanyi, ArrayDin *Playlist) {
                 }
             }
             else {
-                printf("Album "); printWord(currentWord); printf(" tidak ada dalam daftar. Silakan coba lagi.\n");}
+                printf("Album "); printWord(currentWord); printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
+            }
         }
         else {
             printf("Penyanyi "); printWord(currentWord); printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
