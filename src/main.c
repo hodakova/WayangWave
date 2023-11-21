@@ -31,7 +31,6 @@ int main() {
 
 
     while(true) {
-        //ListLinierPrintInfo(Playlist.A[1].DaftarLagu);
         printf(">> "); STARTWORD();
 
         if(isWordEqual(currentWord, str2Word("START"))) {
@@ -269,7 +268,7 @@ int main() {
                     STARTWORD();
                     if ((isWordEqual(str2Word("y"), currentWord)) || (isWordEqual(str2Word("Y"), currentWord))){
                         // Makefile
-                        // Save
+                        SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
                         printf("\nSave file berhasil disimpan.\n");
                     }
                     else{

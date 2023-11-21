@@ -134,6 +134,7 @@ void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLag
         ArrayDinElType arraytmp;
         currentWordTillEOL();
         arraytmp.NamaPlaylist = currentWord;
+        CreateListLinier(&arraytmp.DaftarLagu);
         ADVBARIS();
         CreateListLinier(&((*Playlist).A[i].DaftarLagu));
         for (int j = 0; j < D; j++){
@@ -147,7 +148,7 @@ void LoadWW(char* dirfile, List *Penyanyi, currentLagu *LaguNow, Queue *QueueLag
             currentWordTillEOL();
             tmp.Lagu = currentWord;
             
-            // ListLinierInsVLast(&arraytmp.DaftarLagu, tmp); // ini rusak
+            ListLinierInsVLast(&arraytmp.DaftarLagu, tmp);
             ADVBARIS();
         }
         ArrayDinInsertLast(Playlist, arraytmp);
@@ -566,13 +567,16 @@ void SaveWW(char* dirfile, List Penyanyi, currentLagu LaguNow, Queue QueueLagu, 
         fprintf(file, "%s;%s;%s\n",Word2str(History.T[i].Penyanyi),Word2str(History.T[i].Album),Word2str(History.T[i].Lagu));
     }
     // Playlist
-    // fprintf(file, "%d\n", Playlist.Neff);
-    // for (int i = 0; i < Playlist.Neff; i++){
-    //     fprintf(file, "%d %s\n", ListLinierNbElmt(Playlist.A[i].DaftarLagu), Word2str(Playlist.A[i].NamaPlaylist));
-    //     for (int j = 0 ;j < ListLinierNbElmt(Playlist.A[i].DaftarLagu); j++){
-    //         fprintf(file, "%s;%s;%s\n", Word2str(Playlist.A[i].DaftarLagu.ListLinierFirst[j].ListLinierInfo.Penyanyi),Word2str(Playlist.A[i].DaftarLagu.ListLinierFirst[j].ListLinierInfo.Album),Word2str(Playlist.A[i].DaftarLagu.ListLinierFirst[j].ListLinierInfo.Lagu));
-    //     }
-    // }
+    fprintf(file, "%d\n", Playlist.Neff);
+    for (int i = 0; i < Playlist.Neff; i++){
+        fprintf(file, "%d %s\n", ListLinierNbElmt(Playlist.A[i].DaftarLagu), Word2str(Playlist.A[i].NamaPlaylist));
+        int n = ListLinierNbElmt(Playlist.A[i].DaftarLagu);
+        for (int j = 0 ;j < n; j++){
+            currentLagu temp;
+            ListLinierDelVFirst(&Playlist.A[i].DaftarLagu, &temp);
+            fprintf(file, "%s;%s;%s\n", Word2str(temp.Penyanyi), Word2str(temp.Album), Word2str(temp.Lagu));
+        }
+    }
     fclose(file);
 }
 
