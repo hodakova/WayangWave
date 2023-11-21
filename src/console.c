@@ -262,7 +262,96 @@ void ListWW_Playlist(ArrayDin Playlist)
 
 }
 
-void PlayWW_Song(List Penyanyi, Queue *QueueLagu, Stack *History, currentLagu *LaguNow) {}
+void PlayWW_Song(List Penyanyi, Queue *QueueLagu, Stack *History, currentLagu *LaguNow) {
+    Word picka, pickl, pickp;
+
+    printf("\n");
+    printf("Daftar Penyanyi :\n");
+
+    int x = ListLength(Penyanyi);
+    for (int i = 0; i < x; i++) {
+        printf("   %d. ", i+1); printWord((Penyanyi).A[i].NamaPenyanyi); printf("\n");
+    }
+
+    printf("\n");
+    boolean found = false; int j;
+    while(!found) {
+
+        printf("Masukkan Nama Penyanyi yang dipilih : "); STARTWORD(); currentWordTillSC();
+
+        j = 0;
+        while(j < x && !found) {
+            if (isWordEqual(currentWord, (Penyanyi).A[j].NamaPenyanyi))
+                found = true;
+            else
+                j++;
+        }
+
+        if(!found)
+            Command_unknown();
+    }
+
+    printf("\n");
+    pickp = currentWord;
+    printf("Daftar Album oleh "); printWord(pickp); printf(" :\n");
+    int jumlah_album = (Penyanyi).A[j].Album.Count;
+    for (int k = 0; k < jumlah_album; k++) {
+        printf("   %d. ", k+1); printWord((Penyanyi).A[j].Album.Elements[k].Value.NamaAlbum); printf("\n");
+    }
+
+    printf("\n");
+    found = false; int a;
+    while(!found) {
+        printf("Masukkan Nama Album yang dipilih : "); STARTWORD(); currentWordTillSC();
+        
+        a = 0;
+        while(a < jumlah_album && !found) {
+            if (isWordEqual(currentWord, (Penyanyi).A[j].Album.Elements[a].Value.NamaAlbum))
+                found = true;
+            else
+                a++;
+        }
+
+        if(!found)
+            Command_unknown();
+    }
+    
+    printf("\n");
+    picka = currentWord;
+    printf("Daftar Lagu Album "); printWord(picka); printf(" oleh "); printWord(pickp); printf(" :\n");
+
+    int jumlah_lagu = (Penyanyi).A[j].Album.Elements[a].Value.Lagu.Count;
+    for (int b = 0; b < jumlah_lagu;b++) {
+        printf("   %d. ", b+1); printWord((Penyanyi).A[j].Album.Elements[a].Value.Lagu.Elements[b]); printf("\n");
+    }
+
+    printf("\n");
+    found = false;
+    while(!found) {
+        printf("Masukkan ID Lagu yang dipilih : "); STARTWORD(); currentWordTillSC();
+        int ID = Word2int(currentWord);
+
+        printf("\n");
+        if(ID > 0 && ID <= jumlah_lagu) {
+            found = true;
+            pickl = (Penyanyi).A[j].Album.Elements[a].Value.Lagu.Elements[ID-1];
+
+            //define current song
+            LaguNow->Album= picka;
+            LaguNow->Penyanyi = pickp;
+            LaguNow->Lagu = pickl;
+            //mengosongkan queue dan stack
+            CreateQueue(QueueLagu);
+            CreateStack(History);
+            printf("Memutar lagu \""); printWord(pickl); printf("\" oleh \""); printWord(pickp); printf("\".\n");
+
+        }
+        else {
+            printf("ID Playlist tidak valid! Tidak ada lagu dengan ID = %d.\n", ID);
+        }
+        
+    }
+}
 
 void PlayWW_Playlist(ArrayDin Playlist, Queue *QueueLagu, Stack *History, currentLagu *LaguNow) {
     printf("\n");
@@ -298,7 +387,7 @@ void PlayWW_Playlist(ArrayDin Playlist, Queue *QueueLagu, Stack *History, curren
         }
 
         else {
-            printf("ID Playlist tidak valid! Tidak ada playlist dengan id = %d.\n", id);
+            printf("ID Playlist tidak valid! Tidak ada playlist dengan ID = %d.\n", id);
             printf("Tips: Ketik LIST PLAYLIST untuk melihat ID Playlist!\n");
         }
     }
@@ -604,8 +693,63 @@ void SaveWW(char* dirfile, List Penyanyi, currentLagu LaguNow, Queue QueueLagu, 
     fclose(file);
 }
 
-void QuitWW() {}
+void QuitWW() {
+    printf("Apakah kamu ingin menyimpan data sesi sekarang? ");
+    STARTWORD();
+    printf("\n");
+    while (!(isWordEqual(currentWord, str2Word("Y")) || isWordEqual(currentWord, str2Word("N"))))
+    {
+        printf("Input tidak valid. Silakan memasukkan 'Y' jika ingin menyimpan data sesi sekarang dan 'N' jika tidak ingin menyimpan data sesi sekarang (Y/N): \n");
+        STARTWORD();
+    }
+    if (isWordEqual(currentWord, str2Word("Y")))
+    {
+        //char *savefile;
 
-void HelpWW_before() {}
+        //SaveWW();
+        printf("Thank you for using WayangWave");
+        exit(0);
+    }
+    else if(isWordEqual(currentWord, str2Word("N")))
+    {
+        printf("\n Kamu keluar dari WayangWave.\n");
+        printf("Dadah ^_^/");
+    }
+}
 
-void HelpWW_after() {}
+void HelpWW_before() {
+    printf("=======================[ Menu Help WayangWave ]=======================\n");
+    printf("1. START -> Untuk masuk sesi baru.\n");
+    printf("2. LOAD <namafile.txt> -> Untuk memulai sesi berdasarkan file konfigurasi.\n");
+}
+
+void HelpWW_after() {
+    printf("=========================================[ Menu Help WayangWave ]=========================================\n");
+    printf("1. LIST\n");
+    printf("        DEFAULT -> Untuk menampilkan daftar penyanyi, album, dan daftar lagu yang ada di album.\n");
+    printf("        PLAYLIST -> Untuk menampilkan daftar playlist.\n");
+    printf("2. PLAY\n");
+    printf("        SONG -> Untuk memutar lagu yang dipilih.\n");
+    printf("        PLAYLIST -> Untuk memutar seluruh satu di playlist yang dipilih.\n");
+    printf("3. QUEUE\n");
+    printf("        SONG -> Untuk menambahkan lagu yang dipilih ke dalam urutan pemutaran lagu. \n");
+    printf("        PLAYLIST -> Untuk menambahkan seluruh lagu di suatu playlist yang dipilih ke dalam urutan pemutaran lagu.\n");
+    printf("        SWAP <id1> <id2> -> Untuk menukar urutan pemutaran sebuah lagu.\n");
+    printf("        REMOVE -> Untuk menghilangkan lagu yang dipilih dari urutan pemutaran lagu.\n");
+    printf("        CLEAR -> Untuk mengosongkan urutan pemutaran lagu.\n");
+    printf("4. SONG\n");
+    printf("        NEXT -> Untuk memutar lagu berikutnya pada queue.\n");
+    printf("        PREVIOUS -> Untuk memutar lagu sebelumnya pada queue.\n");
+    printf("5. PLAYLIST -> Untuk melakukan command untuk playlist, yaitu create, add, swap, remove, dan delete.\n");
+    printf("            CREATE -> Untuk membuat sebuah playlist baru dan menambahkannya ke daftar playlist.\n");
+    printf("            ADD\n");
+    printf("                SONG -> Untuk menambahkan lagu ke playlist yang ada.\n");
+    printf("                ALBUM -> Untuk menambahkan semua lagu pada suatu album ke playlist yang ada.\n");
+    printf("            SWAP <idplaylist> <idlagu1> <idlagu2> -> \n");
+    printf("            REMOVE <idplaylist> <n> -> Untuk menghilangkan lagu urutan ke-n pada playlist.\n");
+    printf("            DELETE -> Untuk menghapus playlist dan menghilangkan dari daftar playlist.\n");
+    printf("6. STATUS -> Untuk menampilkan judul lagu yang sedang diputar, nama playlistnya, beserta dengan queue lagu-lagu berikutnya.\n");
+    printf("7. SAVE <namafile.txt> -> Untuk menyimpan state aplikasi terbaru ke dalam sebuah file.\n");
+    printf("8. QUIT -> Untuk keluar dari aplikasi WayangWave.\n");
+    printf("9. HELP -> Untuk menampilkan daftar pilihan bantuan dan deskripsinya.\n");
+}
