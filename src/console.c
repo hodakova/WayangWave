@@ -501,9 +501,31 @@ void QueueWW_Clear(Queue *QueueLagu) {
     printf("Queue berhasil dikosongkan.\n");
 }
 
-void SongWW_Next(Stack *History, currentLagu *LaguNow, Queue *QueueLagu) {}
+void SongWW_Next(Stack *History, currentLagu *LaguNow, Queue *QueueLagu) {
+    if ((LaguNow->Lagu.Length != 0))
+    {
+        if(!isQueueEmpty(*QueueLagu))
+        {
+            Push(History, *LaguNow);
+            dequeue(QueueLagu,LaguNow);
+            printf("Memutar lagu selanjutnya\n");
+            
+            printf("\""); printWord(LaguNow->Lagu); printf("\" oleh \""); printWord(LaguNow->Penyanyi);printf("\"\n");
+        }
+        else
+        {
+            printf("Queue kosong, memutar kembali lagu\n");
+            printf("\""); printWord(LaguNow->Lagu); printf("\" oleh \""); printWord(LaguNow->Penyanyi);printf("\"\n");
+        }
+    }else
+    {
+        printf("Queue kosong, Current Lagu kosong\n");
+    }
 
-void SongWW_Previous(Stack *History, currentLagu *LaguNow, Queue *QueueLagu) {}
+}
+void SongWW_Previous(Stack *History, currentLagu *LaguNow, Queue *QueueLagu) {
+    
+}
 
 void PlaylistWW_Create(ArrayDin *Playlist) {}
 
