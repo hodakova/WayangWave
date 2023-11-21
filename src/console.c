@@ -652,7 +652,89 @@ void PlaylistWW_Create(ArrayDin *Playlist) {
 
 void PlaylistWW_Add_Song(List Penyanyi, ArrayDin *Playlist) {}
 
-void PlaylistWW_Add_Album(List Penyanyi, ArrayDin *Playlist) {}
+void PlaylistWW_Add_Album(List Penyanyi, ArrayDin *Playlist) {
+    printf("\n");
+    if(IsArrayDinEmpty(*Playlist))
+        printf("Playlist kosong! Buat playlist terlebih dahulu.\n");
+    else {
+        int a, b, i, idP, n, m, p, l;
+        boolean found;
+
+        printf("Daftar Penyanyi :\n");
+        n = ListLength(Penyanyi);
+        for(i = 0; i < n; i ++) {
+            printf("   %d. ", i+1); printWord(Penyanyi.A[i].NamaPenyanyi); printf("\n");
+        }
+
+        printf("\n");
+        printf("Masukkan Nama Penyanyi yang dipilih : "); STARTWORD(); currentWordTillSC();
+
+        found = false; a = 0;
+        while(!found && a < n) {
+            if(isWordEqual(Penyanyi.A[a].NamaPenyanyi, currentWord))
+                found = true;
+            else
+                a ++;
+        }
+
+        printf("\n");
+        if(found) {
+            currentLagu Ltmp;
+            Ltmp.Penyanyi = currentWord;
+
+            printf("Daftar Album oleh "); printWord(Ltmp.Penyanyi); printf(" :\n");
+            m = Penyanyi.A[a].Album.Count;
+            for(i = 0; i < m; i ++) {
+                printf("   %d. ", i+1); printWord(Penyanyi.A[a].Album.Elements[i].Value.NamaAlbum); printf("\n");
+            }
+
+            printf("\n");
+            printf("Masukkan Judul Album yang dipilih : "); STARTWORD(); currentWordTillSC();
+
+            found = false; b = 0;
+            while(!found && b < m) {
+                if(isWordEqual(Penyanyi.A[a].Album.Elements[b].Value.NamaAlbum, currentWord))
+                    found = true;
+                else
+                    b ++;
+            }
+
+            printf("\n");
+            if(found) {
+                Ltmp.Album = currentWord;
+
+                printf("Daftar Playlist Pengguna :\n");
+                p = ArrayDinLength(*Playlist);
+                for(i = 0; i < p; i ++) {
+                    printf("   %d. ", i+1); printWord(Playlist->A[i].NamaPlaylist); printf("\n");
+                }
+
+                printf("\n");
+                printf("Masukkan ID Playlist yang dipilih : "); STARTWORD(); currentWordTillSC();
+                idP = Word2int(currentWord);
+
+                printf("\n");
+                if(idP > 0 && idP < p) {
+                    l = Penyanyi.A[a].Album.Elements[b].Value.Lagu.Count;
+                    for(i = 0; i < l; i ++) {
+                        Ltmp.Lagu = Penyanyi.A[a].Album.Elements[b].Value.Lagu.Elements[i];
+                        ListLinierInsVLast(&Playlist->A[idP-1].DaftarLagu, Ltmp);
+                    }
+
+                    printf("Album dengan judul \""); printWord(Ltmp.Album); printf("\" berhasil ditambahkan ke dalam pada playlist pengguna \""); printWord(Playlist->A[idP-1].NamaPlaylist); printf("\".\n");
+                }
+                else {
+                    printf("Tidak ada playlist dengan playlist ID %d\n", idP);
+                }
+            }
+            else {
+                printf("Album "); printWord(currentWord); printf(" tidak ada dalam daftar. Silakan coba lagi.\n");}
+        }
+        else {
+            printf("Penyanyi "); printWord(currentWord); printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
+        }
+    }
+}
 
 void PlaylistWW_Swap(ArrayDin *Playlist, int id, int x, int y) {
     printf("\n");
