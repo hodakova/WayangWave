@@ -258,16 +258,15 @@ int main() {
                     }
                     else {
                         SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
-                        printf("\nSave file berhasil disimpan.\n");
+                        printf("\nSave file berhasil disimpan disimpan dalam file %s.\n", dirfile);
                     }
                 }
                 
                 else{ 
                     printf("\nFile tidak ditemukan, apakah ingin membuat file baru dengan nama %s?\n", Word2str(currentWord));
-                    printf("(y/n)||(Y/N)\n");
+                    printf("(y/n)\n");
                     STARTWORD();
                     if ((isWordEqual(str2Word("y"), currentWord)) || (isWordEqual(str2Word("Y"), currentWord))){
-                        // Makefile
                         SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
                         printf("\nSave file berhasil disimpan.\n");
                     }
