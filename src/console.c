@@ -302,7 +302,6 @@ void PlayWW_Song(List Penyanyi, Queue *QueueLagu, Stack *History, currentLagu *L
     printf("\n");
     found = false; int a;
     while(!found) {
-        printf("\n");
         printf("Masukkan Nama Album yang dipilih : "); STARTWORD(); currentWordTillSC();
         
         a = 0;
@@ -312,6 +311,9 @@ void PlayWW_Song(List Penyanyi, Queue *QueueLagu, Stack *History, currentLagu *L
             else
                 a++;
         }
+
+        if(!found)
+            Command_unknown();
     }
     
     printf("\n");
@@ -323,15 +325,16 @@ void PlayWW_Song(List Penyanyi, Queue *QueueLagu, Stack *History, currentLagu *L
         printf("   %d. ", b+1); printWord((Penyanyi).A[j].Album.Elements[a].Value.Lagu.Elements[b]); printf("\n");
     }
 
+    printf("\n");
     found = false;
     while(!found) {
-        printf("\n");
         printf("Masukkan ID Lagu yang dipilih : "); STARTWORD(); currentWordTillSC();
         int ID = Word2int(currentWord);
 
         printf("\n");
         if(ID > 0 && ID <= jumlah_lagu) {
-            pickl = (Penyanyi).A[j].Album.Elements[a].Value.Lagu.Elements[ID];
+            found = true;
+            pickl = (Penyanyi).A[j].Album.Elements[a].Value.Lagu.Elements[ID-1];
 
             //define current song
             LaguNow->Album= picka;
@@ -672,20 +675,20 @@ void QuitWW() {
     printf("Apakah kamu ingin menyimpan data sesi sekarang? ");
     STARTWORD();
     printf("\n");
-    while (!(IsWordEqual(currentWord, str2Word("Y")) || IsWordEqual(currentWord, str2Word("N"))))
+    while (!(isWordEqual(currentWord, str2Word("Y")) || isWordEqual(currentWord, str2Word("N"))))
     {
         printf("Input tidak valid. Silakan memasukkan 'Y' jika ingin menyimpan data sesi sekarang dan 'N' jika tidak ingin menyimpan data sesi sekarang (Y/N): \n");
         STARTWORD();
     }
-    if (IsWordEqual(currentWord, str2Word("Y")))
+    if (isWordEqual(currentWord, str2Word("Y")))
     {
         //char *savefile;
 
-        Save();
+        //SaveWW();
         printf("Thank you for using WayangWave");
         exit(0);
     }
-    else if(IsWordEqual(currentWord, str2Word("N")))
+    else if(isWordEqual(currentWord, str2Word("N")))
     {
         printf("\n Kamu keluar dari WayangWave.\n");
         printf("Dadah ^_^/");
