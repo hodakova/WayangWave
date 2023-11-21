@@ -278,19 +278,21 @@ void PlayWW_Playlist(ArrayDin Playlist, Queue *QueueLagu, Stack *History, curren
             CreateStack(History);
 
             addressListLinier P = Playlist.A[id-1].DaftarLagu.ListLinierFirst;
-            *LaguNow = ListLinierInfo(P);
-            (*LaguNow).fromPlaylist = Playlist.A[id-1].NamaPlaylist;
-            P = ListLinierNext(P);
-
-            currentLagu Ltmp;
-            while(P != ListLinierNil) {
-                Ltmp = ListLinierInfo(P);
-                Ltmp.fromPlaylist = Playlist.A[id-1].NamaPlaylist;
-                enqueue(QueueLagu, Ltmp);
-                Push(History, Ltmp);
+            if(P != ListLinierNil) {
+                *LaguNow = ListLinierInfo(P);
+                (*LaguNow).fromPlaylist = Playlist.A[id-1].NamaPlaylist;
                 P = ListLinierNext(P);
+
+                currentLagu Ltmp;
+                while(P != ListLinierNil) {
+                    Ltmp = ListLinierInfo(P);
+                    Ltmp.fromPlaylist = Playlist.A[id-1].NamaPlaylist;
+                    enqueue(QueueLagu, Ltmp);
+                    Push(History, Ltmp);
+                    P = ListLinierNext(P);
+                }
+                *History = ReverseStack(*History);
             }
-            *History = ReverseStack(*History);
 
             printf("Memutar playlist \""); printWord((*LaguNow).fromPlaylist); printf("\".\n");
         }
