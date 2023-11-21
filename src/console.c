@@ -394,7 +394,6 @@ void PlayWW_Playlist(ArrayDin Playlist, Queue *QueueLagu, Stack *History, curren
 }
 
 void QueueWW_Song(List Penyanyi, Queue *QueueLagu) {
-
     if(isQueueFull(*QueueLagu))
         printf("\nQueue penuh!\n");
     else {
@@ -646,7 +645,36 @@ void PlaylistWW_Add_Album(List Penyanyi, ArrayDin *Playlist) {}
 
 void PlaylistWW_Swap(ArrayDin *Playlist, int id, int x, int y) {}
 
-void PlaylistWW_Remove(ArrayDin *Playlist, int id, int n) {}
+void PlaylistWW_Remove(ArrayDin *Playlist, int id, int n) {
+    printf("\n");
+    if(id > 0 && id <= ArrayDinLength(*Playlist)) {
+        if(n > 0 && n <= ListLinierNbElmt(Playlist->A[id-1].DaftarLagu)) {
+            ListLinierPrintInfo(Playlist->A[id-1].DaftarLagu);
+
+            addressListLinier P = Playlist->A[id-1].DaftarLagu.ListLinierFirst, Pdel;
+            int i = 1;
+            while(i < n-1)
+                P = ListLinierNext(P);
+            // P = address lagu playlist ke n-1
+            
+            Pdel = ListLinierNext(P); 
+            if(ListLinierNext(ListLinierNext(P)) != ListLinierNil)
+                ListLinierNext(P) = ListLinierNext(ListLinierNext(P));
+            else
+                ListLinierNext(P) = ListLinierNil;
+
+            printf("Lagu \""); printWord(ListLinierInfo(Pdel).Lagu); printf("\" oleh \""); printWord(ListLinierInfo(P).Penyanyi); printf("\" telah dihapus dari playlist \""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\"!\n");
+            ListLinierDealokasi(&Pdel);
+
+            ListLinierPrintInfo(Playlist->A[id-1].DaftarLagu);
+        }
+        else {
+            printf("Tidak ada lagu dengan urutan %d di playlist \"", n); printWord(Playlist->A[id-1].NamaPlaylist); printf("\"!\n");
+        }
+    }
+    else
+        printf("Tidak ada playlist dengan ID %d.", id);
+}
 
 void PlaylistWW_Delete(ArrayDin *Playlist) {}
 

@@ -152,7 +152,7 @@ void PrintArrayDin(ArrayDin array) {
     printf("[");
     int i, l = ArrayDinLength(array);
     for(i = 0; i < l; i ++) {
-        printf("%d", ArrayDinGet(array, i));
+        printWord(ArrayDinGet(array, i).NamaPlaylist);
         if(i < l -1)
             printf(", ");
     }
