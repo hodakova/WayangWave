@@ -667,12 +667,12 @@ void PlaylistWW_Add_Song(List Penyanyi, ArrayDin *Playlist) {
         }
     }
     if (penyanyiexist) {
-        printf("\nDaftar Album oleh \n"); printWord(currentWord); printf(" :\n");
+        printf("\nDaftar Album oleh "); printWord(currentWord); printf(" :\n");
         int albumCount = Penyanyi.A[idPenyanyi].Album.Count;
         for (int i = 0; i < albumCount; i++) {
             printf("   %d. ", i+1); printWord((Penyanyi).A[idPenyanyi].Album.Elements[i].Value.NamaAlbum); printf("\n");
         }
-        printf("Masukkan Judul Album yang dipilih: "); STARTWORD(); currentWordTillSC();
+        printf("\nMasukkan Judul Album yang dipilih: "); STARTWORD(); currentWordTillSC();
         boolean albumexist = false;
         int idAlbum = 0;
         while (idAlbum < albumCount && !albumexist) {
@@ -684,12 +684,12 @@ void PlaylistWW_Add_Song(List Penyanyi, ArrayDin *Playlist) {
             }
         }
         if (albumexist) {
-            printf("\n Daftar Lagu Album "); printWord(currentWord); printf(" oleh "); printWord(Penyanyi.A[idPenyanyi].NamaPenyanyi); printf(" :\n");
+            printf("\nDaftar Lagu Album "); printWord(currentWord); printf(" oleh "); printWord(Penyanyi.A[idPenyanyi].NamaPenyanyi); printf(" :\n");
             int laguCount = (Penyanyi).A[idPenyanyi].Album.Elements[idAlbum].Value.Lagu.Count;
             for (int i = 0; i < laguCount; i++) {
                 printf("   %d. ", i+1); printWord((Penyanyi).A[idPenyanyi].Album.Elements[idAlbum].Value.Lagu.Elements[i]); printf("\n");
             }
-            printf("Masukkan ID Lagu yang dipilih : ");
+            printf("\nMasukkan ID Lagu yang dipilih : ");
             STARTWORD(); currentWordTillSC();
             int idLagu = Word2int(currentWord);
             if (idLagu < laguCount + 1) {
@@ -698,7 +698,7 @@ void PlaylistWW_Add_Song(List Penyanyi, ArrayDin *Playlist) {
                 for (int i = 0; i < playlistCount; i++) {
                 printf("   %d. ", i+1); printWord(Playlist->A[i].NamaPlaylist); printf("\n");
                 }
-                printf("Masukkan ID Playlist yang dipilih : ");
+                printf("\nMasukkan ID Playlist yang dipilih : ");
                 STARTWORD(); currentWordTillSC();
                 int idPlaylist = Word2int(currentWord);
 
@@ -708,22 +708,22 @@ void PlaylistWW_Add_Song(List Penyanyi, ArrayDin *Playlist) {
                     temp.Penyanyi = Penyanyi.A[idPenyanyi].NamaPenyanyi;
                     temp.Lagu = (Penyanyi).A[idPenyanyi].Album.Elements[idAlbum].Value.Lagu.Elements[idLagu - 1];
                     ListLinierInsVLast(&Playlist->A[idPlaylist - 1].DaftarLagu, temp);
-                    printf("Lagu dengan judul \""); printWord(temp.Lagu); printf("\" pada album "); printWord(temp.Album); printf(" oleh penyanyi ");  printWord(temp.Penyanyi); printf(" berhasil ditambahkan ke dalam playlist "); printWord(Playlist->A[idPlaylist - 1].NamaPlaylist); printf(".\n");
+                    printf("\nLagu dengan judul \""); printWord(temp.Lagu); printf("\" pada album "); printWord(temp.Album); printf(" oleh penyanyi ");  printWord(temp.Penyanyi); printf(" berhasil ditambahkan ke dalam playlist "); printWord(Playlist->A[idPlaylist - 1].NamaPlaylist); printf(".\n");
                 }
                 else {
-                    printf("ID playlist tidak ada dalam daftar, Silakan coba lagi.\n");
+                    printf("\nID playlist tidak ada dalam daftar, Silakan coba lagi.\n");
                 }
             }
             else {
-                printf("ID lagu tidak ada dalam daftar. Silakan coba lagi.\n");
+                printf("\nID lagu tidak ada dalam daftar. Silakan coba lagi.\n");
             }
         }
         else {
-            printf("Album "); printWord(currentWord); printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
+            printf("\nAlbum "); printWord(currentWord); printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
         }
     }
     else {
-        printf("Penyanyi "); printWord(currentWord); printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
+        printf("\nPenyanyi "); printWord(currentWord); printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
     }
 }
 
