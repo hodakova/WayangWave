@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Documents/WayangWave/src",
-      "program": "d:/Documents/WayangWave/src/build/Debug/outDebug",
+      "cwd": "d:/Documents/WayangWave/src/ADT/map",
+      "program": "d:/Documents/WayangWave/src/ADT/map/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
