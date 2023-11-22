@@ -3,6 +3,7 @@
 
 Word currentWord;
 boolean EndWord;
+boolean isSC;
 
 void IgnoreBlanks() {
     while((currentChar==BLANK) && (currentChar!=MARK)) {
@@ -24,8 +25,11 @@ void IgnoreEOL() {
 
 void IgnoreSC() {
     if((currentChar==SC) && (currentChar!=MARK)) {
+        isSC = true;
         ADV();
     }
+    else
+        isSC = false;
 }
 
 void STARTWORDFILE(char* fileaddress) {
@@ -65,7 +69,6 @@ void ADVWORD() {
 }
 
 void CopyWord() {
-    IgnoreSC();
     int i = 0;
     while(currentChar!=BLANK && currentChar!=MARK && currentChar!=EOL && currentChar!=CR && currentChar != SC) {
         if(i < WordNMax) {
@@ -75,23 +78,27 @@ void CopyWord() {
         ADV();
     }
     currentWord.Length = i;
+    IgnoreSC();
 }
 
 void currentWordTillSC() {
-    int i = currentWord.Length;
-    if(i > 0 && currentChar != SC && currentChar != CR && currentChar != EOL) {    
-        currentWord.TabWord[i] = BLANK;
-        ADV();
-        i ++;
-    }
+    if(!isSC) {
+        int i = currentWord.Length;
+        if(i > 0 && currentChar != SC && currentChar != CR && currentChar != EOL) {    
+            currentWord.TabWord[i] = BLANK;
+            ADV();
+            i ++;
+        }
 
-    while(currentChar != SC && currentChar != CR && currentChar != EOL) {
-        currentWord.TabWord[i] = currentChar;
-        ADV();
-        i ++;
-    }
+        while(currentChar != SC && currentChar != CR && currentChar != EOL) {
+            currentWord.TabWord[i] = currentChar;
+            ADV();
+            i ++;
+        }
 
-    currentWord.Length = i;
+        currentWord.Length = i;
+        IgnoreSC();
+    }
 }
 
 boolean isEndWord() {

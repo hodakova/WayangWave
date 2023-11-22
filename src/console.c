@@ -1018,8 +1018,9 @@ void QuitWW(List Penyanyi, currentLagu LaguNow, Queue QueueLagu, Stack History, 
     }
     else if(isWordEqual(currentWord, str2Word("N")))
     {
-        printf("\n Kamu keluar dari WayangWave.\n");
-        printf("Dadah ^_^/");
+        printf("\nKamu keluar dari WayangWave.\n");
+        printf("Dadah ^_^/\n");
+        exit(0);
     }
 }
 
