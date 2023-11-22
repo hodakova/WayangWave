@@ -269,7 +269,7 @@ int main() {
                         printf("\nSilahkan input (Y) untuk membuat file baru dan (N) untuk membatalkan save. (Y/N) : ");
                         STARTWORD();
                     }
-                    if ((isWordEqual(str2Word("y"), currentWord))){
+                    if ((isWordEqual(str2Word("Y"), currentWord))){
                         SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
                         printf("\nSave file berhasil disimpan.\n");
                     }
