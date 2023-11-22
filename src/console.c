@@ -641,13 +641,28 @@ void PlaylistWW_Create(ArrayDin *Playlist) {
     STARTWORD();
     currentWordTillSC();
 
-    ArrayDinElType el;
-    el.NamaPlaylist = currentWord;
-    CreateListLinier(&el.DaftarLagu);
+    boolean valid = false;
+    int charCount = 0, i = 0;
+    //printWord(currentWord);
+    while(!valid && i < currentWord.Length) {
+        if(currentWord.TabWord[i] != BLANK)
+            charCount ++;
+        if(charCount == 3)
+            valid = true;
+        i ++;
+    }
 
-    ArrayDinInsertLast(Playlist, el);
-    printf("\nOutput: Playlist "); printWord(el.NamaPlaylist); ;printf(" berhasil dibuat!\n");
-    printf("\nSilahkan masukkan lagu-lagu artis terkini kesayangan Anda!\n");
+    if(valid) {
+        ArrayDinElType el;
+        el.NamaPlaylist = currentWord;
+        CreateListLinier(&el.DaftarLagu);
+
+        ArrayDinInsertLast(Playlist, el);
+        printf("\nOutput: Playlist "); printWord(el.NamaPlaylist); ;printf(" berhasil dibuat!\n");
+        printf("\nSilahkan masukkan lagu-lagu artis terkini kesayangan Anda!\n");
+    }
+    else 
+        printf("\nMinimal terdapat 3 karakter selain whitespace dalam nama playlist. Silakan coba lagi.\n");
 }
 
 void PlaylistWW_Add_Song(List Penyanyi, ArrayDin *Playlist) {
@@ -900,8 +915,8 @@ void PlaylistWW_Delete(ArrayDin *Playlist) {
     if (idP < playlistCount + 1) {
         Word temp = Playlist->A[idP - 1].NamaPlaylist;
         ArrayDinDeleteAt(Playlist, idP - 1);
-        PrintArrayDin(*Playlist);
-        printf("Playlist dengan ID %d dengan judul \"", idP); printWord(temp); printf("\" berhasil dihapus.\n");
+        //PrintArrayDin(*Playlist);
+        printf("\nPlaylist dengan ID %d dengan judul \"", idP); printWord(temp); printf("\" berhasil dihapus.\n");
     }
     else {
         printf("\nTidak ada playlist dengan ID %d dalam daftar playlist pengguna. Silakan coba lagi.\n", idP);
