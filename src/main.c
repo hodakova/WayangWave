@@ -266,7 +266,6 @@ int main() {
                     printf("\nFile tidak ditemukan, apakah ingin membuat file baru dengan nama %s?\n", Word2str(currentWord));
                     printf(">> (y/n) ");
                     STARTWORD();
-                    dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
                     while (!(isWordEqual(currentWord, str2Word("y")) || (isWordEqual(currentWord, str2Word("n"))))){ 
                         printf("\nSilahkan input (y) untuk membuat file baru dan (n) untuk membatalkan save.\n");
                         printf(">> (y/n) ");
