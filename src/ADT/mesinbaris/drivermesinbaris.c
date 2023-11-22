@@ -6,9 +6,9 @@ int main() {
     char fileAddress[] = "input.txt";
 
     // pilih jika ingin membaca dari file atau dari terminal
-    // STARTWORDFILE(fileAddress);
+    STARTWORDFILE(fileAddress);
     // atau
-    STARTWORD();
+    //STARTWORD();
 
     // Process lines until the end of the input
     while (!isEndWord()) {
