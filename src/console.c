@@ -205,8 +205,8 @@ void ListWW_Default(List Penyanyi) {
                     lanjut2 = true;
 
                     found = false; int a;
+                    printf("\n");
                     while(!found) {
-                        printf("\n");
                         printf("Pilih album untuk melihat lagu yang ada di album : "); STARTWORD(); currentWordTillSC();
                         
                         a = 0;
@@ -216,6 +216,9 @@ void ListWW_Default(List Penyanyi) {
                             else
                                 a++;
                         }
+
+                        if(!found)
+                            Command_unknown();
                     }
                     
                     printf("\n");
@@ -1000,12 +1003,11 @@ void QuitWW(List Penyanyi, currentLagu LaguNow, Queue QueueLagu, Stack History, 
     if (isWordEqual(currentWord, str2Word("Y")))
     {
         char* dirfile;
-        printf("Silahkan input nama save file\n");
-        printf(">> ");
+        printf("Silahkan input nama save file : ");
         STARTWORD();
         while (isWordEqual(currentWord, str2Word("config.txt"))){
             printf("Nama save file tidak bisa \"config.txt\".\n");
-            printf(">> ");
+            printf("Silahkan input nama save file : ");
             STARTWORD();
         }
         dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
