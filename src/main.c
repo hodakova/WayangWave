@@ -263,12 +263,10 @@ int main() {
                     printf("\nSave file berhasil disimpan.\n");
                 }
                 else{ 
-                    printf("\nFile tidak ditemukan, apakah ingin membuat file baru dengan nama %s?\n", Word2str(currentWord));
-                    printf(">> (y/n) ");
+                    printf("\nFile tidak ditemukan, apakah ingin membuat file baru dengan nama %s? (Y/N) : ", Word2str(currentWord));
                     STARTWORD();
-                    while (!(isWordEqual(currentWord, str2Word("y")) || (isWordEqual(currentWord, str2Word("n"))))){ 
-                        printf("\nSilahkan input (y) untuk membuat file baru dan (n) untuk membatalkan save.\n");
-                        printf(">> (y/n) ");
+                    while (!(isWordEqual(currentWord, str2Word("Y")) || (isWordEqual(currentWord, str2Word("N"))))){ 
+                        printf("\nSilahkan input (Y) untuk membuat file baru dan (N) untuk membatalkan save. (Y/N) : ");
                         STARTWORD();
                     }
                     if ((isWordEqual(str2Word("y"), currentWord))){
