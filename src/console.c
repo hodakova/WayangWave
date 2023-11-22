@@ -726,6 +726,7 @@ void PlaylistWW_Add_Song(List Penyanyi, ArrayDin *Playlist) {
                     temp.Penyanyi = Penyanyi.A[idPenyanyi].NamaPenyanyi;
                     temp.Lagu = (Penyanyi).A[idPenyanyi].Album.Elements[idAlbum].Value.Lagu.Elements[idLagu - 1];
                     ListLinierInsVLast(&Playlist->A[idPlaylist - 1].DaftarLagu, temp);
+                    // ListLinierPrintInfo(Playlist->A[idPlaylist - 1].DaftarLagu);
                     printf("\nLagu dengan judul \""); printWord(temp.Lagu); printf("\" pada album "); printWord(temp.Album); printf(" oleh penyanyi ");  printWord(temp.Penyanyi); printf(" berhasil ditambahkan ke dalam playlist "); printWord(Playlist->A[idPlaylist - 1].NamaPlaylist); printf(".\n");
                 }
                 else {
