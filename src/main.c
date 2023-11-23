@@ -13,11 +13,13 @@
 #include "art.c"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main() {
+    srand(time(NULL));
     art_WayangWave5();
     printf("Selamat datang di aplikasi WayangWave, sebuah aplikasi yang bisa mensimulasikan service pemutaran musik.\n");
-    printf("Ketik START untuk memulai WayangWave, atau ketik LOAD apabila sudah memiliki savefile.\n");
+    printf("Ketik HELP untuk menunjukkan Menu Help WayangWave\n");
 
     List Penyanyi = MakeList();
     Queue QueueLagu; CreateQueue(&QueueLagu);
@@ -165,7 +167,7 @@ int main() {
 
             else if(isWordEqual(currentWord, str2Word("PREVIOUS"))) {
                 if(masukSesi)
-                    SongWW_Next(&History, &LaguNow, &QueueLagu);
+                    SongWW_Previous(&History, &LaguNow, &QueueLagu);
                 else
                     Command_forbidden();
             }
@@ -232,6 +234,15 @@ int main() {
             else if(isWordEqual(currentWord, str2Word("DELETE"))) {
                 if(masukSesi)
                     PlaylistWW_Delete(&Playlist);
+                else
+                    Command_forbidden();
+            }
+
+            else if(isWordEqual(currentWord, str2Word("ENHANCE"))) {
+                ADVWORD();
+                id = Word2int(currentWord);
+                if(masukSesi)
+                    PlaylistWW_Enhance(&Playlist, id, Penyanyi);
                 else
                     Command_forbidden();
             }

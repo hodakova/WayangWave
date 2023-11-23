@@ -51,6 +51,8 @@ void PlaylistWW_Remove(ArrayDin *Playlist, int id, int n);
 
 void PlaylistWW_Delete(ArrayDin *Playlist);
 
+void PlaylistWW_Enhance(ArrayDin *Playlist, int id, List Penyanyi);
+
 void StatusWW(currentLagu LaguNow, Queue QueueLagu);
 
 void SaveWW(char *dirfile, List Penyanyi, currentLagu LaguNow, Queue QueueLagu, Stack History, ArrayDin Playlist);

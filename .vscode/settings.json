@@ -61,6 +61,7 @@
     "currentlagu.h": "c",
     "stdlib.h": "c",
     "set.h": "c",
-    "mesinkarakterv2.h": "c"
+    "mesinkarakterv2.h": "c",
+    "time.h": "c"
   }
 }

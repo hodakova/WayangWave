@@ -13,6 +13,10 @@ typedef struct
 
 void CreateInfoLagu(currentLagu *L);
 
+boolean isInfoLaguEmpty(currentLagu L);
+
+boolean isInfoLaguEqual(currentLagu L1, currentLagu L2);
+
 void printInfoLagu(currentLagu L);
 
 #endif

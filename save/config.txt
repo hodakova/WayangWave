@@ -1,4 +1,4 @@
-2 # Jumlah penyanyi
+7 # Jumlah penyanyi
 2 BLACKPINK # Jumlah album dan nama dari penyanyi 1
 4 BORN PINK # Jumlah lagu dan judul dari album 1 penyanyi 1
 Pink Venom # Lagu 1 album 1 penyanyi 1
@@ -25,3 +25,69 @@ Pretty Visitors
 Do I Wanna Know?
 R U Mine?
 Arabella
+2 Olivia Rodrigo
+5 SOUR
+brutal
+drivers license
+deja vu
+good 4 u
+happier
+5 GUTS
+bad idea right?
+vampire
+all-american bitch
+the grudge
+pretty isn't pretty
+4 Kanaria
+1 Yoidereshirazu
+Yoidereshirazu
+1 Rendezvous
+Rendezvous
+3 KING
+KING
+Dark Happy
+NaNaNa
+1 Requiem
+Requiem
+3 Tulus
+3 Gajah
+Sepatu
+Bunga Tidur
+Gajah
+5 Monokrom
+Monokrom
+Langit Abu-Abu
+Ruang Sendiri
+Tukar Jiwa
+Cahaya
+7 Manusia
+Diri
+Hati-Hati di Jalan
+Nala
+Jatuh Suka
+Interaksi
+Kelana
+Remedi
+1 Hivi!
+4 Kereta Kencan
+Mata Ke Hati (Acoustic Version)
+Siapkah Kau 'Tuk Jatuh Cinta Lagi
+Pelangi
+Remaja
+2 Juice WRLD
+4 Goodbye & Good Riddance
+Armed And Dangerous
+Wasted (feat. Lil Uzi Vert)
+Lucid Dreams
+All Girls Are The Same
+3 Legends Never Die
+Conversations
+Righteous
+Stay High
+2 Wintertime
+3 Wintertime
+Wintertime
+Daytona 500
+Ice In My Veins
+1 All The Time 2
+All The Time 2
