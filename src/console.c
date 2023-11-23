@@ -970,8 +970,10 @@ void SaveWW(char* dirfile, List Penyanyi, currentLagu LaguNow, Queue QueueLagu, 
     fprintf(file, "%s;%s;%s\n", Word2str(LaguNow.Penyanyi), Word2str(LaguNow.Album), Word2str(LaguNow.Lagu));
     // Queue
     fprintf(file, "%d\n", QueueLength(QueueLagu));
-    for (int i = 0; i < QueueLength(QueueLagu); i++){
-        fprintf(file, "%s;%s;%s\n",Word2str(QueueLagu.buffer[i].Penyanyi),Word2str(QueueLagu.buffer[i].Album),Word2str(QueueLagu.buffer[i].Lagu));
+    if(!isQueueEmpty(QueueLagu)) {
+        for (int i = QueueLagu.idxHead; i <= QueueLagu.idxTail; i++){
+            fprintf(file, "%s;%s;%s\n",Word2str(QueueLagu.buffer[i].Penyanyi),Word2str(QueueLagu.buffer[i].Album),Word2str(QueueLagu.buffer[i].Lagu));
+        }
     }
     // History
     fprintf(file, "%d\n", (History.TOP+1));
