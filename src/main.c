@@ -27,7 +27,7 @@ int main() {
 
     int x, y, id, n;
     char* dirfile;
-    boolean masukSesi = false;
+    boolean masukSesi = false, valid;
 
 
     while(true) {
@@ -251,23 +251,29 @@ int main() {
             ADVWORD();
 
             if(masukSesi) {
-                while (isWordEqual(currentWord, str2Word("config.txt"))){
-                    printf("\nNama save file tidak bisa \"config.txt\".\n");
-                    printf("Input nama save file (ex : user2.txt)\n");
-                    printf(">> ");
-                    STARTWORD();
+                valid = false;
+                while(!valid) {
+                    n = currentWord.Length;
+                    if (isWordEqual(currentWord, str2Word("config.txt")))
+                        printf("\nNama save file tidak bisa \"config.txt\".\n");
+                    else if(n > 4) {
+                        if(currentWord.TabWord[n-2]=='.' && currentWord.TabWord[n-3]=='t' && currentWord.TabWord[n-2]=='x' && currentWord.TabWord[n-1]=='t') {
+                            valid = true;
+                        }
+                    }
+                    if(!valid) {
+                        printf("Silakan input nama save file : "); STARTWORD();
+                    }
                 }
                 dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
                 if (isFileExist(dirfile)) { 
                     SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
                     printf("\nSave file berhasil disimpan.\n");
                 }
-                else{ 
-                    printf("\nFile tidak ditemukan, apakah ingin membuat file baru dengan nama %s? (Y/N) : ", Word2str(currentWord));
-                    STARTWORD();
+                else{
+                    printf("\nFile tidak ditemukan, apakah ingin membuat file baru dengan nama %s? (Y/N) : ", Word2str(currentWord)); STARTWORD();
                     while (!(isWordEqual(currentWord, str2Word("Y")) || (isWordEqual(currentWord, str2Word("N"))))){ 
-                        printf("\nSilahkan input (Y) untuk membuat file baru dan (N) untuk membatalkan save. (Y/N) : ");
-                        STARTWORD();
+                        printf("\nSilahkan input (Y) untuk membuat file baru dan (N) untuk membatalkan save. (Y/N) : "); STARTWORD();
                     }
                     if ((isWordEqual(str2Word("Y"), currentWord))){
                         SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
