@@ -935,8 +935,8 @@ void StatusWW(currentLagu LaguNow, Queue QueueLagu) {
     }
 
     printf("Now Playing:\n");
-    if(LaguNow.Lagu.Length != 0) {
-        printInfoLagu(LaguNow); printf(";\n");
+    if(!isInfoLaguEmpty(LaguNow)) {
+        printInfoLagu(LaguNow); printf("\n");
     }
     else
         printf("No songs have been played yet. Please search for a song to begin playback.\n");

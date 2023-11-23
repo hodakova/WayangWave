@@ -23,7 +23,7 @@ int main() {
     Queue QueueLagu; CreateQueue(&QueueLagu);
     Stack History; CreateStack(&History);
     ArrayDin Playlist = MakeArrayDin();
-    currentLagu LaguNow;
+    currentLagu LaguNow; CreateInfoLagu(&LaguNow);
 
     int x, y, id, n;
     char* dirfile;

@@ -11,6 +11,8 @@ typedef struct
     Word fromPlaylist;
 } currentLagu;
 
+void CreateInfoLagu(currentLagu *L);
+
 void printInfoLagu(currentLagu L);
 
 #endif
