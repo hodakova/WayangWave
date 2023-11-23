@@ -954,41 +954,44 @@ void StatusWW(currentLagu LaguNow, Queue QueueLagu) {
 }
 
 void SaveWW(char* dirfile, List Penyanyi, currentLagu LaguNow, Queue QueueLagu, Stack History, ArrayDin Playlist) {
+    int i, j, k, n;
     FILE *file;
     file = fopen(dirfile, "w");
     fprintf(file,"%d\n", ListLength(Penyanyi));
-    for (int i = 0; i < ListLength(Penyanyi); i++){
-        fprintf(file, "%d %s\n", Penyanyi.A[i].Album.Count, Word2str(Penyanyi.A[i].NamaPenyanyi));
-        for (int j = 0; j < Penyanyi.A[i].Album.Count; j++){
-            fprintf(file, "%d %s\n", Penyanyi.A[i].Album.Elements[j].Value.Lagu.Count, Word2str(Penyanyi.A[i].Album.Elements[j].Value.NamaAlbum));
-            for (int k = 0; k < Penyanyi.A[i].Album.Elements[j].Value.Lagu.Count; k++){
-                fprintf(file, "%s\n", Word2str(Penyanyi.A[i].Album.Elements[j].Value.Lagu.Elements[k]));
+    for (i = 0; i < ListLength(Penyanyi); i++){
+        fprintf(file, "%d ", Penyanyi.A[i].Album.Count); fprintWord(file, Penyanyi.A[i].NamaPenyanyi); fprintf(file, "\n");
+        for (j = 0; j < Penyanyi.A[i].Album.Count; j++) {   
+            fprintf(file, "%d ", Penyanyi.A[i].Album.Elements[j].Value.Lagu.Count); fprintWord(file, Penyanyi.A[i].Album.Elements[j].Value.NamaAlbum); fprintf(file, "\n");
+            for (k = 0; k < Penyanyi.A[i].Album.Elements[j].Value.Lagu.Count; k++) {
+                fprintWord(file, Penyanyi.A[i].Album.Elements[j].Value.Lagu.Elements[k]); fprintf(file, "\n");
             }
         }
     }
     // LaguNow
-    fprintf(file, "%s;%s;%s\n", Word2str(LaguNow.Penyanyi), Word2str(LaguNow.Album), Word2str(LaguNow.Lagu));
+    fprintWord(file, LaguNow.Penyanyi); fprintf(file, ";"); fprintWord(file, LaguNow.Album); fprintf(file, ";"); fprintWord(file, LaguNow.Lagu); fprintf(file, "\n");
     // Queue
     fprintf(file, "%d\n", QueueLength(QueueLagu));
     if(!isQueueEmpty(QueueLagu)) {
-        for (int i = QueueLagu.idxHead; i <= QueueLagu.idxTail; i++){
-            fprintf(file, "%s;%s;%s\n",Word2str(QueueLagu.buffer[i].Penyanyi),Word2str(QueueLagu.buffer[i].Album),Word2str(QueueLagu.buffer[i].Lagu));
+        for (i = QueueLagu.idxHead; i <= QueueLagu.idxTail; i++) {
+            fprintWord(file, QueueLagu.buffer[i].Penyanyi); fprintf(file, ";"); fprintWord(file, QueueLagu.buffer[i].Album); fprintf(file, ";"); fprintWord(file, QueueLagu.buffer[i].Lagu); fprintf(file, "\n");
         }
     }
     // History
     fprintf(file, "%d\n", (History.TOP+1));
-    for (int i = 0; i <= History.TOP; i++){
-        fprintf(file, "%s;%s;%s\n",Word2str(History.T[i].Penyanyi),Word2str(History.T[i].Album),Word2str(History.T[i].Lagu));
+    for (i = 0; i <= History.TOP; i++) {
+        fprintWord(file, History.T[i].Penyanyi); fprintf(file, ";"); fprintWord(file, History.T[i].Album); fprintf(file, ";"); fprintWord(file, History.T[i].Lagu); fprintf(file, "\n");
     }
     // Playlist
+    // currentLagu temp;
+    addressListLinier P;
     fprintf(file, "%d\n", Playlist.Neff);
-    for (int i = 0; i < Playlist.Neff; i++){
-        fprintf(file, "%d %s\n", ListLinierNbElmt(Playlist.A[i].DaftarLagu), Word2str(Playlist.A[i].NamaPlaylist));
-        int n = ListLinierNbElmt(Playlist.A[i].DaftarLagu);
-        for (int j = 0 ;j < n; j++){
-            currentLagu temp;
-            ListLinierDelVFirst(&Playlist.A[i].DaftarLagu, &temp);
-            fprintf(file, "%s;%s;%s\n", Word2str(temp.Penyanyi), Word2str(temp.Album), Word2str(temp.Lagu));
+    for (i = 0; i < Playlist.Neff; i++) {
+        n = ListLinierNbElmt(Playlist.A[i].DaftarLagu);
+        fprintf(file, "%d ", n); fprintWord(file, Playlist.A[i].NamaPlaylist); fprintf(file, "\n");
+        P = Playlist.A[i].DaftarLagu.ListLinierFirst;
+        while(P != ListLinierNil) {
+            fprintWord(file, ListLinierInfo(P).Penyanyi); fprintf(file, ";"); fprintWord(file, ListLinierInfo(P).Album); fprintf(file, ";"); fprintWord(file, ListLinierInfo(P).Lagu); fprintf(file, "\n");
+            P = ListLinierNext(P);
         }
     }
     fclose(file);

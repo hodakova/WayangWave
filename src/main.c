@@ -27,7 +27,7 @@ int main() {
 
     int x, y, id, n;
     char* dirfile;
-    boolean masukSesi = false, valid;
+    boolean masukSesi = false, isSaved = false, valid;
 
 
     while(true) {

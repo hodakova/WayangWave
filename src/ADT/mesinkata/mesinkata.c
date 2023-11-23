@@ -123,6 +123,11 @@ void printWord(Word Kata) {
         printf("%c", Kata.TabWord[i]);
 }
 
+void fprintWord(FILE* file, Word Kata) {
+    for(int i = 0; i < Kata.Length; i ++)
+        fprintf(file, "%c", Kata.TabWord[i]);
+}
+
 int Word2int(Word Kata) {
     int r = 0, i = Kata.Length, pengali = 1;
     while(i--) {

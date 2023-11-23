@@ -64,6 +64,8 @@ boolean isWordEqual(Word K1, Word K2);
 
 void printWord(Word Kata);
 
+void fprintWord(FILE* file, Word Kata);
+
 int Word2int(Word Kata);
 
 Word int2Word(int Angka);
