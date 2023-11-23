@@ -808,7 +808,7 @@ void PlaylistWW_Add_Album(List Penyanyi, ArrayDin *Playlist) {
                 idP = Word2int(currentWord);
 
                 printf("\n");
-                if(idP > 0 && idP < p) {
+                if(idP > 0 && idP <= p) {
                     l = Penyanyi.A[a].Album.Elements[b].Value.Lagu.Count;
                     for(i = 0; i < l; i ++) {
                         Ltmp.Lagu = Penyanyi.A[a].Album.Elements[b].Value.Lagu.Elements[i];
@@ -933,6 +933,7 @@ void StatusWW(currentLagu LaguNow, Queue QueueLagu) {
         printf("Current Playlist : "); printWord(LaguNow.fromPlaylist); printf("\n");
         printf("\n");
     }
+    else {}
 
     printf("Now Playing:\n");
     if(!isInfoLaguEmpty(LaguNow)) {
