@@ -933,7 +933,6 @@ void StatusWW(currentLagu LaguNow, Queue QueueLagu) {
         printf("Current Playlist : "); printWord(LaguNow.fromPlaylist); printf("\n");
         printf("\n");
     }
-    else {}
 
     printf("Now Playing:\n");
     if(!isInfoLaguEmpty(LaguNow)) {
