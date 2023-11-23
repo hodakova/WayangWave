@@ -19,7 +19,7 @@ int main() {
     printf("Selamat datang di aplikasi WayangWave, sebuah aplikasi yang bisa mensimulasikan service pemutaran musik.\n");
     printf("Ketik START untuk memulai WayangWave, atau ketik LOAD apabila sudah memiliki savefile.\n");
 
-    List Penyanyi;
+    List Penyanyi = MakeList();
     Queue QueueLagu; CreateQueue(&QueueLagu);
     Stack History; CreateStack(&History);
     ArrayDin Playlist = MakeArrayDin();
