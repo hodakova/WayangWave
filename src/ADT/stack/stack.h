@@ -6,12 +6,13 @@
 #define stackt_H
 
 #include "../../boolean.h"
+#include "../currentlagu/currentlagu.h"
 
 #define StackNil -1
 #define StackMaxEl 100
 /* Nil adalah stack dengan elemen kosong . */
 
-typedef int StackInfoType;
+typedef currentLagu StackInfoType;
 typedef int address;   /* indeks tabel */
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
@@ -55,5 +56,9 @@ void Pop(Stack * S, StackInfoType* X);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
+
+Stack ReverseStack(Stack S);
+
+void printStack(Stack S);
 
 #endif

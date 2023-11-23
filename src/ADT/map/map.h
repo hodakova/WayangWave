@@ -1,7 +1,10 @@
 #ifndef map_H
 #define map_H
+
 #include <stdio.h>
-#include "boolean.h"
+#include "../../boolean.h"
+#include "../mesinkata/mesinkata.h"
+#include "../set/set.h"
 
 /* MODUL Map
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
@@ -11,10 +14,15 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 // #define true 1
 #define MapNil 0
 #define MapMaxEl 10
+#define MapUndefined "-999"
 
 // typedef int bool;
 typedef int MapKeyType;
-typedef int MapValueType;
+typedef struct
+{
+	Word NamaAlbum;
+	Set Lagu;/* data */
+} MapValueType;
 typedef int MapAddress;
 
 typedef struct

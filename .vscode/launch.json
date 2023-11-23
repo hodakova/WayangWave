@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/ASUS/Documents/GitHub/WayangWave/src/ADT/stack",
-      "program": "c:/Users/ASUS/Documents/GitHub/WayangWave/src/ADT/stack/build/Debug/outDebug",
+      "cwd": "d:/Documents/WayangWave/src/ADT/map",
+      "program": "d:/Documents/WayangWave/src/ADT/map/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

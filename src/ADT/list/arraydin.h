@@ -2,11 +2,18 @@
 #define __ARRAY_DINAMIK__
 
 #include "../../boolean.h"
+#include "../listlinier/listlinier.h"
 
 #define ArrayDinInitialSize 10
 
+typedef struct 
+{
+    Word NamaPlaylist;
+    ListLinier DaftarLagu;
+} ArrayDinElType;
+
 typedef int ArrayDinIdxType;
-typedef int ArrayDinElType;
+
 typedef struct {
     ArrayDinElType *A;
     int Capacity;
@@ -93,13 +100,13 @@ void ArrayDinDeleteFirst(ArrayDin *array);
  * dan diakhiri newline.
  * Prekondisi: array terdefinisi
  */
-void ArrayDinPrintArrayDin(ArrayDin array);
+void PrintArrayDin(ArrayDin array);
 
 /**
  * Fungsi untuk melakukan reverse suatu ArrayDin.
  * Prekondisi: array terdefinisi
  */
-void ArrayDinReverseArrayDin(ArrayDin *array);
+void ReverseArrayDin(ArrayDin *array);
 
 /**
  * Fungsi untuk melakukan copy suatu ArrayDin.

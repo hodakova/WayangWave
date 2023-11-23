@@ -7,6 +7,7 @@
 #include "ADT/queue/queue.c"
 #include "ADT/set/set.c"
 #include "ADT/map/map.c"
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 #include "ADT/wayangwave/config.c"
 #include "ADT/wayangwave/record.c"
@@ -18,18 +19,28 @@
 #include "console.c"
 #include "art.c"
 >>>>>>> Stashed changes
+=======
+#include "ADT/listlinier/listlinier.c"
+#include "ADT/currentlagu/currentlagu.c"
+#include "console.c"
+#include "art.c"
+>>>>>>> main
 #include <stdio.h>
-
+#include <stdlib.h>
 
 int main() {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     StartWW();
 =======
+=======
+>>>>>>> main
     art_WayangWave5();
     printf("Selamat datang di aplikasi WayangWave, sebuah aplikasi yang bisa mensimulasikan service pemutaran musik.\n");
     printf("Ketik START untuk memulai WayangWave, atau ketik LOAD apabila sudah memiliki savefile.\n");
 
     List Penyanyi = MakeList();
+<<<<<<< HEAD
     // user U; CreateUser(&U);
     user U;
     int idxUser = -1;
@@ -37,13 +48,28 @@ int main() {
     int x, y, id, n;
     char* dirfile;
     boolean masukSesi = false, valid;
+=======
+    Queue QueueLagu; CreateQueue(&QueueLagu);
+    Stack History; CreateStack(&History);
+    ArrayDin Playlist = MakeArrayDin();
+    currentLagu LaguNow; CreateInfoLagu(&LaguNow);
+
+    int x, y, id, n;
+    char* dirfile;
+    boolean masukSesi = false, isSaved = false, valid;
+
+>>>>>>> main
 
     while(true) {
         printf(">> "); STARTWORD();
 
         if(isWordEqual(currentWord, str2Word("START"))) {
             if(!masukSesi) {
+<<<<<<< HEAD
                 StartWW(&Penyanyi, &U);
+=======
+                StartWW(&Penyanyi);
+>>>>>>> main
                 printf("\nFile konfigurasi aplikasi berhasil dibaca. WayangWave berhasil dijalankan.\n");
                 masukSesi = true;
             }
@@ -57,7 +83,11 @@ int main() {
             if(!masukSesi) {
                 dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
                 if (isFileExist(dirfile)) { 
+<<<<<<< HEAD
                     LoadWW(dirfile, &Penyanyi, &U);
+=======
+                    LoadWW(dirfile, &Penyanyi, &LaguNow, &QueueLagu, &History, &Playlist);
+>>>>>>> main
                     printf("\nSave file berhasil dibaca. WayangWave berhasil dijalankan.\n");
                     masukSesi = true;
                 }
@@ -67,6 +97,7 @@ int main() {
             else
                 Command_forbidden();
         }
+<<<<<<< HEAD
         else if(isWordEqual(currentWord, str2Word("LOGIN"))) {
             if(masukSesi) {
                 Login(U, &idxUser);
@@ -85,10 +116,14 @@ int main() {
             else Command_forbidden();
 
         }
+=======
+
+>>>>>>> main
         else if(isWordEqual(currentWord, str2Word("LIST"))) {
             ADVWORD();
 
             if(isWordEqual(currentWord, str2Word("DEFAULT"))) {
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         ListWW_Default(Penyanyi);
@@ -96,11 +131,16 @@ int main() {
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
                     
+=======
+                if(masukSesi)
+                    ListWW_Default(Penyanyi);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
 
             else if(isWordEqual(currentWord, str2Word("PLAYLIST"))) {
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         ListWW_Playlist(U, idxUser);
@@ -108,6 +148,10 @@ int main() {
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
                     
+=======
+                if(masukSesi)
+                    ListWW_Playlist(Playlist);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
@@ -120,6 +164,7 @@ int main() {
             ADVWORD();
 
             if(isWordEqual(currentWord, str2Word("SONG"))) {
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         PlayWW_Song(Penyanyi, &U, idxUser);
@@ -127,17 +172,26 @@ int main() {
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
                     
+=======
+                if(masukSesi)
+                    PlayWW_Song(Penyanyi, &QueueLagu, &History, &LaguNow);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
             
             else if(isWordEqual(currentWord, str2Word("PLAYLIST"))) {
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         PlayWW_Playlist(&U, idxUser);
                     }  
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
+=======
+                if(masukSesi)
+                    PlayWW_Playlist(Playlist, &QueueLagu, &History, &LaguNow);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
@@ -151,6 +205,7 @@ int main() {
             ADVWORD();
 
             if(isWordEqual(currentWord, str2Word("SONG"))) {
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         QueueWW_Song(Penyanyi, &U, idxUser);
@@ -158,11 +213,16 @@ int main() {
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
                     
+=======
+                if(masukSesi)
+                    QueueWW_Song(Penyanyi, &QueueLagu);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
 
             else if(isWordEqual(currentWord, str2Word("PLAYLIST"))) {
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         QueueWW_Playlist(&U, idxUser);
@@ -170,6 +230,10 @@ int main() {
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
                     
+=======
+                if(masukSesi)
+                    QueueWW_Playlist(Playlist, &QueueLagu);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
@@ -179,6 +243,7 @@ int main() {
                 x = Word2int(currentWord);
                 ADVWORD();
                 y = Word2int(currentWord);
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         QueueWW_Swap(&U, idxUser, x, y);
@@ -186,6 +251,10 @@ int main() {
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
                     
+=======
+                if(masukSesi)
+                    QueueWW_Swap(&QueueLagu, x, y);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
@@ -193,6 +262,7 @@ int main() {
             else if(isWordEqual(currentWord, str2Word("REMOVE"))) {
                 ADVWORD();
                 id = Word2int(currentWord);
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         QueueWW_Remove(&U, idxUser, id);
@@ -200,11 +270,16 @@ int main() {
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
                     
+=======
+                if(masukSesi)
+                    QueueWW_Remove(&QueueLagu, id);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
 
             else if(isWordEqual(currentWord, str2Word("CLEAR"))) {
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         QueueWW_Clear(&U, idxUser);
@@ -212,6 +287,10 @@ int main() {
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
                     
+=======
+                if(masukSesi)
+                    QueueWW_Clear(&QueueLagu);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
@@ -226,6 +305,7 @@ int main() {
             ADVWORD();
 
             if(isWordEqual(currentWord, str2Word("NEXT"))) {
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         SongWW_Next(&U, idxUser);
@@ -233,11 +313,16 @@ int main() {
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
                     
+=======
+                if(masukSesi)
+                    SongWW_Next(&History, &LaguNow, &QueueLagu);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
 
             else if(isWordEqual(currentWord, str2Word("PREVIOUS"))) {
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         SongWW_Next(&U, idxUser);
@@ -245,6 +330,10 @@ int main() {
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
                     
+=======
+                if(masukSesi)
+                    SongWW_Next(&History, &LaguNow, &QueueLagu);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
@@ -257,6 +346,7 @@ int main() {
             ADVWORD();
 
             if(isWordEqual(currentWord, str2Word("CREATE"))) {
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         PlaylistWW_Create(&U, idxUser);
@@ -264,6 +354,10 @@ int main() {
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
                     
+=======
+                if(masukSesi)
+                    PlaylistWW_Create(&Playlist);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
@@ -272,6 +366,7 @@ int main() {
                 ADVWORD();
 
                 if(isWordEqual(currentWord, str2Word("SONG"))) {
+<<<<<<< HEAD
                     if(masukSesi){
                         if (idxUser != -1){ 
                         PlaylistWW_Add_Song(Penyanyi, &U, idxUser);
@@ -279,11 +374,16 @@ int main() {
                         else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                     }
                         
+=======
+                    if(masukSesi)
+                        PlaylistWW_Add_Song(Penyanyi, &Playlist);
+>>>>>>> main
                     else
                         Command_forbidden();
                 }
                 
                 else if(isWordEqual(currentWord, str2Word("ALBUM"))) {
+<<<<<<< HEAD
                     if(masukSesi){
                         if (idxUser != -1){ 
                         PlaylistWW_Add_Album(Penyanyi, &U, idxUser);
@@ -291,6 +391,10 @@ int main() {
                         else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                     }
                         
+=======
+                    if(masukSesi)
+                        PlaylistWW_Add_Album(Penyanyi, &Playlist);
+>>>>>>> main
                     else
                         Command_forbidden();
                 }
@@ -306,6 +410,7 @@ int main() {
                 x = Word2int(currentWord);
                 ADVWORD();
                 y = Word2int(currentWord);
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         PlaylistWW_Swap(&U, idxUser, id, x, y);
@@ -313,6 +418,10 @@ int main() {
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
                     
+=======
+                if(masukSesi)
+                    PlaylistWW_Swap(&Playlist, id, x, y);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
@@ -322,23 +431,33 @@ int main() {
                 id = Word2int(currentWord);
                 ADVWORD();
                 n = Word2int(currentWord);
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         PlaylistWW_Remove(&U, idxUser, id, n);
                     }  
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
+=======
+                if(masukSesi)
+                    PlaylistWW_Remove(&Playlist, id, n);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
 
             else if(isWordEqual(currentWord, str2Word("DELETE"))) {
+<<<<<<< HEAD
                 if(masukSesi){
                     if (idxUser != -1){ 
                         PlaylistWW_Delete(&U, idxUser);
                     }  
                     else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
                 }
+=======
+                if(masukSesi)
+                    PlaylistWW_Delete(&Playlist);
+>>>>>>> main
                 else
                     Command_forbidden();
             }
@@ -348,6 +467,7 @@ int main() {
         }
 
         else if(isWordEqual(currentWord, str2Word("STATUS"))) {
+<<<<<<< HEAD
             if(masukSesi){
                 if (idxUser != -1){ 
                     StatusWW(U, idxUser);
@@ -355,6 +475,10 @@ int main() {
                 else printf("Anda belum Login, silahkan login dengan command LOGIN\n");
             }
 
+=======
+            if(masukSesi)
+                StatusWW(LaguNow, QueueLagu);
+>>>>>>> main
             else
                 Command_unknown();
         }
@@ -382,7 +506,11 @@ int main() {
                 }
                 dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
                 if (isFileExist(dirfile)) { 
+<<<<<<< HEAD
                     SaveWW(dirfile, Penyanyi, U);
+=======
+                    SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
+>>>>>>> main
                     printf("\nSave file berhasil disimpan.\n");
                 }
                 else{
@@ -391,7 +519,11 @@ int main() {
                         printf("\nSilahkan input (Y) untuk membuat file baru dan (N) untuk membatalkan save. (Y/N) : "); STARTWORD();
                     }
                     if ((isWordEqual(str2Word("Y"), currentWord))){
+<<<<<<< HEAD
                         SaveWW(dirfile, Penyanyi, U);
+=======
+                        SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
+>>>>>>> main
                         printf("\nSave file berhasil disimpan.\n");
                     }
                     else{
@@ -405,7 +537,11 @@ int main() {
 
         else if(isWordEqual(currentWord, str2Word("QUIT"))) {
             if(masukSesi)
+<<<<<<< HEAD
                 QuitWW(Penyanyi, U);
+=======
+                QuitWW(Penyanyi,LaguNow,QueueLagu,History,Playlist);
+>>>>>>> main
             else
                 Command_forbidden();
         }
@@ -421,6 +557,9 @@ int main() {
             Command_unknown();
     }
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> main
     return 0;
 }

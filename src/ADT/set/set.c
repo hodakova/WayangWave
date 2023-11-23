@@ -23,7 +23,7 @@ boolean IsSetMember(Set S, SetInfoType Elmt) {
     found = false;
 
     while (i<S.Count && !found) {
-        if (S.Elements[i] == Elmt) {
+        if(isWordEqual(S.Elements[i], Elmt)) {
             found = true;
         }
         else {
@@ -75,7 +75,7 @@ void SetDelete(Set *S, SetInfoType Elmt) {
     found = false;
     if (IsSetMember(*S, Elmt)) {
         while (i<=S->Count && !found) {
-            if (S->Elements[i] == Elmt) {
+            if (isWordEqual(S->Elements[i], Elmt)) {
                 for (j=i; j<SetMaxEl-1; j++) {
                     S->Elements[j] = S->Elements[j+1];
                 }

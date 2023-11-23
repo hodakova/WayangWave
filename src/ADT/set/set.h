@@ -1,16 +1,17 @@
 #ifndef set_H
 #define set_H
 #include <stdio.h>
-#include "boolean.h"
+#include "../../boolean.h"
+#include "../mesinkata/mesinkata.h"
 
 /* MODUL Set
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 */
 
 #define SetNil 0
-#define SetMaxEl 100
+#define SetMaxEl 10
 
-typedef int SetInfoType;
+typedef Word SetInfoType;
 typedef int SetAddress;
 
 typedef struct

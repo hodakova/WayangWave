@@ -2,7 +2,7 @@
 /* Implementasi Mesin Karakter */
 
 #include "mesinkarakterv2.h"
-#include <stdio.h>
+#include <stdlib.h>
 
 char currentChar;
 boolean EOP;
@@ -10,8 +10,7 @@ boolean EOP;
 static FILE *pita;
 static int retval;
 
-void START(char *fileaddress)
-{
+void START() {
        /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
           Karakter pertama yang ada pada pita posisinya adalah pada jendela.
           I.S. : sembarang
@@ -19,12 +18,16 @@ void START(char *fileaddress)
                  Jika currentChar = MARK maka EOP akan menyala (true) */
 
        /* Algoritma */
+       pita = stdin;
+       ADV();
+}
+
+void STARTFILE(char* fileaddress) {
        pita = fopen(fileaddress, "r");
        ADV();
 }
 
-void ADV()
-{
+void ADV() {
        /* Pita dimajukan satu karakter.
           I.S. : Karakter pada jendela =
                  currentChar, currentChar != MARK
@@ -34,9 +37,21 @@ void ADV()
 
        /* Algoritma */
        retval = fscanf(pita, "%c", &currentChar);
-       EOP = (currentChar == MARK);
-       if (EOP)
-       {
+       EOP = feof(pita);
+       if(EOP)
               fclose(pita);
+}
+
+
+boolean isFileExist(char* dirfile){
+    FILE *file;
+    file = fopen(dirfile, "r");
+    if (file == NULL) {
+       fclose(file);
+       return false;
+    } 
+    else {
+       fclose(file);
+       return true;
        }
 }

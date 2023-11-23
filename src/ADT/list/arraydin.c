@@ -152,7 +152,7 @@ void PrintArrayDin(ArrayDin array) {
     printf("[");
     int i, l = ArrayDinLength(array);
     for(i = 0; i < l; i ++) {
-        printf("%d", ArrayDinGet(array, i));
+        printWord(ArrayDinGet(array, i).NamaPlaylist);
         if(i < l -1)
             printf(", ");
     }
@@ -191,13 +191,13 @@ void ReverseArrayDin(ArrayDin *array) {
  * Prekondisi: array terdefinisi
  */
 ArrayDinIdxType SearchArrayDin(ArrayDin array, ArrayDinElType el) {
-    ArrayDinIdxType r = -1;
-    int i = 0;
-    while(i < ArrayDinLength(array) && r == -1) {
-        if(ArrayDinGet(array, i) == el)
-            r = i;
-        else
-            i ++;
-    }
-    return r;
+    // ArrayDinIdxType r = -1;
+    // int i = 0;
+    // while(i < ArrayDinLength(array) && r == -1) {
+    //     if(ArrayDinGet(array, i) == el)
+    //         r = i;
+    //     else
+    //         i ++;
+    // }
+    // return r;
 }
