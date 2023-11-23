@@ -993,36 +993,55 @@ void SaveWW(char* dirfile, List Penyanyi, currentLagu LaguNow, Queue QueueLagu, 
 }
 
 void QuitWW(List Penyanyi, currentLagu LaguNow, Queue QueueLagu, Stack History, ArrayDin Playlist) {
-    printf("Apakah kamu ingin menyimpan data sesi sekarang? ");
-    STARTWORD();
-    printf("\n");
-    while (!(isWordEqual(currentWord, str2Word("Y")) || isWordEqual(currentWord, str2Word("N"))))
-    {
-        printf("Input tidak valid. Silakan memasukkan 'Y' jika ingin menyimpan data sesi sekarang dan 'N' jika tidak ingin menyimpan data sesi sekarang (Y/N): \n");
-        STARTWORD();
+    printf("\nApakah kamu ingin menyimpan data sesi sekarang? (Y/N) : "); STARTWORD();
+    while (!(isWordEqual(currentWord, str2Word("Y")) || isWordEqual(currentWord, str2Word("N")))) {    
+        printf("\nInput tidak valid. Silakan memasukkan 'Y' jika ingin menyimpan data sesi sekarang dan 'N' jika tidak ingin menyimpan data sesi sekarang (Y/N): "); STARTWORD();
     }
-    if (isWordEqual(currentWord, str2Word("Y")))
-    {
-        char* dirfile;
-        printf("Silahkan input nama save file : ");
-        STARTWORD();
-        while (isWordEqual(currentWord, str2Word("config.txt"))){
-            printf("Nama save file tidak bisa \"config.txt\".\n");
-            printf("Silahkan input nama save file : ");
-            STARTWORD();
+    if (isWordEqual(currentWord, str2Word("Y"))) {
+        boolean valid = false; int n;
+        printf("\nSilakan input nama file : "); STARTWORD();
+        while(!valid) {
+            n = currentWord.Length;
+            if(n > 4 && !isWordEqual(currentWord, str2Word("config.txt"))) {
+                if(currentWord.TabWord[n-4]=='.' && currentWord.TabWord[n-3]=='t' && currentWord.TabWord[n-2]=='x' && currentWord.TabWord[n-1]=='t') {
+                    valid = true;
+                }
+            }
+            if(!valid) {
+                printf("\nNama file tidak valid, ");
+                if (isWordEqual(currentWord, str2Word("config.txt")))
+                    printf("Nama save file tidak bisa \"config.txt\".");
+                else
+                    printf("gunakan format \"<namafile>.txt\".");
+                printf(" Silakan input nama save file : "); STARTWORD();
+            }
         }
-        dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
-
-        SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
-        printf("Thank you for using WayangWave");
-        exit(0);
+        char* dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
+        if (isFileExist(dirfile)) { 
+            SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
+            printf("\nSave file berhasil disimpan.\n");
+        }
+        else {
+            printf("\nFile tidak ditemukan, apakah ingin membuat file baru dengan nama %s? (Y/N) : ", Word2str(currentWord)); STARTWORD();
+            while (!(isWordEqual(currentWord, str2Word("Y")) || (isWordEqual(currentWord, str2Word("N"))))){ 
+                printf("\nSilahkan input (Y) untuk membuat file baru dan (N) untuk membatalkan save. (Y/N) : "); STARTWORD();
+            }
+            if ((isWordEqual(str2Word("Y"), currentWord))){
+                SaveWW(dirfile, Penyanyi, LaguNow, QueueLagu, History, Playlist);
+                printf("\nSave file berhasil disimpan.\n");
+            }
+            else{
+                printf("\nSave file gagal disimpan.\n");
+            }
+        }
+        printf("Thank you for using WayangWave!\n");
     }
     else if(isWordEqual(currentWord, str2Word("N")))
     {
         printf("\nKamu keluar dari WayangWave.\n");
         printf("Dadah ^_^/\n");
-        exit(0);
     }
+    exit(0);
 }
 
 void HelpWW_before() {

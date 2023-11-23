@@ -254,15 +254,18 @@ int main() {
                 valid = false;
                 while(!valid) {
                     n = currentWord.Length;
-                    if (isWordEqual(currentWord, str2Word("config.txt")))
-                        printf("\nNama save file tidak bisa \"config.txt\".\n");
-                    else if(n > 4) {
-                        if(currentWord.TabWord[n-2]=='.' && currentWord.TabWord[n-3]=='t' && currentWord.TabWord[n-2]=='x' && currentWord.TabWord[n-1]=='t') {
+                    if(n > 4 && !isWordEqual(currentWord, str2Word("config.txt"))) {
+                        if(currentWord.TabWord[n-4]=='.' && currentWord.TabWord[n-3]=='t' && currentWord.TabWord[n-2]=='x' && currentWord.TabWord[n-1]=='t') {
                             valid = true;
                         }
                     }
                     if(!valid) {
-                        printf("Silakan input nama save file : "); STARTWORD();
+                        printf("\nNama file tidak valid, ");
+                        if (isWordEqual(currentWord, str2Word("config.txt")))
+                            printf("Nama save file tidak bisa \"config.txt\".");
+                        else
+                            printf("gunakan format \"<namafile>.txt\".");
+                        printf(" Silakan input nama save file : "); STARTWORD();
                     }
                 }
                 dirfile = Word2str(ConcatWord(str2Word("../save/"), currentWord));
