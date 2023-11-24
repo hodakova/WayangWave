@@ -538,7 +538,7 @@ void QueueWW_Playlist(ArrayDin Playlist, Queue *QueueLagu) {
 
             else {
                 currentWordTillSC();
-                printf("ID Playlist tidak valid! Tidak ada playlist dengan id = %d.\n", id);
+                printf("ID Playlist tidak valid! Tidak ada playlist dengan id = %d.\n", id+1);
                 printf("Tips: Ketik LIST PLAYLIST untuk melihat ID Playlist!\n");
             }
         }
