@@ -1321,7 +1321,7 @@ void HelpWW_after() {
     printf("        SONG -> Untuk menambahkan lagu yang dipilih ke dalam urutan pemutaran lagu. \n");
     printf("        PLAYLIST -> Untuk menambahkan seluruh lagu di suatu playlist yang dipilih ke dalam urutan pemutaran lagu.\n");
     printf("        SWAP <id1> <id2> -> Untuk menukar urutan pemutaran sebuah lagu.\n");
-    printf("        REMOVE -> Untuk menghilangkan lagu yang dipilih dari urutan pemutaran lagu.\n");
+    printf("        REMOVE <id> -> Untuk menghilangkan lagu yang dipilih dari urutan pemutaran lagu.\n");
     printf("        CLEAR -> Untuk mengosongkan urutan pemutaran lagu.\n");
     printf("4. SONG\n");
     printf("        NEXT -> Untuk memutar lagu berikutnya pada queue.\n");
