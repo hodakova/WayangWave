@@ -1028,6 +1028,9 @@ void PlaylistWW_Delete(ArrayDin *Playlist) {
         int idP = Word2int(currentWord);
         if (idP > 0 && idP < playlistCount + 1) {
             Word temp = Playlist->A[idP - 1].NamaPlaylist;
+            currentLagu tmpL;
+            while(!IsListLinierEmpty(Playlist->A[idP-1].DaftarLagu))
+                ListLinierDelVFirst(&Playlist->A[idP-1].DaftarLagu, &tmpL);
             ArrayDinDeleteAt(Playlist, idP - 1);
             //PrintArrayDin(*Playlist);
             printf("\nPlaylist dengan ID %d dengan judul \"", idP); printWord(temp); printf("\" berhasil dihapus.\n");
