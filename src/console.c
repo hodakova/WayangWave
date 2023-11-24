@@ -921,42 +921,48 @@ void PlaylistWW_Swap(ArrayDin *Playlist, int id, int x, int y) {
     printf("\n");
     if(!IsArrayDinEmpty(*Playlist)) {
         if(id > 0 && id <= ArrayDinLength(*Playlist)) {
-            boolean xValid = false, yValid = false;
-            int i, l = ListLinierNbElmt(Playlist->A[id-1].DaftarLagu);
-
-            if(x > 0 && x <= l)
-                xValid = true;
-            if(y > 0 && x <= l)
-                yValid = true;
             
-            if(xValid && yValid) {
-                // ListLinierPrintInfo(Playlist->A[id-1].DaftarLagu);
-                addressListLinier P = Playlist->A[id-1].DaftarLagu.ListLinierFirst, Px, Py;
-                i = 1;
-                while(P != ListLinierNil) {
-                    if(i == x)
-                        Px = P;
-                    if(i == y)
-                        Py = P;
-                    P = ListLinierNext(P);
-                    i++;
-                }
-                currentLagu Ltmp = ListLinierInfo(Px);
-                ListLinierInfo(Px) = ListLinierInfo(Py);
-                ListLinierInfo(Py) = Ltmp;
+            if (!IsListLinierEmpty(Playlist->A[id-1].DaftarLagu)){
+                boolean xValid = false, yValid = false;
+                int i, l = ListLinierNbElmt(Playlist->A[id-1].DaftarLagu);
 
-                // ListLinierPrintInfo(Playlist->A[id-1].DaftarLagu);
-                printf("Berhasil menukar lagu dengan nama \""); printWord(Ltmp.Lagu); printf("\" dengan \""); printWord(ListLinierInfo(Px).Lagu); printf("\" di playlist \""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\"\n");
+                if(x > 0 && x <= l)
+                    xValid = true;
+                if(y > 0 && x <= l)
+                    yValid = true;
+                
+                if(xValid && yValid) {
+                    // ListLinierPrintInfo(Playlist->A[id-1].DaftarLagu);
+                    addressListLinier P = Playlist->A[id-1].DaftarLagu.ListLinierFirst, Px, Py;
+                    i = 1;
+                    while(P != ListLinierNil) {
+                        if(i == x)
+                            Px = P;
+                        if(i == y)
+                            Py = P;
+                        P = ListLinierNext(P);
+                        i++;
+                    }
+                    currentLagu Ltmp = ListLinierInfo(Px);
+                    ListLinierInfo(Px) = ListLinierInfo(Py);
+                    ListLinierInfo(Py) = Ltmp;
+
+                    // ListLinierPrintInfo(Playlist->A[id-1].DaftarLagu);
+                    printf("Berhasil menukar lagu dengan nama \""); printWord(Ltmp.Lagu); printf("\" dengan \""); printWord(ListLinierInfo(Px).Lagu); printf("\" di playlist \""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\"\n");
+                }
+                else {
+                    printf("Tidak ada lagu dengan ");
+                    if(!xValid)
+                        printf("urutan %d", x);
+                    if(!xValid && !yValid)
+                        printf(" dan ");
+                    if(!yValid)
+                        printf("urutan %d", y);
+                    printf("di playlist \""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\"\n");
+                }
             }
-            else {
-                printf("Tidak ada lagu dengan ");
-                if(!xValid)
-                    printf("urutan %d", x);
-                if(!xValid && !yValid)
-                    printf(" dan ");
-                if(!yValid)
-                    printf("urutan %d", y);
-                printf("di playlist \""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\"\n");
+            else  {
+                printf("Tidak ada lagu di playlist \""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\"!\n");
             }
         }
         else
@@ -970,32 +976,36 @@ void PlaylistWW_Remove(ArrayDin *Playlist, int id, int n) {
     printf("\n");
     if(!IsArrayDinEmpty(*Playlist)) {
         if(id > 0 && id <= ArrayDinLength(*Playlist)) {
-            if(n > 0 && n <= ListLinierNbElmt(Playlist->A[id-1].DaftarLagu)) {
-                ListLinierPrintInfo(Playlist->A[id-1].DaftarLagu);
+            if (!IsListLinierEmpty(Playlist->A[id-1].DaftarLagu)){
+                if(n > 0 && n <= ListLinierNbElmt(Playlist->A[id-1].DaftarLagu)) {
+                // ListLinierPrintInfo(Playlist->A[id-1].DaftarLagu);
+                    addressListLinier P = Playlist->A[id-1].DaftarLagu.ListLinierFirst, Pdel;
+                    int i = 1;
+                    while(i < n-1)
+                        P = ListLinierNext(P);
+                    // P = address lagu playlist ke n-1
+                    
+                    Pdel = ListLinierNext(P); 
+                    if(ListLinierNext(ListLinierNext(P)) != ListLinierNil)
+                        ListLinierNext(P) = ListLinierNext(ListLinierNext(P));
+                    else
+                        ListLinierNext(P) = ListLinierNil;
 
-                addressListLinier P = Playlist->A[id-1].DaftarLagu.ListLinierFirst, Pdel;
-                int i = 1;
-                while(i < n-1)
-                    P = ListLinierNext(P);
-                // P = address lagu playlist ke n-1
-                
-                Pdel = ListLinierNext(P); 
-                if(ListLinierNext(ListLinierNext(P)) != ListLinierNil)
-                    ListLinierNext(P) = ListLinierNext(ListLinierNext(P));
-                else
-                    ListLinierNext(P) = ListLinierNil;
+                    printf("Lagu \""); printWord(ListLinierInfo(Pdel).Lagu); printf("\" oleh \""); printWord(ListLinierInfo(P).Penyanyi); printf("\" telah dihapus dari playlist \""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\"!\n");
+                    ListLinierDealokasi(&Pdel);
 
-                printf("Lagu \""); printWord(ListLinierInfo(Pdel).Lagu); printf("\" oleh \""); printWord(ListLinierInfo(P).Penyanyi); printf("\" telah dihapus dari playlist \""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\"!\n");
-                ListLinierDealokasi(&Pdel);
-
-                ListLinierPrintInfo(Playlist->A[id-1].DaftarLagu);
+                // ListLinierPrintInfo(Playlist->A[id-1].DaftarLagu);
+                }
+                else {
+                    printf("Tidak ada lagu dengan urutan %d di playlist \"", n); printWord(Playlist->A[id-1].NamaPlaylist); printf("\"!\n");
+                }
             }
-            else {
-                printf("Tidak ada lagu dengan urutan %d di playlist \"", n); printWord(Playlist->A[id-1].NamaPlaylist); printf("\"!\n");
+            else  {
+                    printf("Tidak ada lagu di playlist \""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\"!\n");
             }
         }
         else
-            printf("Tidak ada playlist dengan ID %d.", id);
+            printf("Tidak ada playlist dengan ID %d\n", id);
     }
     else
         printf("Kamu tidak memiliki playlist.\n");
