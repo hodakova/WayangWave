@@ -1147,7 +1147,7 @@ void PlaylistWW_Enhance(ArrayDin *Playlist, List Penyanyi) {
                             }
                             ListLinierInsertLast(&Playlist->A[id-1].DaftarLagu, P);
                         }
-                        printf(" berhasil ditambahkan ke playlist pengguna\""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\".\n");
+                        printf(" berhasil ditambahkan ke playlist pengguna \""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\".\n");
                     }
                     else
                         printf("Gunakan format <a b c ...> untuk menuliskan ID-ID lagu rekomendasi.\n");
@@ -1303,12 +1303,14 @@ void QuitWW(List Penyanyi, currentLagu LaguNow, Queue QueueLagu, Stack History, 
 }
 
 void HelpWW_before() {
+    printf("\n");
     printf("=======================[ Menu Help WayangWave ]=======================\n");
     printf("1. START -> Untuk masuk sesi baru.\n");
     printf("2. LOAD <namafile.txt> -> Untuk memulai sesi berdasarkan file konfigurasi.\n");
 }
 
 void HelpWW_after() {
+    printf("\n");
     printf("=========================================[ Menu Help WayangWave ]=========================================\n");
     printf("1. LIST\n");
     printf("        DEFAULT -> Untuk menampilkan daftar penyanyi, album, dan daftar lagu yang ada di album.\n");
@@ -1326,13 +1328,14 @@ void HelpWW_after() {
     printf("        NEXT -> Untuk memutar lagu berikutnya pada queue.\n");
     printf("        PREVIOUS -> Untuk memutar lagu sebelumnya pada queue.\n");
     printf("5. PLAYLIST -> Untuk melakukan command untuk playlist, yaitu create, add, swap, remove, dan delete.\n");
-    printf("            CREATE -> Untuk membuat sebuah playlist baru dan menambahkannya ke daftar playlist.\n");
-    printf("            ADD\n");
+    printf("        CREATE -> Untuk membuat sebuah playlist baru dan menambahkannya ke daftar playlist.\n");
+    printf("        ADD\n");
     printf("                SONG -> Untuk menambahkan lagu ke playlist yang ada.\n");
     printf("                ALBUM -> Untuk menambahkan semua lagu pada suatu album ke playlist yang ada.\n");
-    printf("            SWAP <idplaylist> <idlagu1> <idlagu2> -> \n");
-    printf("            REMOVE <idplaylist> <n> -> Untuk menghilangkan lagu urutan ke-n pada playlist.\n");
-    printf("            DELETE -> Untuk menghapus playlist dan menghilangkan dari daftar playlist.\n");
+    printf("        SWAP <idplaylist> <idlagu1> <idlagu2> -> \n");
+    printf("        REMOVE <idplaylist> <n> -> Untuk menghilangkan lagu urutan ke-n pada playlist.\n");
+    printf("        DELETE -> Untuk menghapus playlist dan menghilangkan dari daftar playlist.\n");
+    printf("        ENHANCE -> Untuk meng-enhance playlist dengan memberikan saran rekomendasi lagu yang dapat ditambahkan.\n");
     printf("6. STATUS -> Untuk menampilkan judul lagu yang sedang diputar, nama playlistnya, beserta dengan queue lagu-lagu berikutnya.\n");
     printf("7. SAVE <namafile.txt> -> Untuk menyimpan state aplikasi terbaru ke dalam sebuah file.\n");
     printf("8. QUIT -> Untuk keluar dari aplikasi WayangWave.\n");
