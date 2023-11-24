@@ -6,10 +6,12 @@ int random_number(int nMin, int nMax) {
 
 void Command_unknown() {
     printf("\nCommand tidak diketahui!\n");
+    currentWordTillSC();
 }
 
 void Command_forbidden() {
     printf("\nCommand tidak bisa dieksekusi!\n");
+    currentWordTillSC();
 }
 
 void StartWW(List *Penyanyi) {
@@ -977,20 +979,23 @@ void PlaylistWW_Remove(ArrayDin *Playlist, int id, int n) {
     if(!IsArrayDinEmpty(*Playlist)) {
         if(id > 0 && id <= ArrayDinLength(*Playlist)) {
             if (!IsListLinierEmpty(Playlist->A[id-1].DaftarLagu)){
-                if(n > 0 && n <= ListLinierNbElmt(Playlist->A[id-1].DaftarLagu)) {
+                int p = ListLinierNbElmt(Playlist->A[id-1].DaftarLagu);
+                if(n > 0 && n <= p) {
                 // ListLinierPrintInfo(Playlist->A[id-1].DaftarLagu);
                     addressListLinier P = Playlist->A[id-1].DaftarLagu.ListLinierFirst, Pdel;
-                    int i = 1;
-                    while(i < n-1)
-                        P = ListLinierNext(P);
-                    // P = address lagu playlist ke n-1
-                    
-                    Pdel = ListLinierNext(P); 
-                    if(ListLinierNext(ListLinierNext(P)) != ListLinierNil)
-                        ListLinierNext(P) = ListLinierNext(ListLinierNext(P));
-                    else
-                        ListLinierNext(P) = ListLinierNil;
-
+                    if(n==1)
+                        ListLinierDelFirst(&Playlist->A[id-1].DaftarLagu, &Pdel);
+                    else if(n==p)
+                        ListLinierDelLast(&Playlist->A[id-1].DaftarLagu, &Pdel);
+                    else {
+                        int i = 1;
+                        while(i < n-1) {
+                            P = ListLinierNext(P);
+                            i ++;
+                        }
+                        // P = address lagu playlist ke n-1
+                        ListLinierDelAfter(&Playlist->A[id-1].DaftarLagu, &Pdel, P);
+                    }
                     printf("Lagu \""); printWord(ListLinierInfo(Pdel).Lagu); printf("\" oleh \""); printWord(ListLinierInfo(P).Penyanyi); printf("\" telah dihapus dari playlist \""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\"!\n");
                     ListLinierDealokasi(&Pdel);
 
