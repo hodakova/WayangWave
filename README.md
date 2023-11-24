@@ -7,7 +7,7 @@ Aplikasi WayangWave adalah aplikasi simulasi service pemutaran musik yang dibuat
 5. Menampilkan status dari aplikasi
 
 
-**Kumpulan Makhluk Kasat Mata ke-6, K-02, STI-22**
+## **Kumpulan Makhluk Kasat Mata ke-6, K-02, STI-22**
 | **NIM** | **Nama** |
 | --- | --- |
 | 18222022 | Louis Ferdyo Gunawan |
@@ -17,7 +17,7 @@ Aplikasi WayangWave adalah aplikasi simulasi service pemutaran musik yang dibuat
 | 18222082 | Ahmad Habibie Marjan |
 
 
-**Cara Kompilasi**
+## **Cara Kompilasi**
 ### cara 1
 1. Pastikan sudah di directory bin
 2. ketik `make run`
