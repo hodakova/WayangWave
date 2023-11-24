@@ -7,12 +7,12 @@ Aplikasi WayangWave adalah aplikasi simulasi service pemutaran musik yang dibuat
 5. Menampilkan status dari aplikasi
 
 **Kumpulan Makhluk Kasat Mata ke-6, K-02, STI-22**
-| **NIM** 
-| 18222022 Louis Ferdyo Gunawan
-| 18222024 Filbert Fuvian
-| 18222050 Nicolaas Heru Dreandachrista
-| 18222080 Atthar Mahendra Umar
-| 18222082 Ahmad Habibie Marjan
+| **NIM** | **Nama** |
+| 18222022 | Louis Ferdyo Gunawan |
+| 18222024 | Filbert Fuvian |
+| 18222050 | Nicolaas Heru Dreandachrista |
+| 18222080 | Atthar Mahendra Umar |
+| 18222082 | Ahmad Habibie Marjan |
 
 **Cara Kompilasi**
 ### cara 1
