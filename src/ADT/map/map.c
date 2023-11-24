@@ -112,10 +112,10 @@ boolean IsMapMember(Map M, MapKeyType k) {
     return found;
 }
 
-void printMap(Map M) {
-    int i;
-    for (i=0; i<M.Count; i++) {
-        printf("Key:%d | Value: %d", M.Elements[i].Key, M.Elements[i].Value);
-        printf("\n");
-    }
-}
+// void printMap(Map M) {
+//     int i;
+//     for (i=0; i<M.Count; i++) {
+//         printf("Key:%d | Value: %d", M.Elements[i].Key, M.Elements[i].Value);
+//         printf("\n");
+//     }
+// }

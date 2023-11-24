@@ -1,1 +1,3 @@
-
+run:
+	gcc ../src/ADT/mesinkar/mesinkarakterv2.c ../src/ADT/mesinkata/mesinkata.c ../src/ADT/mesinbaris/mesinbaris.c ../src/ADT/list/arraydin.c ../src/ADT/list/list.c ../src/ADT/stack/stack.c ../src/ADT/queue/queue.c ../src/ADT/set/set.c ../src/ADT/map/map.c ../src/ADT/listlinier/listlinier.c ../src/ADT/currentlagu/currentlagu.c ../src/console.c ../src/art.c ../src/main.c -o WayangWave
+	./WayangWave

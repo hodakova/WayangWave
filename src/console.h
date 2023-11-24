@@ -9,6 +9,8 @@
 #include "ADT/queue/queue.h"
 #include "ADT/listlinier/listlinier.h"
 
+int random_number(int nMin, int nMax);
+
 void Command_unknown();
 
 void Command_forbidden();
