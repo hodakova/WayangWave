@@ -6,6 +6,7 @@ Aplikasi WayangWave adalah aplikasi simulasi service pemutaran musik yang dibuat
 4. Mengatur urutan dimainkannya lagu
 5. Menampilkan status dari aplikasi
 
+
 **Kumpulan Makhluk Kasat Mata ke-6, K-02, STI-22**
 | **NIM** | **Nama** |
 | --- | --- |
@@ -14,6 +15,7 @@ Aplikasi WayangWave adalah aplikasi simulasi service pemutaran musik yang dibuat
 | 18222050 | Nicolaas Heru Dreandachrista |
 | 18222080 | Atthar Mahendra Umar |
 | 18222082 | Ahmad Habibie Marjan |
+
 
 **Cara Kompilasi**
 ### cara 1
