@@ -209,7 +209,6 @@ void ListWW_Default(List Penyanyi) {
                     lanjut2 = true;
 
                     found = false; int a;
-                    printf("\n");
                     while(!found) {
                         printf("Pilih album untuk melihat lagu yang ada di album : "); STARTWORD(); currentWordTillSC();
                         
