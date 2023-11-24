@@ -239,6 +239,16 @@ void ListLinierInversList (ListLinier *L)
         ListLinierNext(P) = Prec;
     }
 }
+boolean isListLinierMember(ListLinier L, ListLinierInfoType Lagu) {
+    addressListLinier P = L.ListLinierFirst;
+    while(P != ListLinierNil) {
+        if(isInfoLaguEqual(ListLinierInfo(P), Lagu))
+            return true;
+        P = ListLinierNext(P);
+    }
+    return false;
+}
+
 void ListLinierKonkat1 (ListLinier *L1, ListLinier *L2, ListLinier *L3)
 /* I.S. L1 dan L2 sembarang */
 /* F.S. L1 dan L2 kosong, L3 adalah hasil konkatenasi L1 & L2 */

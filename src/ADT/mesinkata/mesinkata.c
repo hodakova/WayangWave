@@ -60,7 +60,7 @@ void STARTWORD() {
 void ADVWORD() {
     IgnoreBlanks();
     IgnoreCR();
-    if(currentChar == MARK)
+    if(EOP)
         EndWord = true;
     else {
         EndWord = false;

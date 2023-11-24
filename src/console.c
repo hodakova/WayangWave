@@ -171,7 +171,7 @@ void ListWW_Default(List Penyanyi) {
     printf("\n");
     boolean lanjut = false;
     while(!lanjut) {
-        printf("Ingin melihat album yang ada? (Y/N) : "); STARTWORD(); currentWordTillSC();
+        printf("Ingin melihat album yang ada? (Y/N) : "); STARTWORD();
 
         if(isWordEqual(currentWord, str2Word("Y"))) {
             lanjut = true;
@@ -203,7 +203,7 @@ void ListWW_Default(List Penyanyi) {
             printf("\n");
             boolean lanjut2 = false;
             while(!lanjut2) {
-                printf("Ingin melihat lagu yang ada? (Y/N) : "); STARTWORD(); currentWordTillSC();
+                printf("Ingin melihat lagu yang ada? (Y/N) : "); STARTWORD();
 
                 if (isWordEqual(currentWord, str2Word("Y"))) {
                     lanjut2 = true;
@@ -237,16 +237,20 @@ void ListWW_Default(List Penyanyi) {
                 else if(isWordEqual(currentWord, str2Word("N")))
                     lanjut2 = true;
                 
-                else
+                else {
+                    currentWordTillSC();
                     Command_unknown();
+                }
             }
         }
     
         else if(isWordEqual(currentWord, str2Word("N")))
             lanjut = true;
         
-        else
+        else {
+            currentWordTillSC();
             Command_unknown();
+        }
     }
 }
 
@@ -335,7 +339,7 @@ void PlayWW_Song(List Penyanyi, Queue *QueueLagu, Stack *History, currentLagu *L
     printf("\n");
     found = false;
     while(!found) {
-        printf("Masukkan ID Lagu yang dipilih : "); STARTWORD(); currentWordTillSC();
+        printf("Masukkan ID Lagu yang dipilih : "); STARTWORD();
         int ID = Word2int(currentWord);
 
         printf("\n");
@@ -355,6 +359,7 @@ void PlayWW_Song(List Penyanyi, Queue *QueueLagu, Stack *History, currentLagu *L
 
         }
         else {
+            currentWordTillSC();
             printf("ID Playlist tidak valid! Tidak ada lagu dengan ID = %d.\n", ID);
         }
         
@@ -366,7 +371,7 @@ void PlayWW_Playlist(ArrayDin Playlist, Queue *QueueLagu, Stack *History, curren
     if(IsArrayDinEmpty(Playlist))
         printf("Kamu tidak memiliki playlist.\n");
     else {
-        printf("Masukkan ID Playlist: "); STARTWORD(); currentWordTillSC();
+        printf("Masukkan ID Playlist: "); STARTWORD();
         int id = Word2int(currentWord);
 
         printf("\n");
@@ -398,6 +403,7 @@ void PlayWW_Playlist(ArrayDin Playlist, Queue *QueueLagu, Stack *History, curren
         }
 
         else {
+            currentWordTillSC();
             printf("ID Playlist tidak valid! Tidak ada playlist dengan ID = %d.\n", id);
             printf("Tips: Ketik LIST PLAYLIST untuk melihat ID Playlist!\n");
         }
@@ -475,13 +481,15 @@ void QueueWW_Song(List Penyanyi, Queue *QueueLagu) {
         printf("\n");
         found = false;
         while(!found) {
-            printf("Masukkan ID Lagu yang dipilih: "); STARTWORD(); currentWordTillSC();
+            printf("Masukkan ID Lagu yang dipilih: "); STARTWORD();
             k = Word2int(currentWord) - 1;
             if(k >= 0 && k < l)
                 found = true;
 
-            if(!found)
+            if(!found) {
+                currentWordTillEOL();
                 Command_unknown();
+            }
         }
 
         Lagu.Lagu = Penyanyi.A[i].Album.Elements[j].Value.Lagu.Elements[k];
@@ -505,7 +513,7 @@ void QueueWW_Playlist(ArrayDin Playlist, Queue *QueueLagu) {
         if(IsArrayDinEmpty(Playlist))
             printf("Kamu tidak memiliki playlist.\n");
         else {
-            printf("Masukkan ID Playlist: "); STARTWORD(); currentWordTillSC();
+            printf("Masukkan ID Playlist: "); STARTWORD();
             id = Word2int(currentWord) - 1;
 
             printf("\n");
@@ -529,6 +537,7 @@ void QueueWW_Playlist(ArrayDin Playlist, Queue *QueueLagu) {
             }
 
             else {
+                currentWordTillSC();
                 printf("ID Playlist tidak valid! Tidak ada playlist dengan id = %d.\n", id);
                 printf("Tips: Ketik LIST PLAYLIST untuk melihat ID Playlist!\n");
             }
@@ -674,8 +683,8 @@ void PlaylistWW_Create(ArrayDin *Playlist) {
         CreateListLinier(&el.DaftarLagu);
 
         ArrayDinInsertLast(Playlist, el);
-        printf("\nOutput: Playlist "); printWord(el.NamaPlaylist); printf(" berhasil dibuat!\n");
-        printf("\nSilahkan masukkan lagu-lagu artis terkini kesayangan Anda!\n");
+        printf("\nPlaylist "); printWord(el.NamaPlaylist); printf(" berhasil dibuat!\n");
+        printf("Silahkan masukkan lagu-lagu artis terkini kesayangan Anda!\n");
     }
     else 
         printf("\nMinimal terdapat 3 karakter selain whitespace dalam nama playlist. Silakan coba lagi.\n");
@@ -722,7 +731,7 @@ void PlaylistWW_Add_Song(List Penyanyi, ArrayDin *Playlist) {
                     printf("   %d. ", i+1); printWord((Penyanyi).A[idPenyanyi].Album.Elements[idAlbum].Value.Lagu.Elements[i]); printf("\n");
                 }
                 printf("\nMasukkan ID Lagu yang dipilih : ");
-                STARTWORD(); currentWordTillSC();
+                STARTWORD();
                 int idLagu = Word2int(currentWord);
                 if (idLagu > 0 && idLagu < laguCount + 1) {
                     printf("\nDaftar Playlist Pengguna :\n");
@@ -731,23 +740,44 @@ void PlaylistWW_Add_Song(List Penyanyi, ArrayDin *Playlist) {
                     printf("   %d. ", i+1); printWord(Playlist->A[i].NamaPlaylist); printf("\n");
                     }
                     printf("\nMasukkan ID Playlist yang dipilih : ");
-                    STARTWORD(); currentWordTillSC();
+                    STARTWORD();
                     int idPlaylist = Word2int(currentWord);
 
-                    if (idPlaylist < playlistCount + 1) {
-                        currentLagu temp;
-                        temp.Album = (Penyanyi).A[idPenyanyi].Album.Elements[idAlbum].Value.NamaAlbum;
-                        temp.Penyanyi = Penyanyi.A[idPenyanyi].NamaPenyanyi;
-                        temp.Lagu = (Penyanyi).A[idPenyanyi].Album.Elements[idAlbum].Value.Lagu.Elements[idLagu - 1];
-                        ListLinierInsVLast(&Playlist->A[idPlaylist - 1].DaftarLagu, temp);
-                        // ListLinierPrintInfo(Playlist->A[idPlaylist - 1].DaftarLagu);
-                        printf("\nLagu dengan judul \""); printWord(temp.Lagu); printf("\" pada album "); printWord(temp.Album); printf(" oleh penyanyi ");  printWord(temp.Penyanyi); printf(" berhasil ditambahkan ke dalam playlist "); printWord(Playlist->A[idPlaylist - 1].NamaPlaylist); printf(".\n");
+                    if (idPlaylist > 0 && idPlaylist <= playlistCount) {
+                        int countLagu = 0, i, j, m, n = ListLength(Penyanyi);
+                        for(i = 0; i < n; i ++) {
+                            m = Penyanyi.A[i].Album.Count;
+                            for(j = 0; j < m; j ++) {
+                                countLagu += Penyanyi.A[i].Album.Elements[j].Value.Lagu.Count;
+                            }
+                        }
+
+                        if(ListLinierNbElmt(Playlist->A[idPlaylist-1].DaftarLagu) < countLagu) {
+                            currentLagu temp; CreateInfoLagu(&temp);
+                            temp.Album = (Penyanyi).A[idPenyanyi].Album.Elements[idAlbum].Value.NamaAlbum;
+                            temp.Penyanyi = Penyanyi.A[idPenyanyi].NamaPenyanyi;
+                            temp.Lagu = (Penyanyi).A[idPenyanyi].Album.Elements[idAlbum].Value.Lagu.Elements[idLagu - 1];
+                            printf("\nLagu dengan judul \""); printWord(temp.Lagu); printf("\" pada album "); printWord(temp.Album); printf(" oleh penyanyi "); printWord(temp.Penyanyi); 
+                            if(!isListLinierMember(Playlist->A[idPlaylist - 1].DaftarLagu, temp)) {
+                                ListLinierInsVLast(&Playlist->A[idPlaylist - 1].DaftarLagu, temp);
+                                printf(" berhasil ditambahkan ke dalam playlist ");
+                            }
+                            else
+                                printf(" sudah ada pada playlist ");
+                            printWord(Playlist->A[idPlaylist - 1].NamaPlaylist); printf(".\n");
+                            // ListLinierPrintInfo(Playlist->A[idPlaylist - 1].DaftarLagu);
+                        }
+                        else {
+                            printf("Semua lagu yang tersedia sudah ada di dalam playlist pengguna \""); printWord(Playlist->A[idPlaylist-1].NamaPlaylist); printf("\".\n");
+                        }
                     }
                     else {
+                        currentWordTillSC();
                         printf("\nID playlist tidak ada dalam daftar, Silakan coba lagi.\n");
                     }
                 }
                 else {
+                    currentWordTillSC();
                     printf("\nID lagu tidak ada dalam daftar. Silakan coba lagi.\n");
                 }
             }
@@ -767,7 +797,7 @@ void PlaylistWW_Add_Album(List Penyanyi, ArrayDin *Playlist) {
     printf("\n");
     if(!IsArrayDinEmpty(*Playlist)) {
         int a, b, i, idP, n, m, p, l;
-        boolean found;
+        boolean found, sudahAda, semuanyaAda = true;
 
         printf("Daftar Penyanyi :\n");
         n = ListLength(Penyanyi);
@@ -819,20 +849,50 @@ void PlaylistWW_Add_Album(List Penyanyi, ArrayDin *Playlist) {
                 }
 
                 printf("\n");
-                printf("Masukkan ID Playlist yang dipilih : "); STARTWORD(); currentWordTillSC();
+                printf("Masukkan ID Playlist yang dipilih : "); STARTWORD();
                 idP = Word2int(currentWord);
 
                 printf("\n");
                 if(idP > 0 && idP <= p) {
-                    l = Penyanyi.A[a].Album.Elements[b].Value.Lagu.Count;
-                    for(i = 0; i < l; i ++) {
-                        Ltmp.Lagu = Penyanyi.A[a].Album.Elements[b].Value.Lagu.Elements[i];
-                        ListLinierInsVLast(&Playlist->A[idP-1].DaftarLagu, Ltmp);
+                    int countLagu = 0, j; n = ListLength(Penyanyi);
+                    for(i = 0; i < n; i ++) {
+                        m = Penyanyi.A[i].Album.Count;
+                        for(j = 0; j < m; j ++) {
+                            countLagu += Penyanyi.A[i].Album.Elements[j].Value.Lagu.Count;
+                        }
                     }
 
-                    printf("Album dengan judul \""); printWord(Ltmp.Album); printf("\" berhasil ditambahkan ke dalam playlist pengguna \""); printWord(Playlist->A[idP-1].NamaPlaylist); printf("\".\n");
+                    if(ListLinierNbElmt(Playlist->A[idP-1].DaftarLagu) < countLagu) {
+                        l = Penyanyi.A[a].Album.Elements[b].Value.Lagu.Count;
+                        sudahAda = false; semuanyaAda = true;
+                        for(i = 0; i < l; i ++) {
+                            Ltmp.Lagu = Penyanyi.A[a].Album.Elements[b].Value.Lagu.Elements[i];
+                            if(!isListLinierMember(Playlist->A[idP-1].DaftarLagu, Ltmp)) {
+                                ListLinierInsVLast(&Playlist->A[idP-1].DaftarLagu, Ltmp);
+                                semuanyaAda = false;
+                            }
+                            else
+                                sudahAda = true;
+                        }
+                        if(!semuanyaAda) {
+                            if(!sudahAda) {
+                                printf("Album dengan judul \""); printWord(Ltmp.Album); printf("\" berhasil ditambahkan ke dalam playlist pengguna \""); printWord(Playlist->A[idP-1].NamaPlaylist); printf("\".\n");
+                            }
+                            else {
+                                printf("Beberapa lagu pada album dengan judul \""); printWord(Ltmp.Album); printf("\" sudah ditambahkan ke dalam playlist pengguna \""); printWord(Playlist->A[idP-1].NamaPlaylist); printf("\".\n");
+                                printf("Berhasil menambahkan sisanya.\n");
+                            }
+                        }
+                        else {
+                            printf("Semua lagu pada album dengan judul \""); printWord(Ltmp.Album); printf("\" sudah ada di dalam playlist pengguna \""); printWord(Playlist->A[idP-1].NamaPlaylist); printf("\".\n");
+                        }
+                    }
+                    else {
+                        printf("Semua lagu yang tersedia sudah ada di dalam playlist pengguna \""); printWord(Playlist->A[idP-1].NamaPlaylist); printf("\".\n");
+                    }
                 }
                 else {
+                    currentWordTillSC();
                     printf("Tidak ada playlist dengan playlist ID %d\n", idP);
                 }
             }
@@ -940,15 +1000,16 @@ void PlaylistWW_Delete(ArrayDin *Playlist) {
             printf("   %d. ", i+1); printWord(Playlist->A[i].NamaPlaylist); printf("\n");
         }
         printf("\nMasukkan ID Playlist yang dipilih: ");
-        STARTWORD(); currentWordTillSC();
+        STARTWORD();
         int idP = Word2int(currentWord);
-        if (idP < playlistCount + 1) {
+        if (idP > 0 && idP < playlistCount + 1) {
             Word temp = Playlist->A[idP - 1].NamaPlaylist;
             ArrayDinDeleteAt(Playlist, idP - 1);
             //PrintArrayDin(*Playlist);
             printf("\nPlaylist dengan ID %d dengan judul \"", idP); printWord(temp); printf("\" berhasil dihapus.\n");
         }
         else {
+            currentWordTillSC();
             printf("\nTidak ada playlist dengan ID %d dalam daftar playlist pengguna. Silakan coba lagi.\n", idP);
         } 
     }
@@ -956,20 +1017,148 @@ void PlaylistWW_Delete(ArrayDin *Playlist) {
         printf("\nKamu tidak memiliki playlist.\n");
 }
 
-void PlaylistWW_Enhance(ArrayDin *Playlist, int id, List Penyanyi) {
+void PlaylistWW_Enhance(ArrayDin *Playlist, List Penyanyi) {
     printf("\n");
     if(!IsArrayDinEmpty(*Playlist)) {
-        if(id > 0 && id < Playlist->Neff) {
-            printf("Daftar lagu pada playlist pengguna "); printWord(Playlist->A[id-1].NamaPlaylist); printf(" :\n");
-            addressListLinier P = Playlist->A[id-1].DaftarLagu.ListLinierFirst; int i = 1;
-            while(P != ListLinierNil) {
-                printf("   %d. "); printWord(ListLinierInfo(P).Lagu); printf("\n");
-                P = ListLinierNext(P);
-                i ++;
+        printf("Daftar Playlist Pengguna :\n");
+        int playlistCount = ArrayDinLength(*Playlist);
+        for (int i = 0; i < playlistCount; i++) {
+            printf("   %d. ", i+1); printWord(Playlist->A[i].NamaPlaylist); printf("\n");
+        }
+        printf("\nMasukkan ID Playlist yang dipilih: ");
+        STARTWORD();
+        int id = Word2int(currentWord);
+
+        printf("\n");
+        if(id > 0 && id <= Playlist->Neff) {
+            if(!IsListLinierEmpty(Playlist->A[id-1].DaftarLagu)) {
+                int countLagu = 0, i, j, n = ListLength(Penyanyi), m, p;
+                for(i = 0; i < n; i ++) {
+                    m = Penyanyi.A[i].Album.Count;
+                    for(j = 0; j < m; j ++) {
+                        countLagu += Penyanyi.A[i].Album.Elements[j].Value.Lagu.Count;
+                    }
+                }
+                j = ListLinierNbElmt(Playlist->A[id-1].DaftarLagu);
+                if(j < countLagu) {
+                    printf("Daftar lagu pada playlist pengguna "); printWord(Playlist->A[id-1].NamaPlaylist); printf(" :\n");
+                    addressListLinier P = Playlist->A[id-1].DaftarLagu.ListLinierFirst, Q;
+                    i = 1;
+                    while(P != ListLinierNil) {
+                        printf("   %d. ", i); printInfoLagu(ListLinierInfo(P)); printf("\n");
+                        P = ListLinierNext(P);
+                        i ++;
+                    }
+                    p = i;
+
+                    printf("\n");
+                    printf("Daftar lagu rekomendasi untuk playlist pengguna "); printWord(Playlist->A[id-1].NamaPlaylist); printf(" :\n");
+
+                    ListLinier RecommendedSongs; CreateListLinier(&RecommendedSongs);
+                    currentLagu tmpL; CreateInfoLagu(&tmpL);
+                    boolean found;
+                    int r = random_number(1, 5) + i, a, b, c, e[r], h = 0, k, g;
+
+                    while(i < r && j < countLagu) {
+                        a = random_number(0, n - 1);
+                        tmpL.Penyanyi = Penyanyi.A[a].NamaPenyanyi;
+                        b = random_number(0, Penyanyi.A[a].Album.Count - 1);
+                        tmpL.Album = Penyanyi.A[a].Album.Elements[b].Value.NamaAlbum;
+                        c = random_number(0, Penyanyi.A[a].Album.Elements[b].Value.Lagu.Count - 1);
+                        tmpL.Lagu = Penyanyi.A[a].Album.Elements[b].Value.Lagu.Elements[c];
+                        if(!isListLinierMember(Playlist->A[id-1].DaftarLagu, tmpL) && !isListLinierMember(RecommendedSongs, tmpL)) {
+                            ListLinierInsVLast(&RecommendedSongs, tmpL);
+                            printf("   %d. ", i); printInfoLagu(tmpL); printf("\n");
+                            i ++;
+                            j ++;
+                        }
+                    }
+                    printf("\n");
+                    printf("Pilih ID-ID lagu pada daftar lagu rekomendasi untuk ditambahkan ke playlist pengguna \""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\" : "); STARTWORD();
+                    h = 0;
+                    while(currentChar != EOL) {
+                        e[h] = Word2int(currentWord);
+                        found = false;
+                        if(e[h] >= p && e[h] < i) {
+                            for(k = 0; k < h; k ++) {
+                                if(e[h] == e[k])
+                                    found = true;
+                            }
+                            if(!found)
+                                h ++;
+                        }
+                        ADVWORD();
+                    }     
+                    e[h] = Word2int(currentWord);
+                    found = false;
+                    if(e[h] >= p && e[h] < i) {
+                        for(k = 0; k < h; k ++) {
+                            if(e[h] == e[k])
+                                found = true;
+                        }
+                        if(!found)
+                            h ++;
+                    }
+
+                    printf("\n");
+                    if(h > 0) {
+                        if(h == 1)
+                            printf("Lagu rekomendasi dengan ID ");
+                        else
+                            printf("Lagu-lagu rekomendasi dengan ID-ID ");
+                        for(k = 0; k < h; k ++) {
+                            printf("%d", e[k]);
+                            if(h > 2) {
+                                if(k < h-1)
+                                    printf(", ");
+                            }
+                            else if(h == 2) {
+                                if(k==0)
+                                    printf(" ");
+                            }
+                            if(h > 1) {
+                                if(k==h-2)
+                                    printf("dan ");
+                            }
+                            if(e[k] == p) {
+                                ListLinierDelFirst(&RecommendedSongs, &P);
+                                p ++;
+                            }
+                            else if(e[k] == i - 1)
+                                ListLinierDelLast(&RecommendedSongs, &P);
+                            else {
+                                Q = RecommendedSongs.ListLinierFirst;
+                                g = p;
+                                while(ListLinierNext(Q) != ListLinierNil && g < e[k]) {
+                                    Q = ListLinierNext(Q);
+                                    g ++;
+                                }
+                                ListLinierDelAfter(&RecommendedSongs, &P, Q);
+                            }
+                            ListLinierInsertLast(&Playlist->A[id-1].DaftarLagu, P);
+                        }
+                        printf(" berhasil ditambahkan ke playlist pengguna\""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\".\n");
+                    }
+                    else
+                        printf("Gunakan format <a b c ...> untuk menuliskan ID-ID lagu rekomendasi.\n");
+
+                    while(!IsListLinierEmpty(RecommendedSongs))
+                        ListLinierDelVLast(&RecommendedSongs, &tmpL);
+                }
+                else {
+                    printf("Tidak dapat meng-enhance playlist pengguna \""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\".\n");
+                    printf("Semua lagu yang tersedia sudah ada di dalam playlist.\n");
+                }
+            }
+            else {
+                printf("Tidak dapat meng-enhance playlist pengguna \""); printWord(Playlist->A[id-1].NamaPlaylist); printf("\".\n");
+                printf("Playlist masih kosong. Silahkan masukkan lagu-lagu artis terkini kesayangan Anda!\n");
             }
         }
-        else
-            printf("Tidak ada playlist dengan ID %d\n");
+        else {
+            currentWordTillSC();
+            printf("Tidak ada playlist dengan ID %d\n", id);
+        }
     }
     else
         printf("Kamu tidak memiliki playlist.\n");
@@ -1093,6 +1282,12 @@ void QuitWW(List Penyanyi, currentLagu LaguNow, Queue QueueLagu, Stack History, 
     {
         printf("\nKamu keluar dari WayangWave.\n");
         printf("Dadah ^_^/\n");
+    }
+    int n = ArrayDinLength(Playlist);
+    currentLagu tmp;
+    for(int i = 0; i < n; i ++) {
+        while(!IsListLinierEmpty(Playlist.A[i].DaftarLagu))
+            ListLinierDelVFirst(&Playlist.A[i].DaftarLagu, &tmp);
     }
     exit(0);
 }

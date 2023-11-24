@@ -47,7 +47,6 @@ boolean isFileExist(char* dirfile){
     FILE *file;
     file = fopen(dirfile, "r");
     if (file == NULL) {
-       fclose(file);
        return false;
     } 
     else {

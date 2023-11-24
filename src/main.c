@@ -16,8 +16,30 @@
 #include <time.h>
 
 int main() {
-    srand(time(NULL));
-    art_WayangWave5();
+    int x, y, id, n;
+    char* dirfile;
+    boolean masukSesi = false, isSaved = false, valid;
+    srand(time(NULL)); // inisialisasi seed untuk random
+
+    n = random_number(0, 5); // sengaja biar chanse dapat art_WayangWave5() lebih tinggi ^_^
+    switch (n) {
+    case 1:
+        art_WayangWave1();
+        break;
+    case 2:
+        art_WayangWave2();
+        break;
+    case 3:
+        art_WayangWave3();
+        break;
+    case 4:
+        art_WayangWave4();
+        break;
+    default:
+        art_WayangWave5();
+        break;
+    }
+
     printf("Selamat datang di aplikasi WayangWave, sebuah aplikasi yang bisa mensimulasikan service pemutaran musik.\n");
     printf("Ketik HELP untuk menunjukkan Menu Help WayangWave\n");
 
@@ -26,11 +48,6 @@ int main() {
     Stack History; CreateStack(&History);
     ArrayDin Playlist = MakeArrayDin();
     currentLagu LaguNow; CreateInfoLagu(&LaguNow);
-
-    int x, y, id, n;
-    char* dirfile;
-    boolean masukSesi = false, isSaved = false, valid;
-
 
     while(true) {
         printf(">> "); STARTWORD();
@@ -239,10 +256,8 @@ int main() {
             }
 
             else if(isWordEqual(currentWord, str2Word("ENHANCE"))) {
-                ADVWORD();
-                id = Word2int(currentWord);
                 if(masukSesi)
-                    PlaylistWW_Enhance(&Playlist, id, Penyanyi);
+                    PlaylistWW_Enhance(&Playlist, Penyanyi);
                 else
                     Command_forbidden();
             }

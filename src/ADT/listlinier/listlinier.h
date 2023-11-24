@@ -123,6 +123,7 @@ void ListLinierPrintInfo (ListLinier L);
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah terkecuali untuk newline di akhir output */
 int ListLinierNbElmt (ListLinier L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
+boolean isListLinierMember(ListLinier L, ListLinierInfoType Lagu);
 
 /****************** PROSES TERHADAP LIST ******************/
 void ListLinierInversList (ListLinier *L);

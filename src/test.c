@@ -16,12 +16,5 @@
 #include <time.h>
 
 int main() {
-    
-    srand(time(NULL));
-
-    int n = 100;
-    while(n--) {
-        printf("%d ", random_number(0, 5));
-    }
     return 0;
 }
