@@ -8,6 +8,7 @@ Aplikasi WayangWave adalah aplikasi simulasi service pemutaran musik yang dibuat
 
 **Kumpulan Makhluk Kasat Mata ke-6, K-02, STI-22**
 | **NIM** | **Nama** |
+| --- | --- |
 | 18222022 | Louis Ferdyo Gunawan |
 | 18222024 | Filbert Fuvian |
 | 18222050 | Nicolaas Heru Dreandachrista |
