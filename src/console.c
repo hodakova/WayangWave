@@ -546,68 +546,78 @@ void QueueWW_Playlist(ArrayDin Playlist, Queue *QueueLagu) {
 }
 
 void QueueWW_Swap(Queue *QueueLagu, int x, int y) {
-    boolean isXvalid = false, isYvalid = false;
-    int l = QueueLength(*QueueLagu), iHead = QueueIdxHead(*QueueLagu);
-
-    if(x > 0 && x <= l)
-        isXvalid = true;
-    if(y > 0 && y <= l)
-        isYvalid = true;
-
-
     printf("\n");
-    if(isXvalid && isYvalid) {
-        currentLagu tmp = (*QueueLagu).buffer[y-1+iHead];
-        (*QueueLagu).buffer[y-1+iHead] = (*QueueLagu).buffer[x-1+iHead];
-        (*QueueLagu).buffer[x-1+iHead] = tmp;
+    if(!isQueueEmpty(*QueueLagu)) {
+        boolean isXvalid = false, isYvalid = false;
+        int l = QueueLength(*QueueLagu), iHead = QueueIdxHead(*QueueLagu);
 
-        printf("Lagu \""); printWord((*QueueLagu).buffer[y-1+iHead].Lagu); printf("\" berhasil ditukar dengan \""); printWord(tmp.Lagu); printf("\"\n");
+        if(x > 0 && x <= l)
+            isXvalid = true;
+        if(y > 0 && y <= l)
+            isYvalid = true;
+
+        if(isXvalid && isYvalid) {
+            currentLagu tmp = (*QueueLagu).buffer[y-1+iHead];
+            (*QueueLagu).buffer[y-1+iHead] = (*QueueLagu).buffer[x-1+iHead];
+            (*QueueLagu).buffer[x-1+iHead] = tmp;
+
+            printf("Lagu \""); printWord((*QueueLagu).buffer[y-1+iHead].Lagu); printf("\" berhasil ditukar dengan \""); printWord(tmp.Lagu); printf("\"\n");
+        }
+        else {
+            printf("Lagu dengan urutan ");
+            if(!isXvalid)
+                printf("ke %d", x);
+            if(!isXvalid && !isYvalid)
+                printf(" & ");
+            if(!isYvalid)
+                printf("ke %d", y);
+            printf(" tidak terdapat dalam queue!\n");
+        }
     }
-    else {
-        printf("Lagu dengan urutan ");
-        if(!isXvalid)
-            printf("ke %d", x);
-        if(!isXvalid && !isYvalid)
-            printf(" & ");
-        if(!isYvalid)
-            printf("ke %d", y);
-        printf(" tidak terdapat dalam queue!\n");
-    }
+    else
+        printf("Queue kosong!\n");
 }
 
 void QueueWW_Remove(Queue *QueueLagu, int id) {
     printf("\n");
-    if(id > 0 && id <= QueueLength(*QueueLagu)) {
-        Queue Qtmp; CreateQueue(&Qtmp);
-        currentLagu Ltmp, Lrmv;
-        int i = 1;
+    if(!isQueueEmpty(*QueueLagu)) {
+        if(id > 0 && id <= QueueLength(*QueueLagu)) {
+            Queue Qtmp; CreateQueue(&Qtmp);
+            currentLagu Ltmp, Lrmv;
+            int i = 1;
 
-        while(!isQueueEmpty(*QueueLagu)) {
-            dequeue(QueueLagu, &Ltmp);
-            enqueue(&Qtmp, Ltmp);
+            while(!isQueueEmpty(*QueueLagu)) {
+                dequeue(QueueLagu, &Ltmp);
+                enqueue(&Qtmp, Ltmp);
+            }
+
+            while(!isQueueEmpty(Qtmp)) {
+                dequeue(&Qtmp, &Ltmp);
+                if(i != id)
+                    enqueue(QueueLagu, Ltmp);
+                else
+                    Lrmv = Ltmp;
+                i ++;
+            }
+
+            printf("Lagu \""); printWord(Lrmv.Lagu); printf("\" oleh \""); printWord(Lrmv.Penyanyi); printf("\" telah dihapus dari queue.\n");
         }
 
-        while(!isQueueEmpty(Qtmp)) {
-            dequeue(&Qtmp, &Ltmp);
-            if(i != id)
-                enqueue(QueueLagu, Ltmp);
-            else
-                Lrmv = Ltmp;
-            i ++;
-        }
-
-        printf("Lagu \""); printWord(Lrmv.Lagu); printf("\" oleh \""); printWord(Lrmv.Penyanyi); printf("\" telah dihapus dari queue.\n");
+        else
+            printf("Lagu dengan urutan ke %d tidak ada.\n", id);
     }
-
-    else
-        printf("Lagu dengan urutan ke %d tidak ada.\n", id);
+    else 
+        printf("Queue kosong!\n");
 }
 
 void QueueWW_Clear(Queue *QueueLagu) {
-    CreateQueue(QueueLagu);
-
     printf("\n");
-    printf("Queue berhasil dikosongkan.\n");
+    if(!isQueueEmpty(*QueueLagu)) {
+        CreateQueue(QueueLagu);
+        printf("Queue berhasil dikosongkan.\n");
+    }
+    else
+        printf("Queue sudah kosong!\n");
 }
 
 void SongWW_Next(Stack *History, currentLagu *LaguNow, Queue *QueueLagu) {
